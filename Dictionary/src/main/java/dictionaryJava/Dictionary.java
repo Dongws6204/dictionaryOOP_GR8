@@ -36,7 +36,7 @@ public class Dictionary {
     /**
      *search for a word in the Dictionary.
      *
-     * @param 
+     * @param
      */
     public Word searchWord(String wordTarget){
         for (int i = 0; i < words.size(); i++){
