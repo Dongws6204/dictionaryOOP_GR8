@@ -6,10 +6,20 @@ import java.util.Dictionary;
 public class DictionaryCommandline {
     private DictionaryManagement dictionaryManagement;
 
+    /**
+     * constructor_commandline_Dictionary.
+     *
+     * @param dictionaryManagement
+     */
     public DictionaryCommandline(DictionaryManagement dictionaryManagement) {
         this.dictionaryManagement = dictionaryManagement;
     }
 
+    /**
+     * Show_all_words.
+     *
+     * @void
+     */
     public void showAllWords() {
         System.out.println("No | English | Vietnamese");
         ArrayList<Word> words = dictionaryManagement.getWords();
@@ -20,14 +30,19 @@ public class DictionaryCommandline {
         }
     }
 
+    /**
+     * Dictionary_basic.
+     *
+     * @insert
+     */
     public void dictionaryBasic() {
         dictionaryManagement.insertFromCommandline();
         showAllWords();
     }
 
-    public static void main(String[] args) {
-        DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        DictionaryCommandline commandline = new DictionaryCommandline(dictionaryManagement);
-        commandline.dictionaryBasic();
-    }
+    /**
+     * main.
+     *
+     * @param args
+     */
 }
