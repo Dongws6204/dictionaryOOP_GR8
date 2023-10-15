@@ -1,10 +1,9 @@
 package dictionaryJava;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
-    private List<Word> words;
+    private static List<Word> words;
 
     /**
      *constructor for Dictionary.
@@ -20,7 +19,7 @@ public class Dictionary {
      *
      * @param
      */
-    public void addWord(Word word) {
+    public static void addWord(Word word) {
         words.add(word);
     }
 

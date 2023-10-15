@@ -1,7 +1,7 @@
 package dictionaryJava;
 
 public class Word {
-    private final String wordTarget;
+    private  String wordTarget;
     private String wordExplain;
 
     /**
@@ -50,6 +50,10 @@ public class Word {
      */
     public void setWordExplain(String wordExplain) {
         this.wordExplain = wordExplain;
+    }
+
+    public void setWordTarget(String wordTarget) {
+        this.wordTarget = wordTarget;
     }
 
 }
