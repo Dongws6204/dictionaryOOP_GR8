@@ -1,0 +1,17 @@
+.button {
+    -fx-background-color:  #5b8c96; /* Màu nền của nút */
+}
+
+.button:hover {
+    -fx-background-color: #0056b3; /* Màu nền khi di chuột vào nút */
+}
+
+.search-bar {
+    -fx-background-radius: 100; /* Đây là giá trị để bo viền thành tròn */
+    -fx-border-radius: 100; /* Đây là giá trị để bo viền thành tròn */
+}
+
+
+
+
+
