@@ -73,6 +73,7 @@ public class MainPageController {
         if (selectedSuggestion != null) {
             searchBar.setText(selectedSuggestion);
             DictionaryPane.setVisible(true); // Hiển thị DictionaryPane
+            ListView.setVisible(false);
         }
     }
 
