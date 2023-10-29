@@ -1,9 +1,9 @@
 .button {
-    -fx-background-color:  #5b8c96; /* Màu nền của nút */
+    -fx-background-color:  #B2C8BA; /* Màu nền của nút */
 }
 
 .button:hover {
-    -fx-background-color: #0056b3; /* Màu nền khi di chuột vào nút */
+    -fx-background-color: #86A789; /* Màu nền khi di chuột vào nút */
 }
 
 .search-bar {

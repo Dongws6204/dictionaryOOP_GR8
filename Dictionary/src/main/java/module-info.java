@@ -5,4 +5,6 @@ module com.example.Dictionary {
 
     opens Application to javafx.fxml;
     exports Application;
+    exports Controllers;
+    opens Controllers to javafx.fxml;
 }
