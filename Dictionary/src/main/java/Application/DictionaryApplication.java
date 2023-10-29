@@ -21,12 +21,15 @@ public class DictionaryApplication extends Application {
         primaryStage.setTitle("Dictionary Application");
 
         // Set the scene
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
 
         // Show the stage
         primaryStage.show();
 
         primaryStage.setResizable(false);
+        
     }
 
     public static void main(String[] args) {
@@ -35,7 +38,6 @@ public class DictionaryApplication extends Application {
         DictionaryManagement dm = new DictionaryManagement();
         DictionaryCommandLine cmd = new DictionaryCommandLine(dm);
         cmd.dictionaryAdvanced();
-
 
     }
 }

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -15,6 +16,9 @@ public class MainPageController {
 
     @FXML
     private HBox DictionaryPane;
+
+    @FXML
+    private ScrollPane ScrollPane;
 
     @FXML
     private Button Button1;
@@ -73,6 +77,7 @@ public class MainPageController {
         if (selectedSuggestion != null) {
             searchBar.setText(selectedSuggestion);
             DictionaryPane.setVisible(true); // Hiển thị DictionaryPane
+            ScrollPane.setVisible(true);
             ListView.setVisible(false);
         }
     }
