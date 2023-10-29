@@ -1,5 +1,5 @@
 .button {
-    -fx-background-color:   #dfdfdf; /* Màu nền của nút */
+    -fx-background-color: #cbcbcb; /* Màu nền của nút */
     -fx-background-radius: 50;
     -fx-border-radius: 50;
     -fx-border-color: #1e1e1e; /* Màu viền (đen trong trường hợp này) */
@@ -30,13 +30,6 @@
     -fx-border-radius: 10; /* Độ cong của các góc (nếu bạn cũng muốn áp dụng cho viền) */
 }
 
-.tab-header-background {
-    -fx-background-color: #000000; /* Đặt màu nền của thanh tab thành đen */
-}
-
-.tab:selected .tab-label {
-    -fx-text-fill: #ffffff; /* Đặt màu chữ của tab được chọn thành trắng */
-}
 
 
 
