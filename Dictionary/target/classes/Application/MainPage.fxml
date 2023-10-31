@@ -11,32 +11,32 @@
 
 <AnchorPane maxHeight="452.0" maxWidth="646.0" minHeight="400.0" minWidth="600.0" prefHeight="452.0" prefWidth="646.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
-      <ImageView fitHeight="259.0" fitWidth="344.0" layoutX="312.0" layoutY="-14.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="259.0" fitWidth="344.0" layoutX="312.0" layoutY="-14.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/learning-english-doodle-set-language-school-in-sketch-style-online-language-education-course-hand-drawn-illustration-isolated-on-white-background-vector.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="239.0" fitWidth="336.0" layoutY="217.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="239.0" fitWidth="336.0" layoutY="217.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/learning-english-doodle-set-language-school-in-sketch-style-online-language-education-course-hand-drawn-illustration-isolated-on-white-background-vector.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="246.0" fitWidth="327.0" layoutY="-20.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="246.0" fitWidth="327.0" layoutY="-20.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/learning-english-doodle-set-language-school-in-sketch-style-online-language-education-course-hand-drawn-illustration-isolated-on-white-background-vector.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="258.0" fitWidth="352.0" layoutX="323.0" layoutY="230.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="258.0" fitWidth="352.0" layoutX="323.0" layoutY="230.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/learning-english-doodle-set-language-school-in-sketch-style-online-language-education-course-hand-drawn-illustration-isolated-on-white-background-vector.jpg" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="ScrollPane" layoutX="135.0" layoutY="71.0" prefHeight="381.0" prefWidth="511.0" style="-fx-background-color: #B2B2B2FF;" stylesheets="@style.css" visible="false" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="0.0">
+      <ScrollPane fx:id="ScrollPane" layoutX="116.0" layoutY="71.0" prefHeight="361.0" prefWidth="512.0" style="-fx-background-color: ffff;" stylesheets="@style.css" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="18.0">
          <content>
             <fx:include fx:id="DictionaryPane" source="Dictionary.fxml" />
          </content>
       </ScrollPane>
-      <Button fx:id="Button22" alignment="CENTER" graphicTextGap="8.0" layoutX="25.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="86.0" styleClass="button-style" stylesheets="@style.css" text="Dịch">
+      <Button fx:id="Button22" alignment="CENTER" graphicTextGap="8.0" layoutX="17.0" layoutY="162.0" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="86.0" styleClass="button-style" stylesheets="@style.css" text="Dịch">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -48,7 +48,7 @@
             <Font name="Palatino Linotype Bold" size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Button12" alignment="CENTER" graphicTextGap="8.0" layoutX="25.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#showGamePane" prefHeight="40.0" prefWidth="86.0" styleClass="button-style" stylesheets="@style.css" text="Game">
+      <Button fx:id="Button12" alignment="CENTER" graphicTextGap="8.0" layoutX="16.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#showGamePane" prefHeight="40.0" prefWidth="86.0" styleClass="button-style" stylesheets="@style.css" text="Game">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -60,13 +60,13 @@
             <Font name="Palatino Linotype Bold" size="13.0" />
          </font>
       </Button>
-      <TextField fx:id="searchBar" layoutX="378.0" layoutY="20.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="156.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
+      <TextField fx:id="searchBar" layoutX="414.0" layoutY="27.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="156.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
          <font>
             <Font name="Palatino Linotype Bold" size="12.0" />
          </font>
       </TextField>
-      <ListView fx:id="ListView" layoutX="388.0" layoutY="42.0" onMouseClicked="#handleSuggestionSelected" prefHeight="315.0" prefWidth="137.0" style="-fx-background-color: ffff;" styleClass="list-cell" stylesheets="@style.css" visible="false" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="46.0" />
-      <Button layoutX="538.0" layoutY="19.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="24.0" stylesheets="@style.css">
+      <ListView fx:id="ListView" layoutX="431.0" layoutY="46.0" onMouseClicked="#handleSuggestionSelected" prefHeight="315.0" prefWidth="137.0" style="-fx-background-color: ffff;" styleClass="list-cell" stylesheets="@style.css" visible="false" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="431.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="46.0" />
+      <Button layoutX="577.0" layoutY="27.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="24.0" stylesheets="@style.css">
          <graphic>
             <ImageView fitHeight="13.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
