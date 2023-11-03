@@ -1,7 +1,7 @@
 package dictionaryJava;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,15 +23,25 @@ public class DictionaryCommandLine {
      *
      * @void
      */
+//    public void showAllWords() {
+//        System.out.println("No | English | Vietnamese");
+//        List<Word> words = dictionaryManagement.getWords();
+//
+//        for (int i = 0; i < words.size(); i++) {
+//            Word word = words.get(i);
+//            System.out.println(i + 1 + " | " + word.getWordTarget() + " | " + word.getWordExplain());
+//        }
+//    }
     public void showAllWords() {
         System.out.println("No | English | Vietnamese");
-        ArrayList<Word> words = dictionaryManagement.getWords();
+        List<Word> words = dictionaryManagement.getWords();
 
         for (int i = 0; i < words.size(); i++) {
             Word word = words.get(i);
             System.out.println(i + 1 + " | " + word.getWordTarget() + " | " + word.getWordExplain());
         }
     }
+
 
     /**
      * Dictionary_basic.
@@ -87,7 +97,7 @@ public class DictionaryCommandLine {
             System.out.println("[7] Game");
             System.out.println("[8] Import from file");
             System.out.println("[9] Export to file");
-            System.out.println("Your action:");
+            System.out.print("Your action:");
 
             try {
                 choice = scanner.nextInt();
@@ -145,16 +155,36 @@ public class DictionaryCommandLine {
                     break;
                 case 7:
                     // Game
-                    dictionaryManagement.dictionaryGame();
+//                    dictionaryManagement.dictionaryGame();
+                    HangmanGame hangmanGame = new HangmanGame();
+                    hangmanGame.play(); // Gọi phương thức play để bắt đầu trò chơi Hangman
                     break;
                 case 8:
                     // Import from file
+                    System.out.println("Bạn hãy nhập đường dẫn để nhập từ điển từ file!");
 
-                    dictionaryManagement.insertFromFile("dictionaryImportFromFile");
+                    String path = scanner.nextLine();
+                    File file = new File(path);
+
+                    if (file.exists() && file.isFile()) {
+                        dictionaryManagement.insertFromFile(path);
+                    } else {
+                        System.out.println("Đường dẫn không hợp lệ hoặc không phải là tệp.");
+                    }
                     break;
+
                 case 9:
                     // Export to file
-                    dictionaryManagement.dictionaryExportToFile("dictionaryExportToFile");
+                    System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
+
+                    String pathExport = scanner.nextLine();
+                    File fileExport = new File(pathExport);
+
+                    if (fileExport.exists() && fileExport.isFile()) {
+                        dictionaryManagement.dictionaryExportToFile(pathExport);
+                    } else {
+                        System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
+                    }
                     break;
                 default:
                     System.out.println("Action not supported");

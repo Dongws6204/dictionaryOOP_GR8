@@ -1,15 +1,14 @@
 package dictionaryJava;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class DictionaryManagement {
-    private ArrayList<Word> words;
+    private List<Word> words;
 
     /**
      * constructor.
@@ -52,28 +51,36 @@ public class DictionaryManagement {
      *
      * @return
      */
-    public ArrayList<Word> getWords() {
+    public List<Word> getWords() {
         return words;
     }
 
     /**
      * updateInsertFromFile.
      */
+
     public void insertFromFile(String path) {
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\t");
                 if (parts.length == 2) {
                     String wordTarget = parts[0].trim();
                     String wordExplain = parts[1].trim();
-                    Dictionary.addWord(new Word(wordTarget, wordExplain));
+                    words.add(new Word(wordTarget, wordExplain));
                 }
             }
+
+            for (int i = 0; i < words.size(); i++) {
+                Word word = words.get(i);
+                System.out.println(i + 1 + " | " + word.getWordTarget() + " | " + word.getWordExplain());
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * updateLookup.
@@ -168,28 +175,30 @@ public class DictionaryManagement {
      *
      *
      */
-    public void dictionaryGame() {
-        Scanner scanner = new Scanner(System.in);
-        String[] questions = {"What _ you doing?", "How _ you?"};
-        String[][] options = {{"[A] are", "[B] do", "[C] is", "[D] have"}, {"[A] is", "[B] are", "[C] do", "[D] have"}};
-        String[] answers = {"A", "B"};
+//    public void dictionaryGame() {
+////        Scanner scanner = new Scanner(System.in);
+////        String[] questions = {"What _ you doing?", "How _ you?"};
+////        String[][] options = {{"[A] are", "[B] do", "[C] is", "[D] have"}, {"[A] is", "[B] are", "[C] do", "[D] have"}};
+////        String[] answers = {"A", "B"};
+////
+////        for (int i = 0; i < questions.length; i++) {
+////            System.out.println(questions[i]);
+////            for (String option : options[i]) {
+////                System.out.println(option);
+////            }
+////
+////            System.out.println("Your choice [A/B/C/D]:");
+////            String userChoice = scanner.nextLine();
+////
+////            if (userChoice.equalsIgnoreCase(answers[i])) {
+////                System.out.println("Correct!");
+////            } else {
+////                System.out.println("Incorrect. The correct answer is " + answers[i]);
+////            }
+//        }
 
-        for (int i = 0; i < questions.length; i++) {
-            System.out.println(questions[i]);
-            for (String option : options[i]) {
-                System.out.println(option);
-            }
 
-            System.out.println("Your choice [A/B/C/D]:");
-            String userChoice = scanner.nextLine();
-
-            if (userChoice.equalsIgnoreCase(answers[i])) {
-                System.out.println("Correct!");
-            } else {
-                System.out.println("Incorrect. The correct answer is " + answers[i]);
-            }
-        }
-    }
+//    }
 
 
 }

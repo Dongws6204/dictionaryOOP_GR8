@@ -1,14 +1,13 @@
 package Application;
 
+import dictionaryJava.DictionaryCommandLine;
+import dictionaryJava.DictionaryManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import dictionaryJava.DictionaryCommandLine;
-import dictionaryJava.Word;
-import dictionaryJava.DictionaryManagement;
 
 public class DictionaryApplication extends Application {
 
@@ -34,10 +33,10 @@ public class DictionaryApplication extends Application {
 
     public static void main(String[] args) {
 
-        launch(args);
-        DictionaryManagement dm = new DictionaryManagement();
-        DictionaryCommandLine cmd = new DictionaryCommandLine(dm);
-        cmd.dictionaryAdvanced();
+         launch(args);
+//        DictionaryManagement dm = new DictionaryManagement();
+//        DictionaryCommandLine cmd = new DictionaryCommandLine(dm);
+//        cmd.dictionaryAdvanced();
 
     }
 }

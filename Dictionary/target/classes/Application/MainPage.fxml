@@ -31,7 +31,7 @@
             <Image url="@../assets/learning-english-doodle-set-language-school-in-sketch-style-online-language-education-course-hand-drawn-illustration-isolated-on-white-background-vector.jpg" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="ScrollPane" layoutX="116.0" layoutY="71.0" prefHeight="361.0" prefWidth="512.0" style="-fx-background-color: ffff;" stylesheets="@style.css" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="18.0">
+      <ScrollPane fx:id="ScrollPane" layoutX="116.0" layoutY="71.0" prefHeight="361.0" prefWidth="512.0" style="-fx-background-color: ffff;" stylesheets="@style.css" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="18.0" visible="false">
          <content>
             <fx:include fx:id="DictionaryPane" source="Dictionary.fxml" />
          </content>

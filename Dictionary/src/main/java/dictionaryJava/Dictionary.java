@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
-    private static List<Word> words;
+    private  List<Word> words;
 
     /**
      *constructor for Dictionary.
@@ -19,7 +19,7 @@ public class Dictionary {
      *
      * @param
      */
-    public static void addWord(Word word) {
+    public  void addWord(Word word) {
         words.add(word);
     }
 
