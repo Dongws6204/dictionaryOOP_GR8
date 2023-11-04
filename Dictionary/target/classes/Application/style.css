@@ -1,13 +1,13 @@
 .button {
-    -fx-background-color: #cbcbcb; /* Màu nền của nút */
+    -fx-background-color: #dadada; /* Màu nền của nút */
     -fx-background-radius: 50;
     -fx-border-radius: 50;
-    -fx-border-color: #1e1e1e; /* Màu viền (đen trong trường hợp này) */
-    -fx-border-width: 1.5; /* Độ dày viền */
+    -fx-border-color: #383838; /* Màu viền (đen trong trường hợp này) */
+    -fx-border-width: 2; /* Độ dày viền */
     -fx-background-insets: 3 -4 -3 5/* Độ lệch viền so với TextField */
 }
 .button:hover {
-    -fx-background-color: #4d4d4d;/* Màu nền khi di chuột vào */
+    -fx-background-color: #7e7e7e;/* Màu nền khi di chuột vào */
     -fx-text-fill: #ffffff;
 }
 
@@ -16,20 +16,18 @@
     -fx-border-radius: 50;
     -fx-padding: 0 0 0 10px;
     -fx-border-color: #1e1e1e; /* Màu viền (đen trong trường hợp này) */
-    -fx-border-width: 1.5; /* Độ dày viền */
+    -fx-border-width: 2; /* Độ dày viền */
     -fx-background-insets: 3 -4 -3 5;/* Độ lệch viền so với TextField */
 }
 .text-input {
-    -fx-text-fill: #2a2a2a; /* Đổi màu chữ thành đỏ (#FF0000) */
+    -fx-text-fill: #2a2a2a;
 }
 #ListView .list-cell {
-    -fx-text-fill: #2a2a2a; /* Đổi màu chữ thành đỏ */
+    -fx-text-fill: #2a2a2a;
 }
-#DictionaryPane {
-    -fx-background-radius: 10; /* Độ cong của các góc */
-    -fx-border-radius: 10; /* Độ cong của các góc (nếu bạn cũng muốn áp dụng cho viền) */
+#labelPane{
+    -fx-background-radius: 10 10 0 0;
 }
-
 
 
 

@@ -38,12 +38,12 @@ public class Dictionary {
      * @param
      */
     public Word searchWord(String wordTarget){
-        for (int i = 0; i < words.size(); i++){
-            if(words.get(i).getWordTarget().equalsIgnoreCase(wordTarget)){
-                return words.get(i);
+            for (int i = 0; i < words.size(); i++){
+                if(words.get(i).getWordTarget().equalsIgnoreCase(wordTarget)){
+                    return words.get(i);
+                }
             }
-        }
-        return null;
+            return null;
     }
 
 }

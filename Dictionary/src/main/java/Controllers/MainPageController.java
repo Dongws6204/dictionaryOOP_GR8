@@ -5,20 +5,25 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 
 public class MainPageController {
 
 
-    @FXML
-    private HBox DictionaryPane;
 
     @FXML
-    private ScrollPane ScrollPane;
+    private Pane sourceTextAreaPane;
+
+    @FXML
+    private Pane Dictionary;
+
+    @FXML
+    private ScrollPane DictionaryPane;
 
     @FXML
     private Button Button1;
@@ -28,6 +33,8 @@ public class MainPageController {
     @FXML
     private Button Button3;
 
+    @FXML
+    private Pane labelPane;
 
     // commandLine
     @FXML
@@ -51,7 +58,6 @@ public class MainPageController {
 
 
 
-    // các hàm xử lý commandLine
     @FXML
     private void search(String searchTerm) {
 
@@ -76,8 +82,8 @@ public class MainPageController {
         String selectedSuggestion = ListView.getSelectionModel().getSelectedItem();
         if (selectedSuggestion != null) {
             searchBar.setText(selectedSuggestion);
-            DictionaryPane.setVisible(true); // Hiển thị DictionaryPane
-            ScrollPane.setVisible(true);
+            Dictionary.setVisible(true); // Hiển thị DictionaryPane
+            DictionaryPane.setVisible(true);
             ListView.setVisible(false);
         }
     }

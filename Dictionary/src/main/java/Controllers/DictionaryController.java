@@ -1,24 +1,28 @@
 package Controllers;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 
 public class DictionaryController {
 
-    @FXML
-    private HBox DictionaryPane;
 
     @FXML
+    private TextArea Explanation;
+
+    @FXML
+    private Pane Dictionary;
+
 
 
 
     public void initialize()
     {
-       DictionaryPane.setVisible(false);
-
+       Dictionary.setVisible(false);
     }
 
 }
