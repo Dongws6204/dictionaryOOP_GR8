@@ -62,13 +62,12 @@ public class MainPageController {
     @FXML
     private javafx.scene.control.ListView<String> DicSuggestListView;
     @FXML
-    private javafx.scene.control.ListView<String>BookSuggestListView;
+    private javafx.scene.control.ListView<String> BookSuggestListView;
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
     //---------//
     @FXML
     private void initialize() {
         DicSuggestListView.setVisible(false);
-
         // Khởi tạo tạm danh sách gợi ý (suggestions)
         suggestions = FXCollections.observableArrayList(
                 "Apple", "Banana", "Cherry", "Date", "Grape", "Lemon", "Mango", "Orange", "Peach", "Pear", "Strawberry"
@@ -87,11 +86,8 @@ public class MainPageController {
                 filteredSuggestions.add(suggestion);
             }
         }
-
         DicSuggestListView.setItems(filteredSuggestions);
-
         DicSuggestListView.setVisible(!filteredSuggestions.isEmpty());
-
     }
 
     @FXML
@@ -151,6 +147,5 @@ public class MainPageController {
         BookMarkControllers.setVisible(false);
         TranslateControllers.setVisible(false);
     }
-
 
 }

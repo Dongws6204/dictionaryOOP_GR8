@@ -33,7 +33,7 @@ public class DictionaryApplication extends Application {
 
     public static void main(String[] args) {
 
-         launch(args);
+        launch(args);
         DictionaryManagement dm = new DictionaryManagement();
         DictionaryCommandLine cmd = new DictionaryCommandLine(dm);
         cmd.dictionaryAdvanced();
