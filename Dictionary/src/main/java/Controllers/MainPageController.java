@@ -39,20 +39,30 @@ public class MainPageController {
     @FXML
     private Pane TranslateControllers;
     @FXML
+    private Pane DictionaryControllers;
+    @FXML
+    private Pane BookMarkControllers;
+    @FXML
     private Pane sourceTextAreaPane;
     @FXML
-    private Pane DictionaryControllers;
+    private Pane GameControllers;
     @FXML
     private ScrollPane DictionaryPane;
     @FXML
-    private ScrollPane DictionaryPane1;
+    private ScrollPane BookExplanationPane;
+
     //----------//
 
     //others
     @FXML
     private TextField DictionarySearchBar;
     @FXML
+    private TextField BookmarkSearchBar;
+
+    @FXML
     private javafx.scene.control.ListView<String> DicSuggestListView;
+    @FXML
+    private javafx.scene.control.ListView<String>BookSuggestListView;
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
     //---------//
     @FXML
@@ -109,16 +119,24 @@ public class MainPageController {
 
         DictionaryControllers.setVisible(true);
         TranslateControllers.setVisible(false);
+        BookMarkControllers.setVisible(false);
+        GameControllers.setVisible(false);
+
     }
 
     @FXML
     void ShowTranslateControllers(MouseEvent event) {
         TranslateControllers.setVisible(true);
         DictionaryControllers.setVisible(false);
+        BookMarkControllers.setVisible(false);
+        GameControllers.setVisible(false);
     }
     @FXML
     void ShowBookmarkControllers(MouseEvent event) {
-
+        BookMarkControllers.setVisible(true);
+        TranslateControllers.setVisible(false);
+        DictionaryControllers.setVisible(false);
+        GameControllers.setVisible(false);
     }
 
     @FXML
@@ -128,7 +146,10 @@ public class MainPageController {
 
     @FXML
     void ShowGameControllers(MouseEvent event) {
-
+        GameControllers.setVisible(true);
+        DictionaryControllers.setVisible(false);
+        BookMarkControllers.setVisible(false);
+        TranslateControllers.setVisible(false);
     }
 
 
