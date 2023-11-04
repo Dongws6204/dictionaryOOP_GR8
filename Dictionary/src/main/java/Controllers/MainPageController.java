@@ -16,39 +16,48 @@ public class MainPageController {
 
 
 
+
+
+    //Button
+    @FXML
+    private Button DictionaryButton;
+    @FXML
+    private Button BookmarkButton;
+    @FXML
+    private Button TranslateButton;
+    @FXML
+    private Button GameButton;
+    @FXML
+    private Button addWordButton;
+    //----------//
+
+
+
+    //Pane
+    @FXML
+    private Pane labelPane1;
+    @FXML
+    private Pane TranslateControllers;
     @FXML
     private Pane sourceTextAreaPane;
-
     @FXML
-    private Pane Dictionary;
-
+    private Pane DictionaryControllers;
     @FXML
     private ScrollPane DictionaryPane;
+    @FXML
+    private ScrollPane DictionaryPane1;
+    //----------//
 
+    //others
     @FXML
-    private Button Button1;
-
+    private TextField DictionarySearchBar;
     @FXML
-    private Button Button2;
-    @FXML
-    private Button Button3;
-
-    @FXML
-    private Pane labelPane;
-
-    // commandLine
-    @FXML
-    private TextField searchBar;
-    @FXML
-    private javafx.scene.control.ListView<String> ListView;
+    private javafx.scene.control.ListView<String> DicSuggestListView;
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
-
-
-    ///
-
+    //---------//
     @FXML
     private void initialize() {
-        ListView.setVisible(false);
+        DicSuggestListView.setVisible(false);
 
         // Khởi tạo tạm danh sách gợi ý (suggestions)
         suggestions = FXCollections.observableArrayList(
@@ -69,46 +78,56 @@ public class MainPageController {
             }
         }
 
-        ListView.setItems(filteredSuggestions);
+        DicSuggestListView.setItems(filteredSuggestions);
 
-        ListView.setVisible(!filteredSuggestions.isEmpty());
-
-
+        DicSuggestListView.setVisible(!filteredSuggestions.isEmpty());
 
     }
 
     @FXML
     private void handleSuggestionSelected(MouseEvent event) {
-        String selectedSuggestion = ListView.getSelectionModel().getSelectedItem();
+        String selectedSuggestion = DicSuggestListView.getSelectionModel().getSelectedItem();
         if (selectedSuggestion != null) {
-            searchBar.setText(selectedSuggestion);
-            Dictionary.setVisible(true); // Hiển thị DictionaryPane
-            DictionaryPane.setVisible(true);
-            ListView.setVisible(false);
+            DictionarySearchBar.setText(selectedSuggestion);
         }
+
     }
 
 
     @FXML
     private void showSuggestList (KeyEvent event) {
-        String searchTerm = searchBar.getText().trim();
-        if (!searchTerm.isEmpty()) {
-            search(searchTerm);
-            ListView.setVisible(true);
-        } else {
-            ListView.setVisible(false);
-        }
+        String searchTerm = DictionarySearchBar.getText().trim();
+
+        DicSuggestListView.setVisible(true);
+
+        search(searchTerm);
     }
     /////
 
+    @FXML
+    void ShowDictionaryControllers(MouseEvent event) {
+
+        DictionaryControllers.setVisible(true);
+        TranslateControllers.setVisible(false);
+    }
 
     @FXML
-    void ShowTranslatePane(MouseEvent event) {
+    void ShowTranslateControllers(MouseEvent event) {
+        TranslateControllers.setVisible(true);
+        DictionaryControllers.setVisible(false);
+    }
+    @FXML
+    void ShowBookmarkControllers(MouseEvent event) {
 
     }
 
     @FXML
-    void showGamePane(MouseEvent event) {
+    void ShowAddWordControllers(MouseEvent event) {
+
+    }
+
+    @FXML
+    void ShowGameControllers(MouseEvent event) {
 
     }
 

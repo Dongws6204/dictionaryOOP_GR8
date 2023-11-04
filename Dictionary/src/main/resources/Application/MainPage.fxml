@@ -17,12 +17,12 @@
 
 <AnchorPane maxHeight="1072.0" maxWidth="1375.0" minHeight="400.0" minWidth="600.0" prefHeight="497.0" prefWidth="770.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
-      <ImageView fitHeight="522.0" fitWidth="793.0" layoutX="-10.0" layoutY="-6.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="522.0" fitWidth="783.0" layoutX="-10.0" layoutY="-6.0" opacity="0.12" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Asset%202.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="12.0" layoutY="128.0" prefHeight="314.0" prefWidth="134.0">
+      <GridPane layoutX="29.0" layoutY="128.0" prefHeight="314.0" prefWidth="134.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -34,7 +34,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="Button2211" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="159.0" styleClass="button-style" stylesheets="@style.css" text="Từ Điển" textFill="#3e3e3e">
+            <Button fx:id="DictionaryButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowDictionaryControllers" prefHeight="40.0" prefWidth="159.0" styleClass="button-style" stylesheets="@style.css" text="Từ Điển" textFill="#3e3e3e">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -55,7 +55,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="Button22111" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="189.0" styleClass="button-style" stylesheets="@style.css" text="Bookmark" textFill="#3e3e3e" GridPane.rowIndex="2">
+            <Button fx:id="BookmarkButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowBookmarkControllers" prefHeight="40.0" prefWidth="189.0" styleClass="button-style" stylesheets="@style.css" text="Bookmark" textFill="#3e3e3e" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="Button22112" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="173.0" styleClass="button-style" stylesheets="@style.css" text="Dịch" GridPane.rowIndex="1">
+            <Button fx:id="TranslateButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslateControllers" prefHeight="40.0" prefWidth="173.0" styleClass="button-style" stylesheets="@style.css" text="Dịch" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,7 +85,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="Button22113" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Game" textFill="#3e3e3e" GridPane.rowIndex="3">
+            <Button fx:id="GameButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onMouseClicked="#ShowGameControllers" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Game" textFill="#3e3e3e" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -100,7 +100,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="Button22114" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslatePane" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Thêm Từ" GridPane.rowIndex="4">
+            <Button fx:id="addWordButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowAddWordControllers" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Thêm Từ" GridPane.rowIndex="4">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -117,55 +117,12 @@
             </Button>
          </children>
       </GridPane>
-      <TextField fx:id="searchBar" layoutX="204.0" layoutY="37.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="127.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
-         <font>
-            <Font name="r0c0i Linotte Bold" size="15.0" />
-         </font>
-      </TextField>
-      <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="334.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/icons8-search-96.png" />
-         </image>
-      </ImageView>
-      <ScrollPane fx:id="DictionaryPane" layoutX="377.0" layoutY="66.0" prefHeight="410.0" prefWidth="365.0" stylesheets="@style.css">
-         <content>
-            <fx:include fx:id="Dictionary" source="Dictionary.fxml" />
-         </content>
-      </ScrollPane>
-      <Pane fx:id="labelPane" layoutX="377.0" layoutY="33.0" prefHeight="34.0" prefWidth="365.0" style="-fx-background-color: #1e1e1e;" stylesheets="@style.css">
-         <children>
-            <Label fx:id="explainLabel" graphicTextGap="8.0" layoutX="-6.0" layoutY="-3.0" prefHeight="40.0" prefWidth="153.0" text="ĐỊNH NGHĨA" textFill="WHITE">
-               <font>
-                  <Font name="r0c0i Linotte Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/list.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </Label>
-         </children>
-      </Pane>
-      <ScrollPane layoutX="203.0" layoutY="74.0" prefHeight="401.0" prefWidth="153.0" style="-fx-background-color: #ffffff; -fx-border-color: #dadada;">
-         <content>
-            <ListView fx:id="ListView" onMouseClicked="#handleSuggestionSelected" prefHeight="410.0" prefWidth="135.0" styleClass="list-cell" stylesheets="@style.css" />
-         </content>
-      </ScrollPane>
-      <ImageView fitHeight="72.0" fitWidth="135.0" layoutX="13.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="72.0" fitWidth="135.0" layoutX="15.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/Logo.png" />
          </image>
       </ImageView>
-      <Pane fx:id="sourceTextAreaPane" layoutX="272.0" layoutY="612.0" prefHeight="297.0" prefWidth="567.0">
-         <fx:include fx:id="sourceTextArea" source="Translate.fxml" />
-      </Pane>
-      <Pane layoutX="271.0" layoutY="567.0" prefHeight="36.0" prefWidth="561.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 10;" />
-      <TextField fx:id="searchBar1" layoutX="12.0" layoutY="633.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="127.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
+      <TextField layoutX="12.0" layoutY="633.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="127.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
          <font>
             <Font name="r0c0i Linotte Bold" size="15.0" />
          </font>
@@ -177,16 +134,16 @@
       </ImageView>
       <ScrollPane layoutX="11.0" layoutY="670.0" prefHeight="401.0" prefWidth="153.0" style="-fx-background-color: #ffffff; -fx-border-color: #dadada;">
          <content>
-            <ListView fx:id="ListView1" onMouseClicked="#handleSuggestionSelected" prefHeight="410.0" prefWidth="135.0" styleClass="list-cell" stylesheets="@style.css" />
+            <ListView onMouseClicked="#handleSuggestionSelected" prefHeight="410.0" prefWidth="135.0" styleClass="list-cell" stylesheets="@style.css" />
          </content>
       </ScrollPane>
       <ListView fx:id="ListView1" layoutX="-1065.0" layoutY="50.0" onMouseClicked="#handleSuggestionSelected" prefHeight="410.0" prefWidth="135.0" styleClass="list-cell" stylesheets="@style.css" />
-      <ScrollPane fx:id="DictionaryPane1" layoutX="1361.0" layoutY="79.0" prefHeight="410.0" prefWidth="365.0" stylesheets="@style.css">
+      <ScrollPane fx:id="DictionaryPane1" layoutX="909.0" layoutY="103.0" prefHeight="410.0" prefWidth="365.0" stylesheets="@style.css">
          <content>
             <fx:include fx:id="Dictionary1" source="Dictionary.fxml" />
          </content>
       </ScrollPane>
-      <Pane fx:id="labelPane1" layoutX="1361.0" layoutY="46.0" prefHeight="34.0" prefWidth="365.0" style="-fx-background-color: #1e1e1e;" stylesheets="@style.css">
+      <Pane fx:id="labelPane1" layoutX="909.0" layoutY="70.0" prefHeight="34.0" prefWidth="365.0" style="-fx-background-color: #1e1e1e;" stylesheets="@style.css">
          <children>
             <Label fx:id="explainLabel1" graphicTextGap="8.0" layoutX="-6.0" layoutY="-3.0" prefHeight="40.0" prefWidth="153.0" text="ĐỊNH NGHĨA" textFill="WHITE">
                <font>
@@ -205,6 +162,85 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="1346.0" layoutY="687.0" prefHeight="345.0" prefWidth="497.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" />
+      <Pane layoutX="914.0" layoutY="564.0" prefHeight="345.0" prefWidth="497.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" />
+      <Pane fx:id="TranslateControllers" layoutX="220.0" layoutY="73.0" prefHeight="389.0" prefWidth="578.0" visible="false">
+         <children>
+            <Pane fx:id="sourceTextAreaPane" layoutX="-39.0" layoutY="42.0" prefHeight="297.0" prefWidth="587.0">
+               <fx:include fx:id="sourceTextArea" source="Translate.fxml" />
+            </Pane>
+            <Pane layoutX="-39.0" layoutY="-7.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="Label1" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
+                     <font>
+                        <Font name="r0c0i Linotte Bold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="282.0" layoutY="-7.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 10;">
+               <children>
+                  <Label fx:id="Label2" graphicTextGap="8.0" layoutX="-18.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
+                     <font>
+                        <Font name="r0c0i Linotte Bold" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="231.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-change-96.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="DictionaryControllers" layoutX="201.0" layoutY="9.0" prefHeight="482.0" prefWidth="567.0" visible="false">
+         <children>
+            <ScrollPane layoutX="9.0" layoutY="67.0" prefHeight="401.0" prefWidth="153.0" style="-fx-background-color: #ffffff; -fx-border-color: #dadada;">
+               <content>
+                  <ListView fx:id="DicSuggestListView" onMouseClicked="#handleSuggestionSelected" prefHeight="410.0" prefWidth="135.0" styleClass="list-cell" stylesheets="@style.css" />
+               </content>
+            </ScrollPane>
+            <TextField fx:id="DictionarySearchBar" layoutX="10.0" layoutY="34.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="127.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
+               <font>
+                  <Font name="r0c0i Linotte Bold" size="15.0" />
+               </font>
+            </TextField>
+            <ScrollPane fx:id="DictionaryPane" layoutX="188.0" layoutY="67.0" prefHeight="401.0" prefWidth="365.0" stylesheets="@style.css">
+               <content>
+                  <fx:include fx:id="Dictionary" source="Dictionary.fxml" />
+               </content>
+            </ScrollPane>
+            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="142.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-search-96.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="188.0" layoutY="34.0" prefHeight="34.0" prefWidth="365.0" style="-fx-background-color: #1e1e1e;" stylesheets="@style.css">
+               <children>
+                  <Label graphicTextGap="8.0" layoutX="-6.0" layoutY="-3.0" prefHeight="40.0" prefWidth="153.0" text="ĐỊNH NGHĨA" textFill="WHITE">
+                     <font>
+                        <Font name="r0c0i Linotte Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/list.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
