@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="360.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslateController">
+   <children>
+      <TextArea fx:id="transalationTextArea" prefHeight="360.0" prefWidth="267.0" />
+      <TextArea fx:id="sourceTextArea" layoutX="300.0" prefHeight="360.0" prefWidth="275.0" promptText="type..." />
+   </children>
+</AnchorPane>

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
-    private static List<Word> words;
+    private  List<Word> words;
 
     /**
      *constructor for Dictionary.
@@ -19,7 +19,7 @@ public class Dictionary {
      *
      * @param
      */
-    public static void addWord(Word word) {
+    public  void addWord(Word word) {
         words.add(word);
     }
 
@@ -38,12 +38,12 @@ public class Dictionary {
      * @param
      */
     public Word searchWord(String wordTarget){
-        for (int i = 0; i < words.size(); i++){
-            if(words.get(i).getWordTarget().equalsIgnoreCase(wordTarget)){
-                return words.get(i);
+            for (int i = 0; i < words.size(); i++){
+                if(words.get(i).getWordTarget().equalsIgnoreCase(wordTarget)){
+                    return words.get(i);
+                }
             }
-        }
-        return null;
+            return null;
     }
 
 }
