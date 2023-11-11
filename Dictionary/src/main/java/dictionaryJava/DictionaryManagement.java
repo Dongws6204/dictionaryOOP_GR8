@@ -1,5 +1,6 @@
 package dictionaryJava;
 
+import java.sql.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.Scanner;
 
 public class DictionaryManagement {
     private List<Word> words;
+    private Connection connection;
+
 
     /**
      * constructor.
@@ -17,8 +20,40 @@ public class DictionaryManagement {
      */
     public DictionaryManagement() {
         words = new ArrayList<>();
+        initializeDatabaseConnection();
+        loadWordsFromDatabase();
     }
 
+
+    private void initializeDatabaseConnection() {
+        try {
+            String url = "jdbc:mysql://localhost:3306/dictionarydb";
+            String username = "root";
+            String password = "PHW#84#jeor";
+
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void loadWordsFromDatabase() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM words");
+
+            while (resultSet.next()) {
+                String wordTarget = resultSet.getString("word_target");
+                String wordExplain = resultSet.getString("word_explain");
+
+                Word word = new Word(wordTarget, wordExplain);
+                words.add(word);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * insertFromCommandline.
      *
@@ -28,7 +63,6 @@ public class DictionaryManagement {
     public void insertFromCommandline() {
         Scanner scanner = new Scanner(System.in);
 
-//        Nhập số lượng từ vựng.
         System.out.print("Nhập số lượng từ vựng: ");
         int numWords = scanner.nextInt();
         scanner.nextLine();
@@ -37,13 +71,27 @@ public class DictionaryManagement {
             System.out.println("Nhập từ tiếng anh:");
             String wordTarget = scanner.nextLine().trim().toLowerCase();
 
-            System.out.println("Nhập nghĩa giải thích bằng tiếng Viêt: ");
+            System.out.println("Nhập nghĩa giải thích bằng tiếng Việt: ");
             String wordExplain = scanner.nextLine().trim().toLowerCase();
+
+            insertWordToDatabase(wordTarget, wordExplain);
 
             Word word = new Word(wordTarget, wordExplain);
             words.add(word);
         }
+    }
 
+
+    private void insertWordToDatabase(String wordTarget, String wordExplain) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO words (word_target, word_explain) VALUES (?, ?)");
+            preparedStatement.setString(1, wordTarget);
+            preparedStatement.setString(2, wordExplain);
+            preparedStatement.executeUpdate();
+            System.out.println("Đã thêm từ vào cơ sở dữ liệu.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -102,11 +150,13 @@ public class DictionaryManagement {
         }
     }
 
+    /* search word*/
 
     /**
      * addWord.
      */
     public void addWord(String word, String explain) {
+        insertWordToDatabase(word, explain);
         Word newWord = new Word(word, explain);
         words.add(newWord);
     }
@@ -115,19 +165,20 @@ public class DictionaryManagement {
      * editWord.
      */
     public void editWord(String word, String newWord, String newExplain) {
-        boolean check = false;
-        for (Word w : words) {
-            if (w.getWordTarget().equalsIgnoreCase(word)) {
-                w.setWordTarget(newWord);
-                w.setWordExplain(newExplain);
-                check = true;
-                break; // Đã tìm thấy và sửa.
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE words SET word_target = ?, word_explain = ? WHERE word_target = ?");
+            preparedStatement.setString(1, newWord);
+            preparedStatement.setString(2, newExplain);
+            preparedStatement.setString(3, word);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Đã sửa từ " + word + " thành công.");
+            } else {
+                System.out.println("Không tìm thấy từ " + word + " để sửa.");
             }
-        }
-        if(check) {
-            System.out.println("Đã sửa từ" + word + "thành công.");
-        } else {
-            System.out.println("Không tìm thấy từ" + word + "để sửa.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -136,21 +187,18 @@ public class DictionaryManagement {
      * deleteWord.
      */
     public void deleteWord(String word) {
-        boolean check = false;
-        Iterator<Word> iterator = words.iterator();
-        while (iterator.hasNext()) {
-            Word w = iterator.next();
-            if (w.getWordTarget().equalsIgnoreCase(word)) {
-                iterator.remove();
-                check = true;
-                break; // Đã tìm thấy và xóa, không cần duyệt tiếp
-            }
-        }
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM words WHERE word_target = ?");
+            preparedStatement.setString(1, word);
+            int rowsAffected = preparedStatement.executeUpdate();
 
-        if (check) {
-            System.out.println("Đã tìm thấy từ cần xóa và xóa thành công! Đã xóa : " + word);
-        } else {
-            System.out.println("không tìm  thấy" + word + "từ bạn cần xóa");
+            if (rowsAffected > 0) {
+                System.out.println("Đã xóa từ " + word + " thành công.");
+            } else {
+                System.out.println("Không tìm thấy từ " + word + " để xóa.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -175,7 +223,7 @@ public class DictionaryManagement {
      *
      *
      */
-//    public void dictionaryGame() {
+    //    public void dictionaryGame() {
 ////        Scanner scanner = new Scanner(System.in);
 ////        String[] questions = {"What _ you doing?", "How _ you?"};
 ////        String[][] options = {{"[A] are", "[B] do", "[C] is", "[D] have"}, {"[A] is", "[B] are", "[C] do", "[D] have"}};
@@ -199,6 +247,7 @@ public class DictionaryManagement {
 
 
 //    }
+
 
 
 }
