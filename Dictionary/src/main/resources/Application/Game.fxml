@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controllers.GameControllers"
-            prefHeight="400.0" prefWidth="600.0">
+<Pane fx:id="GameControllers" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Controllers.GameControllers"
+      layoutX="199.0"
+      layoutY="100.0"
+      prefHeight="362.0"
+      prefWidth="539.0"
+      style="-fx-background-color: #1e1e1e; -fx-background-radius: 15;"
+      visible="false">
 
-</AnchorPane>
+<!--        <Button fx:id="startGameButton"-->
+<!--                text="Bắt đầu game"-->
+<!--                onAction="#startGameAction"-->
+<!--                layoutX="10.0"-->
+<!--                layoutY="10.0" />-->
+<!--        <Label fx:id="gameStatusLabel"-->
+<!--               text="Trạng thái game: Chưa bắt đầu"-->
+<!--               layoutX="10.0"-->
+<!--               layoutY="40.0" />-->
+        <!-- Đặt các phần tử giao diện khác cho trò chơi ở đây -->
+
+</Pane>
