@@ -31,34 +31,74 @@ public class HangmanGame {
     private static int attemptsLeft = 6;
     private static int soccer = 100;
     private static int check = 1;
-    private  static int i = 1;
+    private static int i = 1;
     private static int level = 0;
     private static StringBuilder guessedLetters = new StringBuilder();
 
-//    public void resetGame() {
+    //    public void resetGame() {
 //        wordToGuess = wordList[random.nextInt(wordList.length)];
 //        wordDisplay = new StringBuilder("_".repeat(wordToGuess.length()));
 //        attemptsLeft = 6;
 //        guessedLetters = new StringBuilder();
 //    }
+    public String generateWordToGuess(int level) {
+        return wordList[level];
+    }
+
+    public StringBuilder generateWordDisplay(String wordToGuess, int i) {
+        StringBuilder wordDisplay = new StringBuilder("_".repeat(wordToGuess.length()));
+        for (int j = 0; j < i; j++) {
+            wordDisplay.setCharAt(j, wordToGuess.charAt(j));
+        }
+        return wordDisplay;
+    }
+
+    private void drawHangman(int attemptsLeft) {
+        if (attemptsLeft == 5) {
+
+            System.out.println("Wrong guess!  0");
+            System.out.print("\n");
+
+        } else if (attemptsLeft == 4) {
+
+            System.out.println("Wrong guess!  0");
+            System.out.println("              |");
+            System.out.print("\n");
+
+        } else if (attemptsLeft == 3) {
+
+            System.out.println("Wrong guess!  0 ");
+            System.out.println("              |\\");
+            System.out.println("               \\");
+            System.out.print("\n");
+
+        } else if (attemptsLeft == 2) {
+
+            System.out.println("Wrong guess!  0");
+            System.out.println("             /|\\");
+            System.out.println("             / \\");
+            System.out.print("\n");
+
+        } else if (attemptsLeft == 1) {
+
+            System.out.println("Wrong guess!  0__|");
+            System.out.println("             /|\\");
+            System.out.println("             / \\");
+            System.out.print("\n");
+        }
+    }
 
     public void play() {
 
         System.out.println("Welcome to Hangman!");
         String you = "";
-        while (attemptsLeft > 0  && soccer >= 0) {
+        while (attemptsLeft > 0 && soccer >= 0) {
 
-                wordToGuess = wordList[level];
-                wordDisplay = new StringBuilder("_".repeat(wordToGuess.length()));
-                for (int j = 0; j < i; j++) {
-                    wordDisplay.setCharAt(j, wordToGuess.charAt(j));
-                }
-
-
-
+            wordToGuess = generateWordToGuess(level);
+            wordDisplay = generateWordDisplay(wordToGuess, i);
 
             System.out.println("Attempts left | Guessed word  | Word   | soccer");
-            System.out.println(String.format("%-13d | %-13s | %-6s | %d", attemptsLeft, guessedLetters, wordDisplay,soccer));
+            System.out.println(String.format("%-13d | %-13s | %-6s | %d", attemptsLeft, guessedLetters, wordDisplay, soccer));
 
             String guess = getValidGuess();
 
@@ -70,42 +110,11 @@ public class HangmanGame {
                 i = 1;
                 level = level + 1;
                 attemptsLeft++;
+
             } else {
                 attemptsLeft--;
                 check++;
-
-                if (attemptsLeft == 5) {
-
-                    System.out.println("Wrong guess!  0");
-                    System.out.print("\n");
-
-                } else if (attemptsLeft == 4) {
-
-                    System.out.println("Wrong guess!  0");
-                    System.out.println("              |");
-                    System.out.print("\n");
-
-                } else if (attemptsLeft == 3) {
-
-                    System.out.println("Wrong guess!  0 ");
-                    System.out.println("              |\\");
-                    System.out.println("               \\");
-                    System.out.print("\n");
-
-                } else if (attemptsLeft == 2) {
-
-                    System.out.println("Wrong guess!  0");
-                    System.out.println("             /|\\");
-                    System.out.println("             / \\");
-                    System.out.print("\n");
-
-                } else if (attemptsLeft == 1) {
-
-                    System.out.println("Wrong guess!  0__|");
-                    System.out.println("             /|\\");
-                    System.out.println("             / \\");
-                    System.out.print("\n");
-                }
+                drawHangman(attemptsLeft);
             }
 
             if (check % 3 == 0) {
@@ -117,7 +126,7 @@ public class HangmanGame {
                 if (you.equals("y".toLowerCase())) {
                     soccer -= 10;
                     check = check - 1;
-                     i++;
+                    i++;
                 }
 
             }
@@ -138,8 +147,6 @@ public class HangmanGame {
             System.out.println("   / \\");
             System.out.println("You lose! The hangman is complete.");
         }
-
-//            resetGame();
     }
 
 
@@ -165,4 +172,19 @@ public class HangmanGame {
         }
     }
 
+    public int getSoccer() {
+        return soccer;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getAttemptsLeft() {
+        return attemptsLeft;
+    }
+
+    public int getCheck() {
+        return check;
+    }
 }

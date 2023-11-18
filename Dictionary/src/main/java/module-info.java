@@ -2,8 +2,8 @@ module com.example.Dictionary {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    requires marytts.runtime;
-    requires marytts.client;
+//    requires marytts.runtime;
+//    requires marytts.client;
 
 
     opens Application to javafx.fxml;

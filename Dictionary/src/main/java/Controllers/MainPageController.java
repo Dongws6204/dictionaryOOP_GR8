@@ -3,20 +3,24 @@ package Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class MainPageController {
 
 
-
-
+    public int level = 1;
 
     //Button
     @FXML
@@ -37,15 +41,30 @@ public class MainPageController {
     @FXML
     private Pane labelPane1;
     @FXML
-    private Pane TranslateControllers;
+    public Pane TranslateControllers;
+//    public Pane getTranslateControllers() {
+//        return TranslateControllers;
+//    }
     @FXML
-    private Pane DictionaryControllers;
+    public Pane DictionaryControllers;
+//    public Pane getDictionaryControllers() {
+//        return DictionaryControllers;
+//    }
     @FXML
-    private Pane BookMarkControllers;
+    public Pane BookMarkControllers;
+//    public Pane getBookMarkControllers() {
+//        return BookMarkControllers;
+//    }
     @FXML
     private Pane sourceTextAreaPane;
     @FXML
-    private Pane GameControllers;
+    public Pane GameControllers;
+//    public Pane getGameControllers() {
+//        return GameControllers;
+//    }
+//    public void setGameControllers(Pane GameControllers) {
+//        this.GameControllers = GameControllers;
+//    }
     @FXML
     private ScrollPane DictionaryPane;
     @FXML
@@ -68,10 +87,24 @@ public class MainPageController {
     @FXML
     private void initialize() {
         DicSuggestListView.setVisible(false);
-        // Khởi tạo tạm danh sách gợi ý (suggestions)
-        suggestions = FXCollections.observableArrayList(
-                "Apple", "Banana", "Cherry", "Date", "Grape", "Lemon", "Mango", "Orange", "Peach", "Pear", "Strawberry"
-        );
+        // Khởi tạo danh sách gợi ý (suggestions) từ tệp dictionaries.txt
+        suggestions = FXCollections.observableArrayList();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/java/txt/dictionaries.txt"));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] words = line.split(" "); // Tách các từ theo dấu cách
+                for (String word : words) {
+                    suggestions.add(word); // Thêm từ vào danh sách gợi ý
+                }
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -142,10 +175,17 @@ public class MainPageController {
 
     @FXML
     void ShowGameControllers(MouseEvent event) {
+
+
         GameControllers.setVisible(true);
         DictionaryControllers.setVisible(false);
         BookMarkControllers.setVisible(false);
         TranslateControllers.setVisible(false);
+        GameControllers gameControllers = new GameControllers(GameControllers);
+        gameControllers.play(GameControllers);
+        if (gameControllers.isCheck() == true) {
+            GameControllers.setVisible(false);
+        }
     }
 
 }

@@ -6,6 +6,7 @@
     -fx-border-width: 2; /* Độ dày viền */
     -fx-background-insets: 3 -4 -3 5/* Độ lệch viền so với TextField */
 }
+
 .button:hover {
     -fx-background-color: #7e7e7e;/* Màu nền khi di chuột vào */
     -fx-text-fill: #ffffff;
@@ -17,21 +18,17 @@
     -fx-padding: 0 0 0 10px;
     -fx-border-color: #1e1e1e; /* Màu viền (đen trong trường hợp này) */
     -fx-border-width: 2; /* Độ dày viền */
-    -fx-background-insets: 3 -4 -3 5;/* Độ lệch viền so với TextField */
+    -fx-background-insets: 3 -4 -3 5; /* Độ lệch viền so với TextField */
 }
+
 .text-input {
     -fx-text-fill: #2a2a2a;
 }
+
 #ListView .list-cell {
     -fx-text-fill: #2a2a2a;
 }
-#labelPane{
+
+#labelPane {
     -fx-background-radius: 10 10 0 0;
 }
-
-
-
-
-
-
-

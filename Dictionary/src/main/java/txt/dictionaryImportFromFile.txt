@@ -1,0 +1,30 @@
+hello	Xin chào
+goodbye	Tạm biệt
+cat	Mèo
+dog	Chó
+computer	Máy tính
+run	Chạy
+walk	Đi bộ
+eat	Ăn
+drink	Uống
+sleep	Ngủ
+book	Sách
+pen	Bút
+paper	Giấy
+school	Trường học
+student	Học sinh
+teacher	Giáo viên
+car	Xe hơi
+bus	Xe buýt
+bicycle	Xe đạp
+motorcycle	Xe máy
+house	Nhà
+room	Phòng
+table	Bàn
+chair	Ghế
+window	Cửa sổ
+door	Cửa ra vào
+roof	Mái nhà
+wall	Bức tường
+floor	Sàn nhà
+ceiling	Trần nhà
