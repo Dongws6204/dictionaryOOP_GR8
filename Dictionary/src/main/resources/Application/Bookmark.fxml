@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="Bookmark" prefHeight="512.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BookmarkController">
    <children>
       <Region layoutX="205.0" layoutY="83.0" prefHeight="410.0" prefWidth="370.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;">
@@ -40,7 +39,7 @@
          <content>
             <Pane prefHeight="590.0" prefWidth="350.0">
                <children>
-                  <TextArea fx:id="Explanation" editable="false" focusTraversable="false" layoutY="1.0" prefHeight="579.0" prefWidth="350.0" promptText=" Định nghĩa...." style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" stylesheets="@style.css" />
+                  <TextArea fx:id="BookMarkExplanation" editable="false" focusTraversable="false" layoutY="1.0" prefHeight="579.0" prefWidth="350.0" promptText=" Định nghĩa...." style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" stylesheets="@style.css" />
                   <Label layoutX="246.0" layoutY="12.0" text="US">
                      <font>
                         <Font name="r0c0i Linotte Bold" size="13.0" />
@@ -61,12 +60,12 @@
                         <Image url="@../assets/icons8-speaker-96.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="unFilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="315.0" layoutY="6.0" onMouseClicked="#AddFavorite" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="BookMarkUnFilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="315.0" layoutY="6.0" onMouseClicked="#AddFavorite" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/icons8-star-96.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="FilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="315.0" layoutY="6.0" onMouseClicked="#AddFavorite" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="BookMarkFilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="315.0" layoutY="6.0" onMouseClicked="#AddFavorite" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/icons8-star-96%20(1).png" />
                      </image>

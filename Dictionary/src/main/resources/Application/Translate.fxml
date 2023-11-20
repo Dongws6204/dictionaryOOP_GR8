@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="360.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controllers.TranslateController">
+<AnchorPane prefHeight="426.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslateController">
    <children>
-      <TextArea fx:id="transalationTextArea" prefHeight="360.0" prefWidth="267.0" />
-      <TextArea fx:id="sourceTextArea" layoutX="300.0" prefHeight="360.0" prefWidth="275.0" promptText="type..." />
+      <Region layoutX="36.0" layoutY="53.0" prefHeight="367.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <Region layoutX="338.0" layoutY="53.0" prefHeight="367.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <TextArea fx:id="transalationTextArea" layoutX="40.0" layoutY="56.0" prefHeight="360.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;" />
+      <TextArea fx:id="sourceTextArea" layoutX="342.0" layoutY="56.0" prefHeight="360.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;" />
+      <Pane layoutX="38.0" layoutY="11.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+         <children>
+            <Label fx:id="Label1" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
+               <font>
+                  <Font name="r0c0i Linotte Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="360.0" layoutY="12.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+         <children>
+            <Label fx:id="Label2" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
+               <font>
+                  <Font name="r0c0i Linotte Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="310.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/icons8-change-96.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

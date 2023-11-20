@@ -11,6 +11,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class BookmarkController {
+
+    @FXML
+    private TextArea BookMarkExplanation;
+
+    @FXML
+    private ImageView BookMarkFilledStar;
+
+    @FXML
+    private ImageView BookMarkUnFilledStar;
+
     @FXML
     private AnchorPane Bookmark;
 
@@ -21,16 +31,7 @@ public class BookmarkController {
     private TextField BookmarkSearchBar;
 
     @FXML
-    private ListView<?> BookmarkSuggestListView;
-
-    @FXML
-    private TextArea Explanation;
-
-    @FXML
-    private ImageView FilledStar;
-
-    @FXML
-    private ImageView unFilledStar;
+    private javafx.scene.control.ListView<String> BookSuggestListView;
 
     @FXML
     void AddFavorite(MouseEvent event) {
@@ -47,3 +48,4 @@ public class BookmarkController {
 
     }
 }
+
