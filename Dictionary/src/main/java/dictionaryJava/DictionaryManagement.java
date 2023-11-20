@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 
 public class DictionaryManagement {
     private List<Word> words;
@@ -27,7 +29,7 @@ public class DictionaryManagement {
 
     private void initializeDatabaseConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/dictionarydb";
+            String url = "jdbc:mysql://localhost:3306/dictionary";
             String username = "root";
             String password = "PHW#84#jeor";
 
@@ -217,6 +219,31 @@ public class DictionaryManagement {
             System.err.println("Error writing to file: " + e.getMessage());
         }
     }
+
+   //phát âm
+   public void speakWord(String word) {
+       System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+
+       VoiceManager voiceManager = VoiceManager.getInstance();
+       Voice[] voices = voiceManager.getVoices();
+
+       // Chọn một giọng nói từ danh sách (nếu có)
+       Voice selectedVoice = null;
+       for (Voice voice : voices) {
+           if (voice.getName().equals("kevin")) { // Đổi thành tên giọng nói tương ứng
+               selectedVoice = voice;
+               break;
+           }
+       }
+
+       if (selectedVoice != null) {
+           selectedVoice.allocate();
+           selectedVoice.speak(word);
+           selectedVoice.deallocate();
+       } else {
+           System.out.println("Không tìm thấy giọng nói.");
+       }
+   }
 
     /**
      * GameDictionary.
