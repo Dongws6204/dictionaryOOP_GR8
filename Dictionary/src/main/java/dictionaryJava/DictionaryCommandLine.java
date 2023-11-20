@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class DictionaryCommandLine {
     private DictionaryManagement dictionaryManagement;
 
+
     /**
      * constructor_commandline_Dictionary.
      *
@@ -23,15 +24,7 @@ public class DictionaryCommandLine {
      *
      * @void
      */
-//    public void showAllWords() {
-//        System.out.println("No | English | Vietnamese");
-//        List<Word> words = dictionaryManagement.getWords();
-//
-//        for (int i = 0; i < words.size(); i++) {
-//            Word word = words.get(i);
-//            System.out.println(i + 1 + " | " + word.getWordTarget() + " | " + word.getWordExplain());
-//        }
-//    }
+
     public void showAllWords() {
         System.out.println("No | English | Vietnamese");
         List<Word> words = dictionaryManagement.getWords();
@@ -97,6 +90,7 @@ public class DictionaryCommandLine {
             System.out.println("[7] Game");
             System.out.println("[8] Import from file");
             System.out.println("[9] Export to file");
+            System.out.println("[10] Pronunciation");
             System.out.print("Your action:");
 
             try {
@@ -185,6 +179,12 @@ public class DictionaryCommandLine {
                     } else {
                         System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
                     }
+                    break;
+                case 10:
+                    // Phát âm từ vựng
+                    System.out.println("Nhập từ bạn muốn phát âm:");
+                    String wordToSpeak = scanner.nextLine();
+                    dictionaryManagement.speakWord(wordToSpeak);
                     break;
                 default:
                     System.out.println("Action not supported");
