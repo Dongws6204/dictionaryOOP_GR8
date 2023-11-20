@@ -3,6 +3,7 @@ module com.example.Dictionary {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires freetts;
 
 
     opens Application to javafx.fxml;
