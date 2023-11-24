@@ -7,16 +7,28 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 
 import Controllers.DictionaryController;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.beans.property.MapProperty;
 
+
+
 public class DictionaryManagement {
     private List<Word> words;
     private Connection connection;
-
+    private static final String API_KEY = "AIzaSyCgWfL_ke9if8Cm7qaK-Ft_lXKAF-G5A_U";
     /**
      * constructor.
      *
@@ -246,6 +258,56 @@ public class DictionaryManagement {
            System.out.println("Không tìm thấy giọng nói.");
        }
    }
+
+
+    //translate
+   public String translateFromEnglishToVietnamese(String wordToTranslate) {
+       translateWord(wordToTranslate, "en", "vi");
+       return wordToTranslate;
+   }
+
+    public String translateFromVietnameseToEnglish(String wordToTranslate) {
+        translateWord(wordToTranslate, "vi", "en");
+        return wordToTranslate;
+    }
+
+    public void translateWord(String wordToTranslate, String sourceLang, String targetLang) {
+        try {
+            String encodedText = URLEncoder.encode(wordToTranslate, "UTF-8");
+
+            String urlStr = "https://translation.googleapis.com/language/translate/v2?key=" + API_KEY +
+                    "&source=" + sourceLang + "&target=" + targetLang + "&q=" + encodedText;
+
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            JsonObject jsonObject = JsonParser.parseString(response.toString()).getAsJsonObject();
+            JsonObject data = jsonObject.getAsJsonObject("data");
+            JsonArray translations = data.getAsJsonArray("translations");
+
+            if (translations.size() > 0) {
+                JsonObject translationObject = translations.get(0).getAsJsonObject();
+                String translatedText = translationObject.get("translatedText").getAsString();
+                System.out.println("Dịch từ '" + wordToTranslate + "' sang " + targetLang + " là: " + translatedText);
+            } else {
+                System.out.println("Không thể dịch từ '" + wordToTranslate + "' sang " + targetLang + ".");
+            }
+
+            conn.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * GameDictionary.
