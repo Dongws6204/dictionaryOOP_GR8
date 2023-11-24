@@ -9,7 +9,6 @@ module com.example.Dictionary {
     requires com.google.gson;
 
 
-
     opens Application to javafx.fxml;
     exports Application;
     exports Controllers;

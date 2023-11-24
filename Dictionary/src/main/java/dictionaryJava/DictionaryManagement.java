@@ -7,6 +7,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 
 import Controllers.DictionaryController;
 import com.sun.speech.freetts.Voice;
@@ -23,12 +33,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 
+
+
 public class DictionaryManagement {
     private List<Word> words;
     private Connection connection;
 
     private static final String API_KEY = "AIzaSyCgWfL_ke9if8Cm7qaK-Ft_lXKAF-G5A_U";
-
     /**
      * constructor.
      *
@@ -261,10 +272,10 @@ public class DictionaryManagement {
 
 
     //translate
-    public String translateFromEnglishToVietnamese(String wordToTranslate) {
-        translateWord(wordToTranslate, "en", "vi");
-        return wordToTranslate;
-    }
+   public String translateFromEnglishToVietnamese(String wordToTranslate) {
+       translateWord(wordToTranslate, "en", "vi");
+       return wordToTranslate;
+   }
 
     public String translateFromVietnameseToEnglish(String wordToTranslate) {
         translateWord(wordToTranslate, "vi", "en");
