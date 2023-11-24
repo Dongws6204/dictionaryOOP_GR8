@@ -91,6 +91,7 @@ public class DictionaryCommandLine {
             System.out.println("[8] Import from file");
             System.out.println("[9] Export to file");
             System.out.println("[10] Pronunciation");
+            System.out.println("[11] Translate");
             System.out.print("Your action:");
 
             try {
@@ -186,6 +187,23 @@ public class DictionaryCommandLine {
                     String wordToSpeak = scanner.nextLine();
                     dictionaryManagement.speakWord(wordToSpeak);
                     break;
+                case 11:
+                    System.out.println("Bạn muốn dịch từ Anh sang Việt hay từ Việt sang Anh? (en-vi / vi-en): ");
+                    String translationDirection = scanner.nextLine();
+
+                    if (translationDirection.equals("en-vi")) {
+                        System.out.print("Nhập từ bạn muốn dịch từ Anh sang Việt: ");
+                        String wordToTranslate = scanner.nextLine();
+                        dictionaryManagement.translateFromEnglishToVietnamese(wordToTranslate);
+                    } else if (translationDirection.equals("vi-en")) {
+                        System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
+                        String wordToTranslate = scanner.nextLine();
+                        dictionaryManagement.translateFromVietnameseToEnglish(wordToTranslate);
+                    } else {
+                        System.out.println("Hướng dịch không hợp lệ.");
+                    }
+                    break;
+
                 default:
                     System.out.println("Action not supported");
                     break;
