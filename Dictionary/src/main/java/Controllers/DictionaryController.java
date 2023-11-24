@@ -2,14 +2,10 @@ package Controllers;
 
 import dictionaryJava.DictionaryManagement;
 import dictionaryJava.Word;
-import javafx.application.Platform;
 import javafx.beans.property.MapProperty;
-import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -17,11 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +29,7 @@ public class DictionaryController {
     @FXML
     private ImageView US;
     @FXML
-    private ImageView UK;
-    @FXML
     private ImageView DictionaryFilledStar;
-
-    @FXML
-    private ScrollPane DictionaryPane;
 
     @FXML
     private TextField DictionarySearchBar;
@@ -104,18 +90,39 @@ public class DictionaryController {
     private void handleSuggestionSelected(MouseEvent event) {
         selectedSuggestion = DicSuggestListView.getSelectionModel().getSelectedItem();
         if (selectedSuggestion != null) {
-            DictionarySearchBar.setText(selectedSuggestion);
-            DictionaryExplanation.setText(wordMap.get(selectedSuggestion.toLowerCase()));
+
+
+            String meaning = wordMap.get(selectedSuggestion.toLowerCase());
+
+            meaning = formatMeaning(meaning);
+            meaning = meaning.replaceFirst("(?i)(" + selectedSuggestion + ")", "");
+
+            String formattedText = String.format("%s \n %s", selectedSuggestion, meaning);
+            DictionaryExplanation.setText(formattedText);
+            DictionaryExplanation.setPrefRowCount(meaning.split("\n").length);
+            DictionaryExplanation.setWrapText(true);
+
+
             US.setOnMouseClicked(event1 -> {
                 dm.speakWord(selectedSuggestion);
             });
-//            UK.setOnMouseClicked(event1 -> {
-//                dm.speakWord(selectedSuggestion);
-//            });
         }
         addFavorite(selectedSuggestion);
     }
 
+
+    private String formatMeaning(String meaning) {
+        meaning = meaning.replaceAll("\\(\\+ ", " (").replaceAll("- ", "\n- ");
+        meaning = meaning.replaceAll("\\* ", "\n* ");
+        meaning = meaning.replaceAll("=", "\n -> ");
+        meaning = meaning.replaceAll("!", "\n! ");
+        meaning = meaning.replaceAll("\\+ ", "\n  + ");
+        meaning = meaning.replaceAll("@", "\n@ ");
+        meaning = meaning.replaceAll("/ \\(", "/ \n( ");
+        meaning = meaning.replaceFirst("(?i)(" + selectedSuggestion + ")", "");
+
+        return meaning;
+    }
 
     @FXML
     private void showSuggestList(KeyEvent event) {
@@ -149,7 +156,7 @@ public class DictionaryController {
                 dictionaryUnFilledStar.setVisible(false);
                 DictionaryFilledStar.setVisible(true);
                 wordBookMark.put(suggestion, wordMap.get(suggestion));
-//                    setWordBookMark(wordBookMark);
+//              setWordBookMark(wordBookMark);
             });
         }
     }

@@ -7,9 +7,9 @@ public class JDBCconnect {
 
         public static void main(String[] args) {
             Connection connection = null;
-            String jdbcURL = "jdbc:mysql://localhost:3306/dictionaryDb";
+            String jdbcURL = "jdbc:mysql://localhost:3306/dictionary";
             String username = "root";
-            String password = "Cu0602@";
+            String password = "1616lclc";
             try {
                 // Tạo kết nối tới cơ sở dữ liệu
                 connection = DriverManager.getConnection(jdbcURL, username, password);

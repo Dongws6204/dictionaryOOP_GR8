@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -10,15 +11,21 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="426.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslateController">
+<AnchorPane prefHeight="449.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslateController">
    <children>
-      <Region layoutX="36.0" layoutY="53.0" prefHeight="367.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <Region layoutX="338.0" layoutY="53.0" prefHeight="367.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <TextArea fx:id="transalationTextArea" layoutX="40.0" layoutY="56.0" prefHeight="360.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;" />
-      <TextArea fx:id="sourceTextArea" layoutX="342.0" layoutY="56.0" prefHeight="360.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;" />
-      <Pane layoutX="38.0" layoutY="11.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+      <Region layoutX="14.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <Region layoutX="316.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <TextArea fx:id="transalationTextArea" editable="false" layoutX="18.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;">
+         <font>
+            <Font name="r0c0i Linotte Regular" size="15.0" />
+         </font></TextArea>
+      <TextArea fx:id="sourceTextArea" layoutX="320.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;">
+         <font>
+            <Font name="r0c0i Linotte Regular" size="15.0" />
+         </font></TextArea>
+      <Pane layoutX="16.0" layoutY="13.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="Label1" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
+            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -28,9 +35,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="360.0" layoutY="12.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+      <Pane layoutX="338.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="Label2" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
+            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -40,15 +47,18 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="37.0"
-                 fitWidth="40.0"
-                 layoutX="310.0"
-                 layoutY="11.0"
-                 pickOnBounds="true"
-                 preserveRatio="true">
+      <ImageView fx:id="SwitchButton" accessibleRole="BUTTON" fitHeight="37.0" fitWidth="40.0" layoutX="288.0" layoutY="13.0" onMouseClicked="#Switch" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/icons8-change-96.png" />
          </image>
       </ImageView>
+      <Button fx:id="TranslateButton" alignment="BASELINE_LEFT" contentDisplay="RIGHT" graphicTextGap="6.0" layoutX="521.0" layoutY="396.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="65.0" styleClass="button-style" stylesheets="@style.css" text="Dịch" textFill="#3e3e3e">
+         <font>
+            <Font name="Constantia Bold" size="15.0" />
+         </font>
+         <padding>
+            <Insets left="14.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>

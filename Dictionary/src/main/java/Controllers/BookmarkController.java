@@ -1,29 +1,18 @@
 package Controllers;
 
 import dictionaryJava.DictionaryManagement;
-import dictionaryJava.Word;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.MapProperty;
-import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BookmarkController {
@@ -32,16 +21,11 @@ public class BookmarkController {
     private TextArea BookMarkExplanation;
 
     @FXML
-    private ImageView BookMarkFilledStar;
+    private ImageView BookmarkFilledStar;
 
     @FXML
-    private ImageView BookMarkUnFilledStar;
+    private ImageView BookmarkUnFilledStar;
 
-    @FXML
-    private AnchorPane Bookmark;
-
-    @FXML
-    private ScrollPane BookmarkPane;
 
     @FXML
     private TextField BookmarkSearchBar;
@@ -49,6 +33,7 @@ public class BookmarkController {
     private ImageView US;
     @FXML
     private javafx.scene.control.ListView<String> BookmarkSuggestListView;
+    private String selectedSuggestion;
     private boolean isFirstKeyEvent = true;
 
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
@@ -107,28 +92,33 @@ public class BookmarkController {
     @FXML
     void AddFavorite(String suggestion) {
         // Nếu từ đã được yêu thích, hiển thị sao đã được điền
-        BookMarkUnFilledStar.setVisible(false);
-        BookMarkFilledStar.setVisible(true);
-        BookMarkFilledStar.setOnMouseClicked(event -> {
+        BookmarkUnFilledStar.setVisible(false);
+        BookmarkFilledStar.setVisible(true);
+        BookmarkFilledStar.setOnMouseClicked(event -> {
             wordBookMark.remove(suggestion, wordBookMark.get(suggestion));
-            BookMarkUnFilledStar.setVisible(true);
-            BookMarkFilledStar.setVisible(false);
+            BookmarkUnFilledStar.setVisible(true);
+            BookmarkFilledStar.setVisible(false);
             Platform.runLater(() -> loadSuggestions());
         });
-        BookMarkUnFilledStar.setOnMouseClicked(event -> {
+        BookmarkUnFilledStar.setOnMouseClicked(event -> {
             wordBookMark.put(suggestion, wordBookMark.get(suggestion));
-            BookMarkUnFilledStar.setVisible(false);
-            BookMarkFilledStar.setVisible(true);
+            BookmarkUnFilledStar.setVisible(false);
+            BookmarkFilledStar.setVisible(true);
             Platform.runLater(() -> loadSuggestions());
         });
     }
 
     @FXML
     void handleSuggestionSelected(MouseEvent event) {
-        String selectedSuggestion = BookmarkSuggestListView.getSelectionModel().getSelectedItem();
+        selectedSuggestion = BookmarkSuggestListView.getSelectionModel().getSelectedItem();
         if (selectedSuggestion != null) {
             BookmarkSearchBar.setText(selectedSuggestion);
-            BookMarkExplanation.setText(getWordBookMark().get(selectedSuggestion.toLowerCase()));
+            String meaning = wordBookMark.get(selectedSuggestion.toLowerCase());
+            meaning = formatMeaning(meaning);
+            String formattedText = String.format("%s \n %s", selectedSuggestion, meaning);
+            BookMarkExplanation.setText(formattedText);
+            BookMarkExplanation.setPrefRowCount(meaning.split("\n").length);
+            BookMarkExplanation.setWrapText(true);
         }
         US.setOnMouseClicked(event1 -> {
             dm.speakWord(selectedSuggestion);
@@ -136,6 +126,18 @@ public class BookmarkController {
         AddFavorite(selectedSuggestion);
     }
 
+    private String formatMeaning(String meaning) {
+        meaning = meaning.replaceAll("\\(\\+ ", " (").replaceAll("- ", "\n- ");
+        meaning = meaning.replaceAll("\\* ", "\n* ");
+        meaning = meaning.replaceAll("=", "\n -> ");
+        meaning = meaning.replaceAll("!", "\n! ");
+        meaning = meaning.replaceAll("\\+ ", "\n  + ");
+        meaning = meaning.replaceAll("@", "\n@ ");
+        meaning = meaning.replaceAll("/ \\(", "/ \n( ");
+        meaning = meaning.replaceFirst("(?i)(" + selectedSuggestion + ")", "");
+
+        return meaning;
+    }
     @FXML
     void showSuggestList(KeyEvent event) {
         String searchTerm = BookmarkSearchBar.getText().trim();

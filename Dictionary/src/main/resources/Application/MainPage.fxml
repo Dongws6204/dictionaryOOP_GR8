@@ -30,7 +30,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="DictionaryButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowDictionaryControllers" prefHeight="40.0" prefWidth="159.0" styleClass="button-style" stylesheets="@style.css" text="Từ Điển" textFill="#3e3e3e">
+            <Button fx:id="DictionaryButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowDictionaryController" prefHeight="40.0" prefWidth="159.0" styleClass="button-style" stylesheets="@style.css" text="Từ Điển" textFill="#3e3e3e">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,7 +51,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="BookmarkButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowBookmarkControllers" prefHeight="40.0" prefWidth="189.0" styleClass="button-style" stylesheets="@style.css" text="Bookmark" textFill="#3e3e3e" GridPane.rowIndex="2">
+            <Button fx:id="BookmarkButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowBookmarkController" prefHeight="40.0" prefWidth="189.0" styleClass="button-style" stylesheets="@style.css" text="Bookmark" textFill="#3e3e3e" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +66,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="TranslateButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslateControllers" prefHeight="40.0" prefWidth="173.0" styleClass="button-style" stylesheets="@style.css" text="Dịch" GridPane.rowIndex="1">
+            <Button fx:id="TranslateButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowTranslateController" prefHeight="40.0" prefWidth="173.0" styleClass="button-style" stylesheets="@style.css" text="Dịch" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +81,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="GameButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onMouseClicked="#ShowGameControllers" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Game" textFill="#3e3e3e" GridPane.rowIndex="3">
+            <Button fx:id="GameButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" mnemonicParsing="false" onMouseClicked="#ShowGameController" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Game" textFill="#3e3e3e" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -96,7 +96,7 @@
                   <Insets left="14.0" />
                </padding>
             </Button>
-            <Button fx:id="addWordButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowAddWordControllers" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Thêm Từ" GridPane.rowIndex="4">
+            <Button fx:id="addWordButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#ShowAddWordController" prefHeight="40.0" prefWidth="146.0" styleClass="button-style" stylesheets="@style.css" text="Thêm Từ" GridPane.rowIndex="4">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -118,12 +118,12 @@
             <Image url="@../assets/Logo.png" />
          </image>
       </ImageView>
-      <Pane fx:id="GameControllers" layoutX="122.0" layoutY="98.0" prefHeight="375.0" prefWidth="539.0" style="-fx-background-radius: 15;" visible="false">
+      <Pane fx:id="GameControllers" layoutX="167.0" layoutY="100.0" prefHeight="375.0" prefWidth="678.0" style="-fx-background-radius: 15;" visible="false">
          <children>
             <fx:include source="Game.fxml" />
          </children></Pane>
 
-      <Pane fx:id="TranslateControllers" layoutX="139.0" layoutY="40.0" prefHeight="389.0" prefWidth="578.0" visible="false">
+      <Pane fx:id="TranslateControllers" layoutX="166.0" layoutY="36.0" prefHeight="389.0" prefWidth="578.0" visible="false">
          <children>
             <fx:include fx:id="sourceTextArea" source="Translate.fxml" />
          </children>
@@ -133,9 +133,14 @@
             <fx:include source="Bookmark.fxml" />
          </children>
       </Pane>
-      <Pane fx:id="DictionaryControllers" layoutX="157.0" layoutY="-24.0" prefHeight="482.0" prefWidth="567.0" visible="false">
+      <Pane fx:id="DictionaryControllers" layoutX="163.0" layoutY="-24.0" prefHeight="482.0" prefWidth="567.0" visible="false">
          <children>
             <fx:include fx:id="Dictionary" source="Dictionary.fxml" />
+         </children>
+      </Pane>
+      <Pane fx:id="AddWordControllers" layoutX="179.0" layoutY="24.0" prefHeight="375.0" prefWidth="593.0" visible="false">
+         <children>
+            <fx:include source="AddWord.fxml" />
          </children>
       </Pane>
    </children>
