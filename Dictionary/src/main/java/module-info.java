@@ -6,6 +6,7 @@ module com.example.Dictionary {
     requires freetts;
 
 
+
     opens Application to javafx.fxml;
     exports Application;
     exports Controllers;

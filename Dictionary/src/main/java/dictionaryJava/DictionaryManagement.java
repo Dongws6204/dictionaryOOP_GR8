@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
+import Controllers.DictionaryController;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import javafx.beans.property.MapProperty;
 
 public class DictionaryManagement {
     private List<Word> words;
     private Connection connection;
-
 
     /**
      * constructor.
@@ -29,9 +31,9 @@ public class DictionaryManagement {
 
     private void initializeDatabaseConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/dictionary";
+            String url = "jdbc:mysql://localhost:3306/dictionaryDb";
             String username = "root";
-            String password = "PHW#84#jeor";
+            String password = "Cu0602@";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
@@ -142,7 +144,7 @@ public class DictionaryManagement {
         boolean found = false;
         for (Word word : words) {
             if (word.getWordTarget().equals(lookUpWord)) {
-                System.out.println("Vietnamese: " + word.getWordExplain());
+                System.out.println("Vietnamese: " + word.getWordExplain() +"\n");
                 found = true;
                 break;
             }

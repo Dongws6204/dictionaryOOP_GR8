@@ -39,6 +39,13 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.greenrobot</groupId>
+            <artifactId>eventbus</artifactId>
+            <version>3.2.0</version> <!-- Phiên bản mới nhất khi tìm kiếm -->
+        </dependency>
+
+
 
     </dependencies>
 

@@ -12,8 +12,6 @@ import javafx.scene.layout.Pane;
 
 public class MainPageController {
 
-    public int level = 1;
-
     //Button
     @FXML
     private Button DictionaryButton;
@@ -70,6 +68,11 @@ public class MainPageController {
     @FXML
     private TextField BookmarkSearchBar;
 
+    private DictionaryController dictionaryController;
+    private BookmarkController bookmarkController;
+    public void setDictionaryController(DictionaryController dictionaryController) {
+        this.dictionaryController = dictionaryController;
+    }
 
 
 
@@ -93,6 +96,16 @@ public class MainPageController {
     }
     @FXML
     void ShowBookmarkControllers(MouseEvent event) {
+//        BookMarkControllers.setVisible(true);
+//        TranslateControllers.setVisible(false);
+//        DictionaryControllers.setVisible(false);
+//        GameControllers.setVisible(false);
+//        if (bookmarkController == null) {
+//            bookmarkController = new BookmarkController();
+//            bookmarkController.setDictionaryController(dictionaryController);
+//            // Các cài đặt khác nếu cần
+//        }
+
         BookMarkControllers.setVisible(true);
         TranslateControllers.setVisible(false);
         DictionaryControllers.setVisible(false);
