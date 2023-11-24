@@ -4,6 +4,9 @@ module com.example.Dictionary {
     requires java.sql;
     requires java.desktop;
     requires freetts;
+    requires org.apache.httpcomponents.httpcore;
+    requires org.apache.httpcomponents.httpclient;
+    requires com.google.gson;
 
 
     opens Application to javafx.fxml;

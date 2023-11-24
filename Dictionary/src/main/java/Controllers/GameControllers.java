@@ -315,24 +315,24 @@ public class GameControllers extends  HangmanGame{
         return gr;
     }
 
-public void setTextButton(List<Button> buttons, int level) {
-    for (int i = 0; i < 4 ; i++) {
-        int index = 4 * (level - 1) + i;
-        if (index < english.length) {
-            buttons.get(i).setText(english[index]);
-        } else {
-            // Xử lý khi chỉ số vượt quá độ dài của mảng
-            buttons.get(i).setText("Tiger"); // hoặc thực hiện một xử lý khác tùy thuộc vào yêu cầu của bạn
+    public void setTextButton(List<Button> buttons, int level) {
+        for (int i = 0; i < 4 ; i++) {
+            int index = 4 * (level - 1) + i;
+            if (index < english.length) {
+                buttons.get(i).setText(english[index]);
+            } else {
+                // Xử lý khi chỉ số vượt quá độ dài của mảng
+                buttons.get(i).setText("Tiger"); // hoặc thực hiện một xử lý khác tùy thuộc vào yêu cầu của bạn
+            }
         }
     }
-}
 
 
     public void play(Pane x) {
         x = gamePane;
-            gamePane.getChildren().clear();
-            gamePane.getChildren().add(hangManBg2());
-            gamePane.getChildren().add(setTextGame());
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(hangManBg2());
+        gamePane.getChildren().add(setTextGame());
     }
 
 
