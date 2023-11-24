@@ -44,9 +44,11 @@
             <artifactId>eventbus</artifactId>
             <version>3.2.0</version> <!-- Phiên bản mới nhất khi tìm kiếm -->
         </dependency>
-
-
-
+         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
     </dependencies>
 
     <build>
