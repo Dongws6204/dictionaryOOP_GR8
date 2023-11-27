@@ -272,17 +272,15 @@ public class DictionaryManagement {
 
 
     //translate
-   public String translateFromEnglishToVietnamese(String wordToTranslate) {
-       translateWord(wordToTranslate, "en", "vi");
-       return wordToTranslate;
-   }
-
-    public String translateFromVietnameseToEnglish(String wordToTranslate) {
-        translateWord(wordToTranslate, "vi", "en");
-        return wordToTranslate;
+  public String translateFromEnglishToVietnamese(String wordToTranslate) {
+        return translateWord(wordToTranslate, "en", "vi");
     }
 
-    public void translateWord(String wordToTranslate, String sourceLang, String targetLang) {
+    public String translateFromVietnameseToEnglish(String wordToTranslate) {
+        return translateWord(wordToTranslate, "vi", "en");
+    }
+
+    public String translateWord(String wordToTranslate, String sourceLang, String targetLang) {
         try {
             String encodedText = URLEncoder.encode(wordToTranslate, "UTF-8");
 
@@ -308,16 +306,16 @@ public class DictionaryManagement {
             if (translations.size() > 0) {
                 JsonObject translationObject = translations.get(0).getAsJsonObject();
                 String translatedText = translationObject.get("translatedText").getAsString();
-                System.out.println("Dịch từ '" + wordToTranslate + "' sang " + targetLang + " là: " + translatedText);
+                return translatedText; // Trả về chuỗi dịch
             } else {
-                System.out.println("Không thể dịch từ '" + wordToTranslate + "' sang " + targetLang + ".");
+                return "Không thể dịch từ '" + wordToTranslate + "' sang " + targetLang + ".";
             }
-
-            conn.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
+            return "Lỗi khi thực hiện dịch.";
         }
     }
+
     /**
      * GameDictionary.
      *
