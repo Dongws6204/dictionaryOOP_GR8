@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import dictionaryJava.DictionaryManagement;
 
 public class TranslateController {
     @FXML
@@ -13,33 +13,51 @@ public class TranslateController {
 
     @FXML
     private ImageView SwitchButton;
+
     @FXML
     private Label VietnameseLabel;
 
     @FXML
     private TextArea sourceTextArea;
+
     @FXML
     private Button TranslateButton;
 
     @FXML
     private TextArea transalationTextArea;
 
-
-    private boolean isEnglish = true; // Biến để theo dõi ngôn ngữ hiện tại
+    private DictionaryManagement dictionaryManager = new DictionaryManagement();
+    private boolean isEnglish = false;
 
     @FXML
-    void Switch(MouseEvent event) {
-        // Đảo ngôn ngữ và cập nhật văn bản của hai Label
+    private void initialize() {
+        sourceTextArea.textProperty().addListener((observable, oldValue, newValue) -> {
+            String translation;
+            translation = dictionaryManager.translateFromVietnameseToEnglish(newValue);
+            transalationTextArea.setText(translation);
+        });
+    }
+
+    @FXML
+    void Switch(javafx.scene.input.MouseEvent event) {
+        isEnglish = !isEnglish;
+
         if (isEnglish) {
-            EnglishLabel.setText("TIẾNG VIỆT");
-            VietnameseLabel.setText("TIẾNG ANH");
+            EnglishLabel.setText("TIẾNG ANH");
+            VietnameseLabel.setText("TIẾNG VIỆT");
         } else {
             EnglishLabel.setText("TIẾNG VIỆT");
             VietnameseLabel.setText("TIẾNG ANH");
         }
 
-        // Đảo giá trị của biến isEnglish
-        isEnglish = !isEnglish;
+        translate(); // Cập nhật lại dịch vụ khi chuyển đổi ngôn ngữ
+    }
+
+    @FXML
+    public void translate() {
+        String textToTranslate = sourceTextArea.getText().trim();
+        String translation = dictionaryManager.translateFromVietnameseToEnglish(textToTranslate);
+        transalationTextArea.setText(translation);
     }
 
 }

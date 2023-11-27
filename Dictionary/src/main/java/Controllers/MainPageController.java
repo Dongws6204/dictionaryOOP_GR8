@@ -31,10 +31,6 @@ public class MainPageController {
     public Pane BookMarkControllers;
     @FXML
     public Pane GameControllers;
-    @FXML
-    public Pane AddWordControllers;
-    @FXML
-    public Pane AlertControllers;
 
     //----------//
 
@@ -49,8 +45,6 @@ public class MainPageController {
         TranslateControllers.setVisible(false);
         BookMarkControllers.setVisible(false);
         GameControllers.setVisible(false);
-        AddWordControllers.setVisible(false);
-
     }
 
     @FXML
@@ -59,7 +53,6 @@ public class MainPageController {
         DictionaryControllers.setVisible(false);
         BookMarkControllers.setVisible(false);
         GameControllers.setVisible(false);
-        AddWordControllers.setVisible(false);
     }
     @FXML
     void ShowBookmarkController(MouseEvent event) {
@@ -67,18 +60,6 @@ public class MainPageController {
         TranslateControllers.setVisible(false);
         DictionaryControllers.setVisible(false);
         GameControllers.setVisible(false);
-        AddWordControllers.setVisible(false);
-
-    }
-
-    @FXML
-    void ShowAddWordController(MouseEvent event) {
-        AddWordControllers.setVisible(true);
-        GameControllers.setVisible(false);
-        DictionaryControllers.setVisible(false);
-        BookMarkControllers.setVisible(false);
-        TranslateControllers.setVisible(false);
-
     }
 
     @FXML
@@ -87,7 +68,6 @@ public class MainPageController {
         DictionaryControllers.setVisible(false);
         BookMarkControllers.setVisible(false);
         TranslateControllers.setVisible(false);
-        AddWordControllers.setVisible(false);
         GameControllers gameControllers = new GameControllers(GameControllers);
         gameControllers.play(GameControllers);
         if (gameControllers.isCheck() == true) {

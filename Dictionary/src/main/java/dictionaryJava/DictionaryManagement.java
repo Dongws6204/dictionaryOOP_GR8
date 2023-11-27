@@ -193,6 +193,21 @@ public class DictionaryManagement {
      */
     public void editWord(String word, String newWord, String newExplain) {
         try {
+            // Kiểm tra xem từ có tồn tại trong danh sách không
+            boolean wordExists = false;
+            for (Word w : words) {
+                if (w.getWordTarget().equalsIgnoreCase(word)) {
+                    wordExists = true;
+                    break;
+                }
+            }
+
+            if (!wordExists) {
+                System.out.println("Không tìm thấy từ " + word + " để sửa.");
+                return;
+            }
+
+            // Thực hiện cập nhật trong cơ sở dữ liệu
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE words SET word_target = ?, word_explain = ? WHERE word_target = ?");
             preparedStatement.setString(1, newWord);
             preparedStatement.setString(2, newExplain);
@@ -201,6 +216,8 @@ public class DictionaryManagement {
 
             if (rowsAffected > 0) {
                 System.out.println("Đã sửa từ " + word + " thành công.");
+                // Làm mới danh sách từ
+                loadWordsFromDatabase();
             } else {
                 System.out.println("Không tìm thấy từ " + word + " để sửa.");
             }
