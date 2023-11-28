@@ -71,23 +71,35 @@ public class BookmarkController {
 
     }
 
+//    @FXML
+//    private void search(String searchTerm) {
+////        if (isFirstKeyEvent) {
+////            loadSuggestions();
+////            isFirstKeyEvent = false;
+////        }
+//        ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
+//
+//        for (String suggestion : suggestions) {
+//            if (suggestion.toLowerCase().contains(searchTerm)) {
+//                filteredSuggestions.add(suggestion);
+//            }
+//        }
+//        BookmarkSuggestListView.setItems(filteredSuggestions);
+//        BookmarkSuggestListView.setVisible(!filteredSuggestions.isEmpty());
+//    }
     @FXML
     private void search(String searchTerm) {
-//        if (isFirstKeyEvent) {
-//            loadSuggestions();
-//            isFirstKeyEvent = false;
-//        }
+
         ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
 
         for (String suggestion : suggestions) {
-            if (suggestion.toLowerCase().contains(searchTerm)) {
+            if (suggestion.toLowerCase().startsWith(searchTerm.toLowerCase())) {
                 filteredSuggestions.add(suggestion);
             }
         }
-        BookmarkSuggestListView.setItems(filteredSuggestions);
+                BookmarkSuggestListView.setItems(filteredSuggestions);
         BookmarkSuggestListView.setVisible(!filteredSuggestions.isEmpty());
     }
-
 
     @FXML
     void AddFavorite(String suggestion) {

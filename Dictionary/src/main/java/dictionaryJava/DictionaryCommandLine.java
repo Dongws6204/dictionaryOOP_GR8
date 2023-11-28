@@ -140,7 +140,8 @@ public class DictionaryCommandLine {
                     break;
                 case 5:
                     // Lookup
-                    dictionaryManagement.dictionaryLookup(scanner);
+//                    dictionaryManagement.dictionaryLookup(scanner);
+                    dictionaryManagement.dictionaryLookupTrie(scanner);
                     break;
                 case 6:
                     // Search

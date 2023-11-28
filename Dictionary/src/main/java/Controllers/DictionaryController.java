@@ -144,13 +144,14 @@ public class DictionaryController {
         ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
 
         for (String suggestion : suggestions) {
-            if (suggestion.toLowerCase().contains(searchTerm)) {
+            if (suggestion.toLowerCase().startsWith(searchTerm.toLowerCase())) {
                 filteredSuggestions.add(suggestion);
             }
         }
         DicSuggestListView.setItems(filteredSuggestions);
         DicSuggestListView.setVisible(!filteredSuggestions.isEmpty());
     }
+
 
     @FXML
     private void handleSuggestionSelected(MouseEvent event) {
@@ -244,18 +245,18 @@ public class DictionaryController {
     }// chưa dùng đến
 
     private void reloadDictionary() {
-        // Xóa dữ liệu cũ
-        suggestions.clear();
-        wordMap.clear();
-        wordStatus.clear();
-
-        // Tải lại danh sách từ và gợi ý
-        List<Word> words = dm.getWords();
-        for (Word w : words) {
-            suggestions.add(w.getWordTarget());
-            wordMap.put(w.getWordTarget(), w.getWordExplain());
-            wordStatus.put(w.getWordTarget(), false);
-        }
+//        // Xóa dữ liệu cũ
+//        suggestions.clear();
+//        wordMap.clear();
+//        wordStatus.clear();
+//
+//        // Tải lại danh sách từ và gợi ý
+//        List<Word> words = dm.getWords();
+//        for (Word w : words) {
+//            suggestions.add(w.getWordTarget());
+//            wordMap.put(w.getWordTarget(), w.getWordExplain());
+//            wordStatus.put(w.getWordTarget(), false);
+//        }
 
         // Cập nhật giao diện người dùng
         DicSuggestListView.getItems().setAll(suggestions);
@@ -275,8 +276,9 @@ public class DictionaryController {
         if (word.isEmpty() || meaning.isEmpty()) {
             //showAlert("Vui lòng nhập cả từ và nghĩa trước khi thêm.");
         } else {
-            dm.addWord(word, meaning);
+            wordMap.put(word, meaning);
             //showAlert("Đã thêm từ thành công");
+            suggestions.add(word);
 
             reloadDictionary();
             AddWordTextArea.clear();
@@ -325,8 +327,10 @@ public class DictionaryController {
         // Kiểm tra xem từ mới và nghĩa mới có được nhập không
         if (!oldWord.equalsIgnoreCase(newWord) || !wordMap.get(oldWord.toLowerCase()).equalsIgnoreCase(newExplain)) {
             // Nếu có sự thay đổi, thực hiện cập nhật từ trong DictionaryManagement
-            dm.deleteWord(oldWord);
-            dm.addWord(newWord, newExplain);
+            wordMap.remove(oldWord);
+            suggestions.remove(oldWord);
+            wordMap.put(newWord, newExplain);
+            suggestions.add(newWord);
         }
         reloadDictionary();
         CloseRemoveUpdatePane(event);
@@ -346,8 +350,9 @@ public class DictionaryController {
     @FXML
     void RemoveWord(MouseEvent event)
     {
-        dm.deleteWord(selectedSuggestion);
+//        dm.deleteWord(selectedSuggestion);
         reloadDictionary();
+        suggestions.remove(selectedSuggestion);
         CloseRemoveUpdatePane(event);
         CloseRemoveAlertPane(event);
 

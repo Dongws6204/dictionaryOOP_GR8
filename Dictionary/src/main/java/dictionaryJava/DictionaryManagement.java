@@ -38,6 +38,8 @@ import com.google.gson.JsonParser;
 public class DictionaryManagement {
     private List<Word> words;
     private Connection connection;
+    private TrieNode root;
+
 
     private static final String API_KEY = "AIzaSyCgWfL_ke9if8Cm7qaK-Ft_lXKAF-G5A_U";
     /**
@@ -47,6 +49,7 @@ public class DictionaryManagement {
      */
     public DictionaryManagement() {
         words = new ArrayList<>();
+        this.root = new TrieNode();
         initializeDatabaseConnection();
         loadWordsFromDatabase();
     }
@@ -54,9 +57,14 @@ public class DictionaryManagement {
 
     private void initializeDatabaseConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/dictionary";
+//LinhChi
+//            String url = "jdbc:mysql://localhost:3306/dictionary";
+//            String username = "root";
+//            String password = "1616lclc";
+            //Dongws
+            String url = "jdbc:mysql://localhost:3306/dictionaryDb";
             String username = "root";
-            String password = "1616lclc";
+            String password = "Cu0602@";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
@@ -76,6 +84,8 @@ public class DictionaryManagement {
 
                 Word word = new Word(wordTarget, wordExplain);
                 words.add(word);
+                // Thêm từ vào Trie
+                root.insert(wordTarget.toLowerCase(), wordExplain);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -176,6 +186,18 @@ public class DictionaryManagement {
             System.out.println("Word not found in the dictionary.");
         }
     }
+    public void dictionaryLookupTrie(Scanner scanner) {
+        System.out.print("Enter a word: ");
+        String lookUpWord = scanner.nextLine().trim().toLowerCase();
+
+        String wordExplain = root.search(lookUpWord);
+
+        if (wordExplain != null) {
+            System.out.println("Vietnamese: " + wordExplain + "\n");
+        } else {
+            System.out.println("Word not found in the dictionary.");
+        }
+    }
 
     /* search word*/
 
@@ -186,7 +208,12 @@ public class DictionaryManagement {
         insertWordToDatabase(word, explain);
         Word newWord = new Word(word, explain);
         words.add(newWord);
+        root.insert(word.toLowerCase(),explain);
     }
+    public void addWordTrie(String word, String explain) {
+        root.insert(word.toLowerCase(), explain);
+    }
+
 
     /**
      * editWord.
