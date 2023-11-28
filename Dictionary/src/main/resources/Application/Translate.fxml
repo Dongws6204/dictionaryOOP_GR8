@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -14,17 +15,19 @@
    <children>
       <Region layoutX="14.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
       <Region layoutX="316.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <TextArea fx:id="transalationTextArea" editable="false" layoutX="18.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;">
+      <TextArea fx:id="sourceTextArea" layoutX="18.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;">
          <font>
             <Font name="r0c0i Linotte Regular" size="15.0" />
-         </font></TextArea>
-      <TextArea fx:id="sourceTextArea" layoutX="320.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;">
+         </font>
+      </TextArea>
+      <TextArea fx:id="transalationTextArea"  editable="false" layoutX="320.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;">
          <font>
             <Font name="r0c0i Linotte Regular" size="15.0" />
-         </font></TextArea>
+         </font>
+      </TextArea>
       <Pane layoutX="16.0" layoutY="13.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
+            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="VĂN BẢN" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -36,7 +39,7 @@
       </Pane>
       <Pane layoutX="338.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
+            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="DỊCH" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -46,10 +49,5 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="SwitchButton" accessibleRole="BUTTON" fitHeight="37.0" fitWidth="40.0" layoutX="288.0" layoutY="13.0" onMouseClicked="#Switch" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/icons8-change-96.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
