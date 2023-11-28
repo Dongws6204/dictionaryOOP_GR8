@@ -87,48 +87,44 @@ public class GameControllers extends  HangmanGame{
 
     public Group hangManBg() {
         Group group = new Group();
-        Rectangle house = new Rectangle(140, 200); // Tạo hình vuông với chiều rộng 140 và chiều cao 200
-        house.setFill(Color.WHITE); // Đặt màu nền là trắng
-        house.setStroke(Color.BLACK); // Đặt màu viền là đen
-        house.setStrokeWidth(1); // Đặt độ dày viền là 1 pixel
 
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
-        head.setStroke(Color.BLACK); // Đặt màu viền là đen
-        head.setStrokeWidth(2);     // Đặt độ dày viền là 2 pixel
+        head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+        head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
-        body.setStroke(Color.BLACK);
-        body.setStrokeWidth(2);
+        body.setStroke(Color.rgb(87,87,87));
+        body.setStrokeWidth(4);
 
         Line leftHand = new Line(70,70, 44, 112);
-        leftHand.setStroke(Color.BLACK);
-        leftHand.setStrokeWidth(2);
+        leftHand.setStroke(Color.rgb(87,87,87));
+        leftHand.setStrokeWidth(4);
 
         Line leftLeg = new Line(70,135,44,177);
-        leftLeg.setStroke(Color.BLACK);
-        leftLeg.setStrokeWidth(2);
+        leftLeg.setStroke(Color.rgb(87,87,87));
+        leftLeg.setStrokeWidth(4);
 
         Line rightHand = new Line(70,70,96,112);
-        rightHand.setStroke(Color.BLACK);
-        rightHand.setStrokeWidth(2);
+        rightHand.setStroke(Color.rgb(87,87,87));
+        rightHand.setStrokeWidth(4);
 
         Line rightLeg = new Line(70,135,96,177);
-        rightLeg.setStroke(Color.BLACK);
-        rightLeg.setStrokeWidth(2);
+        rightLeg.setStroke(Color.rgb(87,87,87));
+        rightLeg.setStrokeWidth(4);
 
-        Color blue = Color.rgb(128, 128, 128);
-        Line rope = new Line(0,0,70,67);
+        Color blue = Color.rgb(108, 65, 65);
+        Line rope = new Line(8,8,70,67);
         rope.setStroke(blue);
-        rope.setStrokeWidth(2);
+        rope.setStrokeWidth(5);
 
         // Thêm các hình đã vẽ vào Group
         if (atLeft == 6) {
 
         } else if ( atLeft == 5) {
-            group.getChildren().addAll(house,head);
+            group.getChildren().addAll(head);
         } else if (atLeft == 4) {
             group.getChildren().addAll(body);
         } else if (atLeft == 3) {
@@ -145,69 +141,69 @@ public class GameControllers extends  HangmanGame{
     public Group hangManBg2() {
         Group group = new Group();
         Group gr1 = new Group();
-        Rectangle house = new Rectangle(140, 200); // Tạo hình vuông với chiều rộng 140 và chiều cao 200
-        house.setFill(Color.WHITE); // Đặt màu nền là trắng
-        house.setStroke(Color.BLACK); // Đặt màu viền là đen
-        house.setStrokeWidth(1); // Đặt độ dày viền là 1 pixel
 
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
-        head.setStroke(Color.BLACK); // Đặt màu viền là đen
-        head.setStrokeWidth(2);     // Đặt độ dày viền là 2 pixel
+        head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+        head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
-        body.setStroke(Color.BLACK);
-        body.setStrokeWidth(2);
+        body.setStroke(Color.rgb(87,87,87));
+        body.setStrokeWidth(4);
 
         Line leftHand = new Line(70,70, 44, 112);
-        leftHand.setStroke(Color.BLACK);
-        leftHand.setStrokeWidth(2);
+        leftHand.setStroke(Color.rgb(87,87,87));
+        leftHand.setStrokeWidth(4);
 
         Line leftLeg = new Line(70,135,44,177);
-        leftLeg.setStroke(Color.BLACK);
-        leftLeg.setStrokeWidth(2);
+        leftLeg.setStroke(Color.rgb(87,87,87));
+        leftLeg.setStrokeWidth(4);
 
         Line rightHand = new Line(70,70,96,112);
-        rightHand.setStroke(Color.BLACK);
-        rightHand.setStrokeWidth(2);
+        rightHand.setStroke(Color.rgb(87,87,87));
+        rightHand.setStrokeWidth(4);
 
         Line rightLeg = new Line(70,135,96,177);
-        rightLeg.setStroke(Color.BLACK);
-        rightLeg.setStrokeWidth(2);
+        rightLeg.setStroke(Color.rgb(87,87,87));
+        rightLeg.setStrokeWidth(4);
 
-        Color blue = Color.rgb(128, 128, 128);
-        Line rope = new Line(0,0,70,67);
+        Color blue = Color.rgb(108, 65, 65);
+        Line rope = new Line(8,8,70,67);
         rope.setStroke(blue);
-        rope.setStrokeWidth(2);
+        rope.setStrokeWidth(4);
 
         TextField leftTurn = new TextField();
+        Font font = Font.font("r0c0i Linotte", FontWeight.NORMAL, 18);
         leftTurn.setText("Attempts Left: " + Integer.toString(atLeft));
         leftTurn.setAlignment(Pos.CENTER);
-        leftTurn.setLayoutX(160);
+        leftTurn.setLayoutX(260);
         leftTurn.setLayoutY(15);
+        leftTurn.setFont(font);
+        leftTurn.setStyle("-fx-background-color:#efefef;"+
+        "-fx-background-radius: 10");
         // Thêm các hình đã vẽ vào Group
         if (atLeft == 6) {
             group.getChildren().add(leftTurn);
         } else if ( atLeft == 5) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(house,head,leftTurn);
+            group.getChildren().addAll(head,leftTurn);
         } else if (atLeft == 4) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(house,head,body,leftTurn);
+            group.getChildren().addAll(head,body,leftTurn);
         } else if (atLeft == 3) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(house,head,body,leftHand,rightHand,leftTurn);
+            group.getChildren().addAll(head,body,leftHand,rightHand,leftTurn);
         } else if (atLeft == 2) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(house,head,body,leftHand,rightHand,leftLeg,rightLeg,leftTurn);
+            group.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg,leftTurn);
         } else if (atLeft == 1) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(house,head,body,leftHand,rightHand,leftLeg,rightLeg,rope,leftTurn);
+            group.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg,rope,leftTurn);
         } else if (atLeft == 0) {
             gr1.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg);
-            group.getChildren().addAll(house,gr1,rope);
+            group.getChildren().addAll(gr1,rope);
 
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
@@ -252,11 +248,13 @@ public class GameControllers extends  HangmanGame{
 
         StringBuilder  list =  generateWordDisplay(resWord[curLevel - 1], 1);
         // Tạo một đối tượng Font với kích thước và kiểu chữ mới
-        Font font = Font.font("Times New Roman", FontWeight.BOLD, 18);
+        Font font = Font.font("r0c0i Linotte", FontWeight.SEMI_BOLD, 18);
         Text res = new Text(list.toString());
-        res.setLayoutX(35);
-        res.setLayoutY(265);
+        res.setLayoutX(39);
+        res.setLayoutY(270);
         res.setFont(font);
+        res.setFill(Color.rgb(42, 42, 42));
+
 
 
 //        leftTurn.setFont(font);
@@ -264,44 +262,61 @@ public class GameControllers extends  HangmanGame{
         int x = list.toString().length();
         Text size = new Text(Integer.toString(x));
         size.setLayoutX(135);
-        size.setLayoutY(268);
+        size.setLayoutY(270);
         size.setFont(font);
+        size.setFill(Color.rgb(42, 42, 42));
 
 //        Text left = new Text(Integer.toString(atLeft));
 //        left.setLayoutX(160);
 //        left.setLayoutY(15);
 //        left.setFont(font);
 
-
-        Rectangle houseText = new Rectangle(90,25);
+        Rectangle houseText = new Rectangle(130,30);
         houseText.setLayoutX(30);
         houseText.setLayoutY(250);
-        houseText.setFill(Color.WHITE);
-        houseText.setStrokeWidth(1);
-        houseText.setStroke(Color.BLACK);
+        houseText.setFill(Color.rgb(238, 238, 238));
+        houseText.setArcWidth(20);
+        houseText.setArcHeight(20);
 
+        String ButtonStyle = "-fx-background-color: #dadada;" +
+                              "-fx-background-radius: 20;" ;
+        String hoverButtonStyle = "-fx-background-color: #7e7e7e;" +
+                                   "-fx-text-fill: #ffffff;" +
+                                   "-fx-background-radius: 20;";
         Button resOne = new Button();
-        resOne.setLayoutX(220);
-        resOne.setLayoutY(150);
+        resOne.setLayoutX(260);
+        resOne.setLayoutY(100);
         resOne.setFont(font);
-        buttons.add(resOne);
+        resOne.setStyle(ButtonStyle);
+        resOne.setOnMouseEntered(e -> resOne.setStyle(hoverButtonStyle));
+        resOne.setOnMouseExited(e -> resOne.setStyle(ButtonStyle));
+
 
         Button resTwo = new Button();
-        resTwo.setLayoutX(220);
-        resTwo.setLayoutY(250);
+        resTwo.setLayoutX(260);
+        resTwo.setLayoutY(150);
         resTwo.setFont(font);
+        resTwo.setStyle(ButtonStyle);
+        resTwo.setOnMouseEntered(e -> resTwo.setStyle(hoverButtonStyle));
+        resTwo.setOnMouseExited(e -> resTwo.setStyle(ButtonStyle));
 
         Button resThree = new Button();
-        resThree.setLayoutX(350);
-        resThree.setLayoutY(150);
+        resThree.setLayoutX(390);
+        resThree.setLayoutY(100);
         resThree.setFont(font);
+        resThree.setStyle(ButtonStyle);
+        resThree.setOnMouseEntered(e -> resThree.setStyle(hoverButtonStyle));
+        resThree.setOnMouseExited(e -> resThree.setStyle(ButtonStyle));
 
         Button resFour = new Button();
-        resFour.setLayoutX(350);
-        resFour.setLayoutY(250);
+        resFour.setLayoutX(390);
+        resFour.setLayoutY(150);
         resFour.setFont(font);
-        resFour.getStyleClass().add("button:hover");
+        resFour.setStyle(ButtonStyle);
+        resFour.setOnMouseEntered(e -> resFour.setStyle(hoverButtonStyle));
+        resFour.setOnMouseExited(e -> resFour.setStyle(ButtonStyle));
 
+        buttons.add(resOne);
         buttons.add(resTwo);
         buttons.add(resThree);
         buttons.add(resFour);
@@ -352,12 +367,13 @@ public class GameControllers extends  HangmanGame{
 
             // Kiểm tra title và thay đổi màu sắc
             if (clickedButton.getText().toLowerCase().equals(targetTitle.toLowerCase())) {
-                clickedButton.setStyle("-fx-background-color: green;");
+                clickedButton.setStyle("-fx-background-color: #408a40;"
+                                        + "-fx-background-radius: 20;");
                 // Tạo một PauseTransition để chờ trong 2 giây
                 Text x = new Text(vietNamEse[curLevel-1]);
-                Font font = Font.font("Times New Roman", FontWeight.BOLD, 18);
-                x.setLayoutX(125);
-                x.setLayoutY(300);
+                Font font = Font.font("r0c0i Linotte", FontWeight.BOLD, 20);
+                x.setLayoutX(347);
+                x.setLayoutY(270);
                 x.setFont(font);
 
 
@@ -378,14 +394,15 @@ public class GameControllers extends  HangmanGame{
                 });
                 pause.play();
             } else {
-                clickedButton.setStyle("-fx-background-color: red;");
+                clickedButton.setStyle("-fx-background-color: #8d4f4f;" +
+                                        "-fx-background-radius: 20;");
                 atLeft--;
                 if (atLeft <= 0) {
                     check = true;
                     gamePane.getChildren().clear();
-                    Font fontX = Font.font("Times New Roman", FontWeight.BOLD, 24);
+                    Font fontX = Font.font("r0c0i Linotte", FontWeight.BOLD, 24);
                     Text loss = new Text("YOU LOSE!");
-                    loss.setFill(Color.RED); // Thiết lập màu sắc của text là đỏ
+                    loss.setFill(Color.rgb(180, 76, 63)); // Thiết lập màu sắc của text là đỏ
                     loss.setFont(fontX);
 
 // Đặt text ở giữa gamePane

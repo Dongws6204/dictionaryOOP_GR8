@@ -15,23 +15,23 @@
 
 <AnchorPane fx:id="Bookmark" prefHeight="512.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BookmarkController">
    <children>
-      <Region layoutX="205.0" layoutY="83.0" prefHeight="410.0" prefWidth="370.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;">
+      <Region layoutX="205.0" layoutY="83.0" prefHeight="347.0" prefWidth="370.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </Region>
-      <Region layoutX="25.0" layoutY="84.0" prefHeight="408.0" prefWidth="164.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;">
+      <Region layoutX="25.0" layoutY="84.0" prefHeight="347.0" prefWidth="164.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </Region>
-      <ListView fx:id="BookmarkSuggestListView" layoutX="34.0" layoutY="88.0" onMouseClicked="#handleSuggestionSelected" prefHeight="400.0" prefWidth="147.0" style="-fx-background-radius: 10;" styleClass="list-cell" stylesheets="@style.css" />
+      <ListView fx:id="BookmarkSuggestListView" layoutX="34.0" layoutY="88.0" onMouseClicked="#handleSuggestionSelected" prefHeight="335.0" prefWidth="147.0" style="-fx-background-radius: 10;" styleClass="list-cell" stylesheets="@style.css" />
       <TextField fx:id="BookmarkSearchBar" layoutX="30.0" layoutY="50.0" onKeyTyped="#showSuggestList" prefHeight="26.0" prefWidth="127.0" promptText=" Tìm kiếm từ" style="-fx-background-color: #dfdfdf;" stylesheets="@style.css">
          <font>
             <Font name="r0c0i Linotte Bold" size="15.0" />
          </font>
       </TextField>
-      <ScrollPane fx:id="BookmarkPane" fitToWidth="true" layoutX="208.0" layoutY="87.0" prefHeight="401.0" prefWidth="365.0" style="-fx-background-color: #f4f4f4;" stylesheets="@style.css">
+      <ScrollPane fx:id="BookmarkPane" fitToWidth="true" layoutX="208.0" layoutY="87.0" prefHeight="335.0" prefWidth="365.0" style="-fx-background-color: #f4f4f4;" stylesheets="@style.css">
          <content>
             <Pane prefHeight="10000.0" prefWidth="350.0">
                <children>

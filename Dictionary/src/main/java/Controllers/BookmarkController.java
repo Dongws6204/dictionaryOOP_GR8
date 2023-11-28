@@ -139,6 +139,9 @@ public class BookmarkController {
     }
 
     private String formatMeaning(String meaning) {
+        if (meaning == null) {
+            return ""; // hoặc thực hiện xử lý khác tùy thuộc vào yêu cầu của bạn
+        }
         meaning = meaning.replaceAll("\\(\\+ ", " (").replaceAll("- ", "\n- ");
         meaning = meaning.replaceAll("\\* ", "\n* ");
         meaning = meaning.replaceAll("=", "\n -> ");

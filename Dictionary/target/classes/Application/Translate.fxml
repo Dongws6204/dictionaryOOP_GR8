@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
@@ -12,19 +10,21 @@
 
 <AnchorPane prefHeight="449.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslateController">
    <children>
-      <Region layoutX="14.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <Region layoutX="316.0" layoutY="55.0" prefHeight="327.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <TextArea fx:id="transalationTextArea" editable="false" layoutX="18.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" style="-fx-background-color: #f4f4f4;">
+      <Region layoutX="14.0" layoutY="55.0" prefHeight="274.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <Region layoutX="307.0" layoutY="54.0" prefHeight="274.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
+      <TextArea fx:id="sourceTextArea" layoutX="316.0" layoutY="58.0" prefHeight="263.0" prefWidth="267.0" promptText="type..." style="-fx-background-color: #f4f4f4;" wrapText="true">
          <font>
-            <Font name="r0c0i Linotte Regular" size="15.0" />
-         </font></TextArea>
-      <TextArea fx:id="sourceTextArea" layoutX="320.0" layoutY="58.0" prefHeight="319.0" prefWidth="275.0" promptText="type..." style="-fx-background-color: #f4f4f4;">
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="transalationTextArea" editable="false" layoutX="22.0" layoutY="58.0" prefHeight="263.0" prefWidth="267.0" style="-fx-background-color: #f4f4f4;" wrapText="true">
          <font>
-            <Font name="r0c0i Linotte Regular" size="15.0" />
-         </font></TextArea>
-      <Pane layoutX="16.0" layoutY="13.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </TextArea>
+      <Pane layoutX="27.0" layoutY="13.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-19.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG ANH" textFill="WHITE">
+            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-5.0" prefHeight="37.0" prefWidth="153.0" text="DỊCH" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -34,9 +34,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="338.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
+      <Pane layoutX="321.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-15.0" prefHeight="37.0" prefWidth="153.0" text="TIẾNG VIỆT" textFill="WHITE">
+            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-5.0" prefHeight="37.0" prefWidth="153.0" text="VĂN BẢN" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -46,10 +46,5 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="SwitchButton" accessibleRole="BUTTON" fitHeight="37.0" fitWidth="40.0" layoutX="288.0" layoutY="13.0" onMouseClicked="#Switch" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/icons8-change-96.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

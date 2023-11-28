@@ -18,6 +18,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,7 +101,6 @@ public class DictionaryController {
     //-------------End of RemoveAlertPane--------------------
     @FXML
     private Pane AlertPane;
-
     @FXML
     private Text AlertText;
 
@@ -136,6 +141,8 @@ public class DictionaryController {
         RemoveAlertPane.setDisable(true);
         RemoveUpdatePane.setVisible(false);
         RemoveUpdatePane.setDisable(true);
+        AlertPane.setVisible(false);
+        AlertPane.setDisable(true);
     }
 
     @FXML
@@ -179,6 +186,9 @@ public class DictionaryController {
 
 
     private String formatMeaning(String meaning) {
+        if (meaning == null) {
+            return ""; // hoặc thực hiện xử lý khác tùy thuộc vào yêu cầu của bạn
+        }
         meaning = meaning.replaceAll("\\(\\+ ", " (").replaceAll("- ", "\n- ");
         meaning = meaning.replaceAll("\\* ", "\n* ");
         meaning = meaning.replaceAll("=", "\n -> ");
@@ -237,27 +247,7 @@ public class DictionaryController {
         }
     }
 
-    private void updateDictionaryPane(String word, String meaning) {
-        String formattedText = String.format("%s \n %s", word, formatMeaning(meaning));
-        DictionaryExplanation.setText(formattedText);
-        DictionaryExplanation.setPrefRowCount(meaning.split("\n").length);
-        DictionaryExplanation.setWrapText(true);
-    }// chưa dùng đến
-
     private void reloadDictionary() {
-//        // Xóa dữ liệu cũ
-//        suggestions.clear();
-//        wordMap.clear();
-//        wordStatus.clear();
-//
-//        // Tải lại danh sách từ và gợi ý
-//        List<Word> words = dm.getWords();
-//        for (Word w : words) {
-//            suggestions.add(w.getWordTarget());
-//            wordMap.put(w.getWordTarget(), w.getWordExplain());
-//            wordStatus.put(w.getWordTarget(), false);
-//        }
-
         // Cập nhật giao diện người dùng
         DicSuggestListView.getItems().setAll(suggestions);
         DicSuggestListView.setVisible(false);
@@ -274,11 +264,12 @@ public class DictionaryController {
         String meaning = AddMeaningTextArea.getText().trim().toLowerCase();
 
         if (word.isEmpty() || meaning.isEmpty()) {
-            //showAlert("Vui lòng nhập cả từ và nghĩa trước khi thêm.");
+            showAlert("Vui lòng nhập cả từ và nghĩa trước khi thêm.",3);
         } else {
             wordMap.put(word, meaning);
-            //showAlert("Đã thêm từ thành công");
+            showAlert("Đã thêm từ "+word+" thành công.",3);
             suggestions.add(word);
+            dm.addWord(word,meaning);
 
             reloadDictionary();
             AddWordTextArea.clear();
@@ -301,15 +292,19 @@ public class DictionaryController {
     @FXML
     void showRemoveUpdatePane(MouseEvent event) {
 
-        String meaning = wordMap.get(selectedSuggestion.toLowerCase());
-        RemoveUpdateMeaning.setText(meaning);
-        RemoveUpdateWord.setText(selectedSuggestion);
-        RemoveUpdateMeaning.setWrapText(true);
+        if (selectedSuggestion != null) {
+            String meaning = wordMap.get(selectedSuggestion.toLowerCase());
+            RemoveUpdateMeaning.setText(meaning);
+            RemoveUpdateWord.setText(selectedSuggestion);
+            RemoveUpdateMeaning.setWrapText(true);
 
-
-        RemoveUpdatePane.setVisible(true);
-        RemoveUpdatePane.setDisable(false);
-        DictionaryPane.setDisable(true);
+            RemoveUpdatePane.setVisible(true);
+            RemoveUpdatePane.setDisable(false);
+            DictionaryPane.setDisable(true);
+        } else {
+            // Xử lý khi selectedSuggestion là null, ví dụ: hiển thị một thông báo hoặc không làm gì cả.
+            showAlert("Hãy chọn từ để sửa.",3);
+        }
     }
     @FXML
     void CloseRemoveUpdatePane(MouseEvent event) {
@@ -331,6 +326,8 @@ public class DictionaryController {
             suggestions.remove(oldWord);
             wordMap.put(newWord, newExplain);
             suggestions.add(newWord);
+            showAlert("Đã sửa từ " + selectedSuggestion + " thành công.",3);
+            dm.editWord(oldWord,newWord,newExplain);
         }
         reloadDictionary();
         CloseRemoveUpdatePane(event);
@@ -350,11 +347,36 @@ public class DictionaryController {
     @FXML
     void RemoveWord(MouseEvent event)
     {
-//        dm.deleteWord(selectedSuggestion);
         reloadDictionary();
         suggestions.remove(selectedSuggestion);
+        dm.deleteWord(selectedSuggestion);
+        showAlert("Đã xóa từ thành công",3);
         CloseRemoveUpdatePane(event);
         CloseRemoveAlertPane(event);
+    }
 
+    @FXML
+    private void showAlert(String content, int durationInSeconds) {
+        AlertText.setText(content);
+
+        AlertPane.setVisible(true);
+        AlertPane.setDisable(false);
+
+
+        // Tạo một Timeline để tự động đóng AlertPane sau một khoảng thời gian
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(durationInSeconds), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                closeAlert();
+            }
+        }));
+        timeline.setCycleCount(1); // Chỉ chạy một lần
+        timeline.play();
+    }
+    @FXML
+    private void closeAlert() {
+        AlertPane.setVisible(false);
+        AlertPane.setDisable(true);
     }
 }
+
