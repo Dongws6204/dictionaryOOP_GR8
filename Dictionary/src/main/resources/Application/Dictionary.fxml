@@ -59,7 +59,7 @@
                               <Image url="@../assets/icons8-star-96.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="DictionaryFilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="303.0" layoutY="1.0" onMouseClicked="#handleSuggestionSelected" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="DictionaryFilledStar" accessibleRole="BUTTON" fitHeight="27.0" fitWidth="27.0" layoutX="303.0" layoutY="1.0" onMouseClicked="#handleSuggestionSelected" pickOnBounds="true" preserveRatio="true" styleClass="image-view1" visible="false">
                            <image>
                               <Image url="@../assets/icons8-star-96%20(1).png" />
                            </image>
@@ -100,7 +100,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="21.0" layoutX="335.0" layoutY="7.0" onMouseClicked="#showRemoveUpdatePane" pickOnBounds="true" preserveRatio="true">
+                  <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="21.0" layoutX="335.0" layoutY="7.0" onMouseClicked="#showRemoveUpdatePane" pickOnBounds="true" preserveRatio="true" styleClass="image-view1">
                      <image>
                         <Image url="@../assets/icons8-fix-48.png" />
                      </image>
@@ -109,16 +109,9 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="AddWordPane"
-                  disable="true"
-                  layoutX="93.0"
-                  layoutY="69.0"
-                  prefHeight="371.0"
-                  prefWidth="500.0"
-                  style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;"
-                  visible="false">
+      <AnchorPane fx:id="AddWordPane" disable="true" layoutX="62.0" layoutY="85.0" prefHeight="371.0" prefWidth="500.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
          <children>
-            <Button fx:id="AddButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="392.0" layoutY="318.0" mnemonicParsing="false" onAction="#AddWordAndMeaning" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #f4f4f4;" text="THÊM" textFill="#5b5959">
+            <Button fx:id="AddButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="392.0" layoutY="318.0" mnemonicParsing="false" onAction="#AddWordAndMeaning" prefHeight="34.0" prefWidth="61.0" styleClass="button2" stylesheets="@style.css" text="THÊM" textFill="#5b5959">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -128,24 +121,12 @@
             </Button>
             <Region layoutX="156.0" layoutY="69.0" prefHeight="51.0" prefWidth="244.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10 10 10 10;" />
             <Region layoutX="156.0" layoutY="138.0" prefHeight="162.0" prefWidth="244.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10 10 10 10;" />
-            <TextArea fx:id="AddMeaningTextArea"
-                      layoutX="163.0"
-                      layoutY="143.0"
-                      prefHeight="149.0"
-                      prefWidth="231.0"
-                      promptText="Type..."
-                      style="-fx-background-color: #f4f4f4;">
+            <TextArea fx:id="AddMeaningTextArea" layoutX="163.0" layoutY="143.0" prefHeight="149.0" prefWidth="231.0" promptText="Type..." style="-fx-background-color: #f4f4f4;">
                <font>
                   <Font name="r0c0i Linotte Regular" size="12.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="AddWordTextArea"
-                      layoutX="163.0"
-                      layoutY="73.0"
-                      prefHeight="38.0"
-                      prefWidth="231.0"
-                      promptText="Type..."
-                      style="-fx-background-color: #f4f4f4;">
+            <TextArea fx:id="AddWordTextArea" layoutX="163.0" layoutY="73.0" prefHeight="38.0" prefWidth="231.0" promptText="Type..." style="-fx-background-color: #f4f4f4;">
                <font>
                   <Font name="r0c0i Linotte Regular" size="12.0" />
                </font>
@@ -182,16 +163,16 @@
             </DropShadow>
          </effect>
          <children>
-            <Text fx:id="AlertText" fill="#925454" layoutX="18.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="222.63671875">
+            <Text fx:id="AlertText" fill="#925454" layoutX="18.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="222.63671875">
                <font>
                   <Font name="r0c0i Linotte Bold" size="15.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <AnchorPane fx:id="RemoveUpdatePane" disable="true" layoutX="93.0" layoutY="81.0" prefHeight="381.0" prefWidth="493.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
+      <AnchorPane fx:id="RemoveUpdatePane" disable="true" layoutX="64.0" layoutY="81.0" prefHeight="381.0" prefWidth="493.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
          <children>
-            <Button fx:id="updateButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="328.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#UpdateWord" prefHeight="34.0" prefWidth="55.0" style="-fx-background-color: #f4f4f4;" text="SỬA" textFill="#656565">
+            <Button id="button2" fx:id="updateButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="328.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#UpdateWord" prefHeight="34.0" prefWidth="55.0" styleClass="button2" stylesheets="@style.css" text="SỬA" textFill="#656565">
                <font>
                   <Font name="r0c0i Linotte Bold" size="15.0" />
                </font>
@@ -232,7 +213,7 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button fx:id="RemoveButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="399.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#ShowRemoveAlertPane" prefHeight="34.0" prefWidth="55.0" style="-fx-background-color: #f4f4f4;" text="XÓA" textFill="#5e5e5e">
+            <Button id="button2" fx:id="RemoveButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="399.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#ShowRemoveAlertPane" prefHeight="34.0" prefWidth="55.0" styleClass="button2" stylesheets="@style.css" text="XÓA" textFill="#5e5e5e">
                <font>
                   <Font name="r0c0i Linotte Bold" size="15.0" />
                </font>
@@ -242,7 +223,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="RemoveAlertPane" disable="true" layoutX="92.0" layoutY="88.0" prefHeight="239.0" prefWidth="473.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;">
+      <AnchorPane fx:id="RemoveAlertPane" disable="true" layoutX="74.0" layoutY="88.0" prefHeight="239.0" prefWidth="473.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
          <children>
             <ImageView fx:id="CloseRAbutton" fitHeight="28.0" fitWidth="30.0" layoutX="421.0" layoutY="14.0" onMouseClicked="#CloseRemoveAlertPane" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -257,12 +238,12 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button fx:id="RemoveAlertCancelButton" layoutX="116.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#CloseRemoveAlertPane" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #f4f4f4;" text="HỦY">
+            <Button fx:id="RemoveAlertCancelButton" layoutX="116.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#CloseRemoveAlertPane" prefHeight="45.0" prefWidth="88.0" styleClass="button2" stylesheets="@style.css" text="HỦY">
                <font>
                   <Font name="r0c0i Linotte Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="RemoveAlertYesButton" layoutX="263.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#RemoveWord" prefHeight="45.0" prefWidth="88.0" style="-fx-background-color: #f4f4f4;" text="CÓ">
+            <Button fx:id="RemoveAlertYesButton" layoutX="263.0" layoutY="153.0" mnemonicParsing="false" onMouseClicked="#RemoveWord" prefHeight="45.0" prefWidth="88.0" styleClass="button2" stylesheets="@style.css" text="CÓ">
                <font>
                   <Font name="r0c0i Linotte Bold" size="19.0" />
                </font>

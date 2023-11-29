@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Map;
 
-public class BookmarkController {
+public class BookmarkController extends DictionaryManagement{
 
     @FXML
     private TextArea BookMarkExplanation;
@@ -48,7 +48,7 @@ public class BookmarkController {
     }
 
     private DataSharingManager dataSharingManager;
-    public DictionaryManagement dm = new DictionaryManagement();
+//    public DictionaryManagement dm = new DictionaryManagement();
 
     public BookmarkController() {
         this.dataSharingManager = DataSharingManager.getInstance();
@@ -133,12 +133,15 @@ public class BookmarkController {
             BookMarkExplanation.setWrapText(true);
         }
         US.setOnMouseClicked(event1 -> {
-            dm.speakWord(selectedSuggestion);
+            speakWord(selectedSuggestion);
         });
         AddFavorite(selectedSuggestion);
     }
 
     private String formatMeaning(String meaning) {
+        if (meaning == null) {
+            return ""; // hoặc thực hiện xử lý khác tùy thuộc vào yêu cầu của bạn
+        }
         meaning = meaning.replaceAll("\\(\\+ ", " (").replaceAll("- ", "\n- ");
         meaning = meaning.replaceAll("\\* ", "\n* ");
         meaning = meaning.replaceAll("=", "\n -> ");

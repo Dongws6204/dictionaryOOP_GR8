@@ -103,22 +103,22 @@
             <Image url="@../assets/Logo.png" />
          </image>
       </ImageView>
-      <Pane fx:id="GameControllers" layoutX="167.0" layoutY="100.0" prefHeight="375.0" prefWidth="678.0" style="-fx-background-radius: 15;" visible="false">
-         <children>
-            <fx:include source="Game.fxml" />
-         </children></Pane>
+      <Pane fx:id="GameControllers" layoutX="189.0" layoutY="96.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="540.0" style="-fx-background-radius: 15; -fx-background-color: #ffff; -fx-border-color: #f4f4f4; -fx-border-radius: 15; -fx-border-width: 3;" visible="false" />
 
-      <Pane fx:id="TranslateControllers" layoutX="161.0" layoutY="67.0" prefHeight="389.0" prefWidth="578.0" visible="false">
+      <Pane fx:id="TranslateControllers" layoutX="164.0" layoutY="79.0" prefHeight="389.0" prefWidth="578.0" visible="false">
          <children>
             <fx:include fx:id="sourceTextArea" source="Translate.fxml" />
          </children>
+         <opaqueInsets>
+            <Insets top="-3.0" />
+         </opaqueInsets>
       </Pane>
-      <Pane fx:id="BookMarkControllers" layoutX="167.0" layoutY="-14.0" prefHeight="482.0" prefWidth="616.0" visible="false">
+      <Pane fx:id="BookMarkControllers" layoutX="170.0" layoutY="12.0" prefHeight="482.0" prefWidth="616.0" visible="false">
          <children>
             <fx:include source="Bookmark.fxml" />
          </children>
       </Pane>
-      <Pane fx:id="DictionaryControllers" layoutX="156.0" layoutY="8.0" prefHeight="482.0" prefWidth="567.0" visible="false">
+      <Pane fx:id="DictionaryControllers" layoutX="156.0" layoutY="8.0" prefHeight="482.0" prefWidth="567.0">
          <children>
             <fx:include fx:id="Dictionary" source="Dictionary.fxml" />
          </children>

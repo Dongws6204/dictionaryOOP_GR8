@@ -7,15 +7,15 @@ public class JDBCconnect {
 
         public static void main(String[] args) {
             //Linhchi
-//            Connection connection = null;
-////            String jdbcURL = "jdbc:mysql://localhost:3306/dictionary";
-////            String username = "root";
-////            String password = "1616lclc";
+          Connection connection = null;
+            String jdbcURL = "jdbc:mysql://localhost:3306/dictionary";
+            String username = "root";
+            String password = "1616lclc";
             //Cu
-            Connection connection = null;
+            /*Connection connection = null;
             String jdbcURL = "jdbc:mysql://localhost:3306/dictionaryDb";
             String username = "root";
-            String password = "Cu0602@";
+            String password = "Cu0602@";*/
             try {
                 // Tạo kết nối tới cơ sở dữ liệu
                 connection = DriverManager.getConnection(jdbcURL, username, password);

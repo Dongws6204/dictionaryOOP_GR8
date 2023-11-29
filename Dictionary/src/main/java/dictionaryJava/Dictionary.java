@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dictionary {
-    private  List<Word> words;
+    protected   List<Word> words;
 
     /**
      *constructor for Dictionary.

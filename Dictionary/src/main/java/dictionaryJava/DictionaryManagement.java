@@ -36,7 +36,7 @@ import com.google.gson.JsonParser;
 
 
 public class DictionaryManagement {
-    private List<Word> words;
+    protected List<Word> words = new ArrayList<>();
     private Connection connection;
     private TrieNode root;
 
@@ -48,16 +48,18 @@ public class DictionaryManagement {
      * @
      */
     public DictionaryManagement() {
-        words = new ArrayList<>();
         this.root = new TrieNode();
         initializeDatabaseConnection();
         loadWordsFromDatabase();
+    }
+    public DictionaryManagement(List<Word> words) {
+        this.words = words;
     }
 
 
     private void initializeDatabaseConnection() {
         try {
-//LinhChi
+////LinhChi
 //            String url = "jdbc:mysql://localhost:3306/dictionary";
 //            String username = "root";
 //            String password = "1616lclc";
@@ -115,6 +117,7 @@ public class DictionaryManagement {
 
             Word word = new Word(wordTarget, wordExplain);
             words.add(word);
+            root.insert(word.getWordTarget(),wordExplain);
         }
     }
 
@@ -170,7 +173,25 @@ public class DictionaryManagement {
     /**
      * updateLookup.
      */
+//    public void dictionaryLookup(Scanner scanner) {
+//        System.out.print("Enter a word: ");
+//        String lookUpWord = scanner.nextLine().trim().toLowerCase();
+//
+//        boolean found = false;
+//        for (Word word : words) {
+//            if (word.getWordTarget().equals(lookUpWord)) {
+//                System.out.println("Vietnamese: " + word.getWordExplain() +"\n");
+//                found = true;
+//                break;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("Word not found in the dictionary.");
+//        }
+//    }
     public void dictionaryLookup(Scanner scanner) {
+       words.clear();
+       loadWordsFromDatabase();
         System.out.print("Enter a word: ");
         String lookUpWord = scanner.nextLine().trim().toLowerCase();
 
@@ -225,6 +246,10 @@ public class DictionaryManagement {
             for (Word w : words) {
                 if (w.getWordTarget().equalsIgnoreCase(word)) {
                     wordExists = true;
+                    Word res = new Word(w);
+
+                    Word res2 = new Word(newWord, newExplain);
+                    words.remove(res);
                     break;
                 }
             }
@@ -232,6 +257,7 @@ public class DictionaryManagement {
             if (!wordExists) {
                 System.out.println("Không tìm thấy từ " + word + " để sửa.");
                 return;
+            } else {
             }
 
             // Thực hiện cập nhật trong cơ sở dữ liệu
@@ -257,21 +283,40 @@ public class DictionaryManagement {
     /**
      * deleteWord.
      */
-    public void deleteWord(String word) {
+    public void deleteWordDb(String word) {
         try {
+            for (Word w : words) {
+                if (w.getWordTarget().equals(word)) {
+                    Word x = new Word(w);
+                    words.remove(x);
+
+                    System.out.println("Đã xóa từ " + word + " thành công.2");
+                }
+
+            }
+
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM words WHERE word_target = ?");
             preparedStatement.setString(1, word);
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
+
                 System.out.println("Đã xóa từ " + word + " thành công.");
+
             } else {
                 System.out.println("Không tìm thấy từ " + word + " để xóa.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        root.remove(word);
+
     }
+//    public void deleteWord(String word) {
+//        loadWordsFromDatabase();
+//
+//        }
+//    }
 
     /**
      * xuatFile.

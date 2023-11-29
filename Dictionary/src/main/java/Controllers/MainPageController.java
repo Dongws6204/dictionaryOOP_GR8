@@ -70,6 +70,7 @@ public class MainPageController {
         TranslateControllers.setVisible(false);
         GameControllers gameControllers = new GameControllers(GameControllers);
         gameControllers.play(GameControllers);
+        gameControllers.play2();
         if (gameControllers.isCheck() == true) {
             GameControllers.setVisible(false);
         }
