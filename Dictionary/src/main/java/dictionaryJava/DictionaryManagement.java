@@ -59,10 +59,7 @@ public class DictionaryManagement {
 
     private void initializeDatabaseConnection() {
         try {
-////LinhChi
-//            String url = "jdbc:mysql://localhost:3306/dictionary";
-//            String username = "root";
-//            String password = "1616lclc";
+
             //Dongws
             String url = "jdbc:mysql://localhost:3306/dictionaryDb";
             String username = "root";

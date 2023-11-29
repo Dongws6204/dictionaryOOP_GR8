@@ -108,32 +108,35 @@ public class GameControllers extends HangmanGame {
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
-        head.setStroke(Color.rgb(87, 87, 87)); // Đặt màu viền là đen
+
+        head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+
         head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
-        body.setStroke(Color.rgb(87, 87, 87));
+
+        body.setStroke(Color.rgb(87,87,87));
         body.setStrokeWidth(4);
 
-        Line leftHand = new Line(70, 70, 44, 112);
-        leftHand.setStroke(Color.rgb(87, 87, 87));
+        Line leftHand = new Line(70,70, 44, 112);
+        leftHand.setStroke(Color.rgb(87,87,87));
         leftHand.setStrokeWidth(4);
 
-        Line leftLeg = new Line(70, 135, 44, 177);
-        leftLeg.setStroke(Color.rgb(87, 87, 87));
+        Line leftLeg = new Line(70,135,44,177);
+        leftLeg.setStroke(Color.rgb(87,87,87));
         leftLeg.setStrokeWidth(4);
 
-        Line rightHand = new Line(70, 70, 96, 112);
-        rightHand.setStroke(Color.rgb(87, 87, 87));
+        Line rightHand = new Line(70,70,96,112);
+        rightHand.setStroke(Color.rgb(87,87,87));
         rightHand.setStrokeWidth(4);
 
-        Line rightLeg = new Line(70, 135, 96, 177);
-        rightLeg.setStroke(Color.rgb(87, 87, 87));
+        Line rightLeg = new Line(70,135,96,177);
+        rightLeg.setStroke(Color.rgb(87,87,87));
         rightLeg.setStrokeWidth(4);
 
         Color blue = Color.rgb(108, 65, 65);
-        Line rope = new Line(8, 8, 70, 67);
+        Line rope = new Line(8,8,70,67);
         rope.setStroke(blue);
         rope.setStrokeWidth(5);
 
@@ -162,7 +165,9 @@ public class GameControllers extends HangmanGame {
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
+
         head.setStroke(Color.rgb(87, 87, 87)); // Đặt màu viền là đen
+
         head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
@@ -188,6 +193,7 @@ public class GameControllers extends HangmanGame {
 
         Color blue = Color.rgb(108, 65, 65);
         Line rope = new Line(8, 8, 70, 67);
+
         rope.setStroke(blue);
         rope.setStrokeWidth(4);
 
@@ -198,8 +204,10 @@ public class GameControllers extends HangmanGame {
         leftTurn.setLayoutX(260);
         leftTurn.setLayoutY(15);
         leftTurn.setFont(font);
+
         leftTurn.setStyle("-fx-background-color:#efefef;" +
                 "-fx-background-radius: 10");
+
         // Thêm các hình đã vẽ vào Group
         if (atLeft == 6) {
             group.getChildren().add(leftTurn);
@@ -288,7 +296,9 @@ public class GameControllers extends HangmanGame {
 //        left.setLayoutY(15);
 //        left.setFont(font);
 
+
         Rectangle houseText = new Rectangle(130, 30);
+
         houseText.setLayoutX(30);
         houseText.setLayoutY(250);
         houseText.setFill(Color.rgb(238, 238, 238));
@@ -300,6 +310,7 @@ public class GameControllers extends HangmanGame {
         String hoverButtonStyle = "-fx-background-color: #7e7e7e;" +
                 "-fx-text-fill: #ffffff;" +
                 "-fx-background-radius: 20;";
+
         Button resOne = new Button();
         resOne.setLayoutX(260);
         resOne.setLayoutY(100);
@@ -522,6 +533,7 @@ public class GameControllers extends HangmanGame {
                         + "-fx-background-radius: 20;");
                 // Tạo một PauseTransition để chờ trong 2 giây
                 Text x = new Text(vietNamEse[curLevel - 1]);
+
                 Font font = Font.font("r0c0i Linotte", FontWeight.BOLD, 20);
                 x.setLayoutX(347);
                 x.setLayoutY(270);

@@ -271,6 +271,7 @@ public class DictionaryController extends DictionaryManagement {
             suggestions.add(word);
             addWord(word,meaning);
 
+
             reloadDictionary();
             AddWordTextArea.clear();
             AddMeaningTextArea.clear();
@@ -327,7 +328,9 @@ public class DictionaryController extends DictionaryManagement {
             wordMap.put(newWord, newExplain);
             suggestions.add(newWord);
             showAlert("Đã sửa từ " + selectedSuggestion + " thành công.",3);
+
             editWord(oldWord,newWord,newExplain);
+
         }
         reloadDictionary();
         CloseRemoveUpdatePane(event);
@@ -349,7 +352,9 @@ public class DictionaryController extends DictionaryManagement {
     {
         reloadDictionary();
         suggestions.remove(selectedSuggestion);
+
         deleteWordDb(selectedSuggestion);
+
         showAlert("Đã xóa từ thành công",3);
         CloseRemoveUpdatePane(event);
         CloseRemoveAlertPane(event);

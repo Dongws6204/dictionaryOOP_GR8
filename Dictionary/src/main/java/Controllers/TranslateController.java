@@ -13,7 +13,7 @@ public class TranslateController extends DictionaryManagement{
     private TextArea transalationTextArea;
 
 //    private DictionaryManagement dictionaryManagement;
-
+//
 //    public TranslateController() {
 //        dictionaryManagement = new DictionaryManagement();
 //    }

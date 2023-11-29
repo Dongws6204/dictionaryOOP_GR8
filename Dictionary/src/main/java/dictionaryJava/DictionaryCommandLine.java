@@ -206,6 +206,12 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                         System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
                         String wordToTranslate = scanner.nextLine();
                         result = translateFromVietnameseToEnglish(wordToTranslate);
+                        result =translateFromEnglishToVietnamese(wordToTranslate);
+                    } else if (translation.equals("vi-en")) {
+                        System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
+                        String wordToTranslate = scanner.nextLine();
+                        result = translateFromVietnameseToEnglish(wordToTranslate);
+
                     } else {
                         System.out.println("Hướng dịch không hợp lệ.");
                         return;
@@ -213,6 +219,7 @@ public class DictionaryCommandLine extends DictionaryManagement  {
 
                     System.out.println("Kết quả dịch: " + result);
                     break;
+
 
 
 
