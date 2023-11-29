@@ -190,20 +190,25 @@ public class DictionaryCommandLine {
                     break;
                 case 11:
                     System.out.println("Bạn muốn dịch từ Anh sang Việt hay từ Việt sang Anh? (en-vi / vi-en): ");
-                    String translationDirection = scanner.nextLine();
+                    String translation = scanner.nextLine();
 
-                    if (translationDirection.equals("en-vi")) {
+                    String result = "";
+                    if (translation.equals("en-vi")) {
                         System.out.print("Nhập từ bạn muốn dịch từ Anh sang Việt: ");
                         String wordToTranslate = scanner.nextLine();
-                        dictionaryManagement.translateFromEnglishToVietnamese(wordToTranslate);
-                    } else if (translationDirection.equals("vi-en")) {
+                        result = dictionaryManagement.translateFromEnglishToVietnamese(wordToTranslate);
+                    } else if (translation.equals("vi-en")) {
                         System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
                         String wordToTranslate = scanner.nextLine();
-                        dictionaryManagement.translateFromVietnameseToEnglish(wordToTranslate);
+                        result = dictionaryManagement.translateFromVietnameseToEnglish(wordToTranslate);
                     } else {
                         System.out.println("Hướng dịch không hợp lệ.");
+                        return;
                     }
+
+                    System.out.println("Kết quả dịch: " + result);
                     break;
+
 
 
 
