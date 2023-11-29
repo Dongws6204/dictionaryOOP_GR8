@@ -32,5 +32,5 @@ Bài tập lớn Từ điển (UET OASIS - INT2204 2 - Lập trình hướng đ�
 - FreeTTS Library
 
 ## Preview
-![demo]([./path/to/video.gif](https://github.com/Linhchi162/ImageForPacCat/blob/main/bandicam-2023-11-29-20-52-08-716.gif)https://github.com/Linhchi162/ImageForPacCat/blob/main/bandicam-2023-11-29-20-52-08-716.gif)
+![demo](https://github.com/Linhchi162/ImageForPacCat/blob/main/bandicam-2023-11-29-20-52-08-716.gif)
 
