@@ -100,7 +100,7 @@ public class BookmarkController extends DictionaryManagement{
 
         // Assuming you want to speak the word when Enter is pressed
         US.setOnMouseClicked(event -> {
-            dm.speakWord(selectedSuggestion);
+            speakWord(selectedSuggestion);
         });
 
     }

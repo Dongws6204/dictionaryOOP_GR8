@@ -157,8 +157,9 @@ public class DictionaryController extends DictionaryManagement {
         // Check if the entered term is in the suggestions
         if (suggestions.contains(searchTerm)) {
             // Display the meaning for the selected suggestion
+            int index = suggestions.indexOf(searchTerm);
             showMeaning(searchTerm);
-            selectedSuggestion = searchTerm;
+            selectedSuggestion = suggestions.get(index);
         } else {
             // Show an alert if the suggestion is not found
             showAlert("Từ không được tìm thấy.", 3);

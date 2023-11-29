@@ -67,13 +67,15 @@ public class MainPageController {
     }
 
     private void showController(Pane controller) {
+        Welcome.setVisible(!(controller == DictionaryControllers || controller == TranslateControllers ||
+                controller == BookMarkControllers || controller == GameControllers));
+
         DictionaryControllers.setVisible(controller == DictionaryControllers);
         TranslateControllers.setVisible(controller == TranslateControllers);
         BookMarkControllers.setVisible(controller == BookMarkControllers);
         GameControllers.setVisible(controller == GameControllers);
 
-        Welcome.setVisible(!(controller == DictionaryControllers || controller == TranslateControllers ||
-                controller == BookMarkControllers || controller == GameControllers));
+
 
 
         if (activeButton != null) {

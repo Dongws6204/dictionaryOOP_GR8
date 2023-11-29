@@ -60,10 +60,15 @@ public class DictionaryManagement {
     private void initializeDatabaseConnection() {
         try {
 
-            //Dongws
-            String url = "jdbc:mysql://localhost:3306/dictionaryDb";
+            //Chi
+            String url = "jdbc:mysql://localhost:3306/dictionary";
             String username = "root";
-            String password = "Cu0602@";
+            String password = "1616lclc";
+
+            //Dongws
+            /*String url = "jdbc:mysql://localhost:3306/dictionaryDb";
+            String username = "root";
+            String password = "Cu0602@";*/
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
