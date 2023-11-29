@@ -1,8 +1,8 @@
 # Dictionary Application
 ## Contributors
 
-- [Nguyễn Hữu Cứ (20021370) - K65-T-CLC](https://github.com/Dongws6204)
-- [Cao Vân Anh (20020223) - K65-CA-CLC3](https://github.com/cva2019)
+- [Nguyễn Hữu Cứ (22026532) - K67J](https://github.com/Dongws6204)
+- [Cao Vân Anh (22026558) - K67J](https://github.com/cva2019)
 - [Trần Linh Chi (22026564) - K67J](https://github.com/Linhchi162)
 
 ## Introduction
@@ -32,5 +32,5 @@ Bài tập lớn Từ điển (UET OASIS - INT2204 2 - Lập trình hướng đ�
 - FreeTTS Library
 
 ## Preview
-![demo](https://github.com/Linhchi162/Test/blob/main/bandicam%202023-11-29%2020-52-08-716.mp4)
+![demo]([./path/to/video.gif](https://github.com/Linhchi162/ImageForPacCat/blob/main/bandicam-2023-11-29-20-52-08-716.gif)https://github.com/Linhchi162/ImageForPacCat/blob/main/bandicam-2023-11-29-20-52-08-716.gif)
 
