@@ -69,4 +69,9 @@ public class TrieNode {
 
         return shouldRemoveChild;
     }
+    public void clear() {
+        this.children.clear();
+        this.wordExplain = null;
+    }
+
 }

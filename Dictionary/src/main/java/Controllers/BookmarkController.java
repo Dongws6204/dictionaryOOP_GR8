@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Map;
 
-public class BookmarkController extends DictionaryManagement{
+public class BookmarkController extends DictionaryManagement {
 
     @FXML
     private TextArea BookMarkExplanation;
@@ -48,11 +48,11 @@ public class BookmarkController extends DictionaryManagement{
     }
 
     private DataSharingManager dataSharingManager;
-//    public DictionaryManagement dm = new DictionaryManagement();
 
     public BookmarkController() {
         this.dataSharingManager = DataSharingManager.getInstance();
         this.wordBookMark = dataSharingManager.getWordBookMark();
+
         // Lắng nghe thay đổi của wordBookMark và cập nhật danh sách suggestions
         wordBookMark.addListener((MapChangeListener<String, String>) change -> {
             loadSuggestions();
@@ -66,6 +66,7 @@ public class BookmarkController extends DictionaryManagement{
         BookmarkFilledStar.setVisible(false);
         BookmarkUnFilledStar.setVisible(false);
         US.setVisible(false);
+
         suggestions = FXCollections.observableArrayList();
         BookmarkSuggestListView.setVisible(true);
         BookmarkSuggestListView.setItems(suggestions);
@@ -81,12 +82,14 @@ public class BookmarkController extends DictionaryManagement{
         });
 
     }
+
     private void handleEnterKeyPress() {
         String searchTerm = BookmarkSearchBar.getText().trim().toLowerCase();
         if (suggestions.contains(searchTerm)) {
             showMeaning(searchTerm);
         }
     }
+
     private void showMeaning(String selectedSuggestion) {
         String meaning = wordBookMark.get(selectedSuggestion.toLowerCase());
         meaning = formatMeaning(meaning);
@@ -98,30 +101,13 @@ public class BookmarkController extends DictionaryManagement{
         BookmarkFilledStar.setVisible(true);
         US.setVisible(true);
 
-        // Assuming you want to speak the word when Enter is pressed
+        //Phát âm
         US.setOnMouseClicked(event -> {
             speakWord(selectedSuggestion);
         });
 
     }
 
-
-    //    @FXML
-//    private void search(String searchTerm) {
-////        if (isFirstKeyEvent) {
-////            loadSuggestions();
-////            isFirstKeyEvent = false;
-////        }
-//        ObservableList<String> filteredSuggestions = FXCollections.observableArrayList();
-//
-//        for (String suggestion : suggestions) {
-//            if (suggestion.toLowerCase().contains(searchTerm)) {
-//                filteredSuggestions.add(suggestion);
-//            }
-//        }
-//        BookmarkSuggestListView.setItems(filteredSuggestions);
-//        BookmarkSuggestListView.setVisible(!filteredSuggestions.isEmpty());
-//    }
     @FXML
     private void search(String searchTerm) {
 
@@ -132,7 +118,7 @@ public class BookmarkController extends DictionaryManagement{
                 filteredSuggestions.add(suggestion);
             }
         }
-                BookmarkSuggestListView.setItems(filteredSuggestions);
+        BookmarkSuggestListView.setItems(filteredSuggestions);
         BookmarkSuggestListView.setVisible(!filteredSuggestions.isEmpty());
     }
 
@@ -191,6 +177,7 @@ public class BookmarkController extends DictionaryManagement{
 
         return meaning;
     }
+
     @FXML
     void showSuggestList(KeyEvent event) {
         String searchTerm = BookmarkSearchBar.getText().trim();

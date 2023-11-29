@@ -1,6 +1,5 @@
 package Controllers;
 
-import dictionaryJava.DictionaryManagement;
 import dictionaryJava.HangmanGame;
 import dictionaryJava.Word;
 import javafx.animation.*;
@@ -22,10 +21,6 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.scene.image.ImageView;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +34,7 @@ public class GameControllers extends HangmanGame {
     private int animationX = 400;
     private int animationY = -85;
     private Pane gamePane;
-    private DictionaryManagement dm = new DictionaryManagement();
-    private List<Word> words = dm.getWords();
+
     private int i = 10;
     private ImageView animationOne = new ImageView();
     private ImageView animationTwo = new ImageView();
@@ -54,9 +48,8 @@ public class GameControllers extends HangmanGame {
     }
 
     public GameControllers(Pane gamePane) {
-//        dm = new DictionaryManagement();
         this.gamePane = gamePane;
-//        this.words = dm.getWords();
+        loadWordsFromDatabase();
     }
 
     private String[] english = {"Apple",
@@ -109,34 +102,34 @@ public class GameControllers extends HangmanGame {
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
 
-        head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+        head.setStroke(Color.rgb(87, 87, 87)); // Đặt màu viền là đen
 
         head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
 
-        body.setStroke(Color.rgb(87,87,87));
+        body.setStroke(Color.rgb(87, 87, 87));
         body.setStrokeWidth(4);
 
-        Line leftHand = new Line(70,70, 44, 112);
-        leftHand.setStroke(Color.rgb(87,87,87));
+        Line leftHand = new Line(70, 70, 44, 112);
+        leftHand.setStroke(Color.rgb(87, 87, 87));
         leftHand.setStrokeWidth(4);
 
-        Line leftLeg = new Line(70,135,44,177);
-        leftLeg.setStroke(Color.rgb(87,87,87));
+        Line leftLeg = new Line(70, 135, 44, 177);
+        leftLeg.setStroke(Color.rgb(87, 87, 87));
         leftLeg.setStrokeWidth(4);
 
-        Line rightHand = new Line(70,70,96,112);
-        rightHand.setStroke(Color.rgb(87,87,87));
+        Line rightHand = new Line(70, 70, 96, 112);
+        rightHand.setStroke(Color.rgb(87, 87, 87));
         rightHand.setStrokeWidth(4);
 
-        Line rightLeg = new Line(70,135,96,177);
-        rightLeg.setStroke(Color.rgb(87,87,87));
+        Line rightLeg = new Line(70, 135, 96, 177);
+        rightLeg.setStroke(Color.rgb(87, 87, 87));
         rightLeg.setStrokeWidth(4);
 
         Color blue = Color.rgb(108, 65, 65);
-        Line rope = new Line(8,8,70,67);
+        Line rope = new Line(8, 8, 70, 67);
         rope.setStroke(blue);
         rope.setStrokeWidth(5);
 
@@ -270,7 +263,6 @@ public class GameControllers extends HangmanGame {
     public Group setTextGame() {
         Group gr = new Group();
         buttons.clear();
-//        hmGame.generateWordToGuess(2);
 
         StringBuilder list = generateWordDisplay(resWord[curLevel - 1], 1);
         // Tạo một đối tượng Font với kích thước và kiểu chữ mới
@@ -290,12 +282,6 @@ public class GameControllers extends HangmanGame {
         size.setLayoutY(270);
         size.setFont(font);
         size.setFill(Color.rgb(42, 42, 42));
-
-//        Text left = new Text(Integer.toString(atLeft));
-//        left.setLayoutX(160);
-//        left.setLayoutY(15);
-//        left.setFont(font);
-
 
         Rectangle houseText = new Rectangle(130, 30);
 
@@ -383,10 +369,7 @@ public class GameControllers extends HangmanGame {
         String path2 = "file:/C:/OOP/GR8_dictionary/dictionaryOOP_GR8/Dictionary/src/main/resources/assets/2.png";
         String path3 = "file:/C:/OOP/GR8_dictionary/dictionaryOOP_GR8/Dictionary/src/main/resources/assets/3.png";
 
-//        animationOne = upLoad(animationOne,path1,fitSize, fitSize,animationX, animationY);
         Text x = new Text();
-        x.setLayoutX(185);
-        x.setLayoutY(-20);
 
         Image image = new Image(path1);
         animationOne.setImage(image);
@@ -401,7 +384,6 @@ public class GameControllers extends HangmanGame {
         animationTwo.setFitHeight(fitSize);
         animationTwo.setLayoutX(animationX);
         animationTwo.setLayoutY(animationY);
-//        animationTwo = upLoad(animationTwo,path2,fitSize, fitSize,animationX, animationY);
 
         Image image3 = new Image(path3);
         animationThree.setImage(image3);
@@ -441,6 +423,15 @@ public class GameControllers extends HangmanGame {
             String explain = w.getWordExplain();
             String res = target + " : " + getString(explain);
             x.setText(res);
+            x.setOpacity(0.0);
+            // Hiển thị text trở lại từ giây thứ 11
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), x);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.setDelay(Duration.seconds(0.3));
+            fadeIn.play();
+            x.setLayoutX(185);
+            x.setLayoutY(-20);
             tl.playFromStart();
             pt.playFromStart();
             i = i + 20;
@@ -452,29 +443,24 @@ public class GameControllers extends HangmanGame {
                 return;
             }
 
-//            x.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-//                double lastCharacterX = x.getLayoutX() + newValue.getMaxX();
-//                // Đặt lại layoutX để đặt Text theo vị trí cuối cùng của nó
-//                x.setLayoutX(x.getLayoutX() - lastCharacterX);
-//            });
-
             TranslateTransition tt = new TranslateTransition(Duration.seconds(11.5), x);
             tt.setFromX(185);
             tt.setToX(-gamePane.getWidth() + 315);
             tt.play();
 
+            // Mờ text từ giây thứ 9 đến giây thứ 11
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), x);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setDelay(Duration.seconds(9));
+            fadeOut.play();
         });
-
 
         // Bắt đầu Timeline và PauseTransition
         tl.play();
         pt.play();
     }
 
-    //    private ImageView setUpImageAndTransition(ImageView imageView, String imagePath) {
-//        imageView = upLoad(imageView, imagePath, fitSize, fitSize, animationX, animationY);
-//        return imageView;
-//    }
     private ImageView upLoad(ImageView imageView, String imagePath, int fitSW, int fitSH, int layoutX, int layoutY) {
         Image image = new Image(imagePath);
         imageView.setImage(image);
@@ -499,13 +485,14 @@ public class GameControllers extends HangmanGame {
 
         fadeIn.play();
     }
-    private  String getString(String s) {
+
+    private String getString(String s) {
         String res = "";
         int sSize = s.length();
-        for ( int i = 0; i < sSize; i++) {
-            if ( s.charAt(i) == '-') {
-                for (int j = i+1; j < sSize; j ++) {
-                   res += s.charAt(j);
+        for (int i = 0; i < sSize; i++) {
+            if (s.charAt(i) == '-') {
+                for (int j = i + 1; j < sSize; j++) {
+                    res += s.charAt(j);
                 }
                 break;
             }
@@ -517,7 +504,6 @@ public class GameControllers extends HangmanGame {
     // Lớp xử lý sự kiện
     private class ButtonClickHandler implements EventHandler<ActionEvent> {
         private String targetTitle;
-
 
         public ButtonClickHandler(String targetTitle) {
             this.targetTitle = targetTitle;
@@ -568,14 +554,14 @@ public class GameControllers extends HangmanGame {
                     loss.setFill(Color.rgb(180, 76, 63)); // Thiết lập màu sắc của text là đỏ
                     loss.setFont(fontX);
 
-// Đặt text ở giữa gamePane
+                    // Đặt text ở giữa gamePane
                     loss.setX(gamePane.getWidth() / 2 - loss.getLayoutBounds().getWidth() / 2);
                     loss.setY(0); // Bắt đầu từ đỉnh gamePane
 
                     gamePane.getChildren().add(hangManBg2());
                     gamePane.getChildren().add(loss);
 
-// Tạo hiệu ứng di chuyển
+                    // Tạo hiệu ứng di chuyển
                     TranslateTransition tt = new TranslateTransition(Duration.seconds(2), loss);
                     tt.setToY(gamePane.getHeight() / 2 - loss.getLayoutBounds().getHeight() / 2);
                     tt.play();

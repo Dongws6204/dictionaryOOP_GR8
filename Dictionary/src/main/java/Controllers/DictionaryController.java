@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
@@ -262,12 +261,12 @@ public class DictionaryController extends DictionaryManagement {
             dictionaryUnFilledStar.setVisible(false);
             DictionaryFilledStar.setVisible(true);
             DictionaryFilledStar.setOnMouseClicked(event -> {
-                // Thêm mã xử lý sự kiện của bạn ở đây
+
                 wordStatus.put(suggestion, false);
                 dictionaryUnFilledStar.setVisible(true);
                 DictionaryFilledStar.setVisible(false);
                 wordBookMark.remove(suggestion, wordMap.get(suggestion));
-//                    setWordBookMark(wordBookMark);
+
             });
         } else {
             // Nếu từ chưa được yêu thích, hiển thị sao chưa được điền
@@ -278,7 +277,6 @@ public class DictionaryController extends DictionaryManagement {
                 dictionaryUnFilledStar.setVisible(false);
                 DictionaryFilledStar.setVisible(true);
                 wordBookMark.put(suggestion, wordMap.get(suggestion));
-//              setWordBookMark(wordBookMark);
             });
         }
     }
@@ -418,7 +416,6 @@ public class DictionaryController extends DictionaryManagement {
 
         AlertPane.setVisible(true);
         AlertPane.setDisable(false);
-
 
         // Tạo một Timeline để tự động đóng AlertPane sau một khoảng thời gian
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(durationInSeconds), new EventHandler<ActionEvent>() {

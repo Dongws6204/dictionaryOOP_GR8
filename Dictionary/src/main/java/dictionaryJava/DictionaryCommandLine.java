@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class DictionaryCommandLine extends DictionaryManagement  {
-
-
+public class DictionaryCommandLine extends DictionaryManagement {
 
     /**
      * constructor_commandline_Dictionary.
@@ -17,10 +15,8 @@ public class DictionaryCommandLine extends DictionaryManagement  {
      */
     public DictionaryCommandLine(List<Word> words) {
         super(words);
-//        this.dictionaryManagement = dictionaryManagement;
-//        words = dictionaryManagement.getWords();
-
     }
+
     public DictionaryCommandLine() {
 
     }
@@ -48,7 +44,7 @@ public class DictionaryCommandLine extends DictionaryManagement  {
      * @insert
      */
     public void dictionaryBasic() {
-       insertFromCommandline();
+        insertFromCommandline();
         showAllWords();
     }
 
@@ -57,7 +53,6 @@ public class DictionaryCommandLine extends DictionaryManagement  {
      */
     public void dictionarySearcher(String searchStr) {
         List<Word> searchRes = new ArrayList<>();
-//        List<Word> words = dictionaryManagement.getWords();
 
         for (Word word : words) {
             if (word.getWordTarget().startsWith(searchStr)) {
@@ -113,7 +108,7 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     break;
                 case 1:
                     // Add word
-                   insertFromCommandline();
+                    insertFromCommandline();
                     break;
                 case 2:
 
@@ -121,7 +116,6 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     System.out.println("Nhập từ bạn muốn xóa  : ");
 
                     String wordDelete = scanner.nextLine();
-//                    deleteWord(wordDelete);
                     deleteWordDb(wordDelete);
 
                     break;
@@ -136,17 +130,16 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     System.out.println("Nhập nghĩa mới của từ thay thế :");
                     String newExplain = scanner.nextLine();
 
-                   editWord(wordFirst, wordFirstUpdate, newExplain);
+                    editWord(wordFirst, wordFirstUpdate, newExplain);
                     break;
                 case 4:
                     // Display
-//                    showAllWords();
                     dictionaryBasic();
                     break;
                 case 5:
                     // Lookup
-                     dictionaryLookup(scanner);
-//                    dictionaryManagement.dictionaryLookupTrie(scanner);
+                    dictionaryLookup(scanner);
+//                    dictionaryLookupTrie(scanner);
                     break;
                 case 6:
                     // Search
@@ -156,12 +149,12 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     break;
                 case 7:
                     // Game
-//                    dictionaryManagement.dictionaryGame();
                     HangmanGame hangmanGame = new HangmanGame();
                     hangmanGame.play(); // Gọi phương thức play để bắt đầu trò chơi Hangman
                     break;
                 case 8:
                     // Import from file
+                    //C:/txt/dictionaryImportFromFile.txt
                     System.out.println("Bạn hãy nhập đường dẫn để nhập từ điển từ file!");
 
                     String path = scanner.nextLine();
@@ -170,12 +163,13 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     if (file.exists() && file.isFile()) {
                         insertFromFile(path);
                     } else {
-                        System.out.println("Đường dẫn không hợp lệ hoặc không phải là tệp.");
+                        System.err.println("Đường dẫn không hợp lệ hoặc không phải là tệp.");
                     }
                     break;
 
                 case 9:
                     // Export to file
+                    //C:/txt/dictionaryExportToFile.txt
                     System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
 
                     String pathExport = scanner.nextLine();
@@ -184,7 +178,7 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                     if (fileExport.exists() && fileExport.isFile()) {
                         dictionaryExportToFile(pathExport);
                     } else {
-                        System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
+                        System.err.println("Đường dẫn không hợp lệ hoặc không phải là tệp.");
                     }
                     break;
                 case 10:
@@ -206,7 +200,7 @@ public class DictionaryCommandLine extends DictionaryManagement  {
                         System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
                         String wordToTranslate = scanner.nextLine();
                         result = translateFromVietnameseToEnglish(wordToTranslate);
-                        result =translateFromEnglishToVietnamese(wordToTranslate);
+                        result = translateFromEnglishToVietnamese(wordToTranslate);
                     } else if (translation.equals("vi-en")) {
                         System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
                         String wordToTranslate = scanner.nextLine();
@@ -219,9 +213,6 @@ public class DictionaryCommandLine extends DictionaryManagement  {
 
                     System.out.println("Kết quả dịch: " + result);
                     break;
-
-
-
 
                 default:
                     System.out.println("Action not supported");

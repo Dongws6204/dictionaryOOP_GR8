@@ -4,7 +4,6 @@ import java.sql.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.io.BufferedReader;
@@ -18,21 +17,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 
-import Controllers.DictionaryController;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-import javafx.beans.property.MapProperty;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-
 
 
 public class DictionaryManagement {
@@ -60,15 +46,15 @@ public class DictionaryManagement {
     private void initializeDatabaseConnection() {
         try {
 
-            //Chi
-            String url = "jdbc:mysql://localhost:3306/dictionary";
-            String username = "root";
-            String password = "1616lclc";
+//            //Chi
+//            String url = "jdbc:mysql://localhost:3306/dictionary";
+//            String username = "root";
+//            String password = "1616lclc";
 
             //Dongws
-            /*String url = "jdbc:mysql://localhost:3306/dictionaryDb";
+            String url = "jdbc:mysql://localhost:3306/dictionaryDb";
             String username = "root";
-            String password = "Cu0602@";*/
+            String password = "Cu0602@";
 
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
@@ -77,7 +63,7 @@ public class DictionaryManagement {
     }
 
 
-    private void loadWordsFromDatabase() {
+    protected void loadWordsFromDatabase() {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM words");
@@ -175,22 +161,6 @@ public class DictionaryManagement {
     /**
      * updateLookup.
      */
-//    public void dictionaryLookup(Scanner scanner) {
-//        System.out.print("Enter a word: ");
-//        String lookUpWord = scanner.nextLine().trim().toLowerCase();
-//
-//        boolean found = false;
-//        for (Word word : words) {
-//            if (word.getWordTarget().equals(lookUpWord)) {
-//                System.out.println("Vietnamese: " + word.getWordExplain() +"\n");
-//                found = true;
-//                break;
-//            }
-//        }
-//        if (!found) {
-//            System.out.println("Word not found in the dictionary.");
-//        }
-//    }
     public void dictionaryLookup(Scanner scanner) {
        words.clear();
        loadWordsFromDatabase();
@@ -210,6 +180,8 @@ public class DictionaryManagement {
         }
     }
     public void dictionaryLookupTrie(Scanner scanner) {
+//        root.clear();
+//        loadWordsFromDatabase();
         System.out.print("Enter a word: ");
         String lookUpWord = scanner.nextLine().trim().toLowerCase();
 
@@ -242,16 +214,14 @@ public class DictionaryManagement {
      * editWord.
      */
     public void editWord(String word, String newWord, String newExplain) {
+//        words.clear();
+//        loadWordsFromDatabase();
         try {
             // Kiểm tra xem từ có tồn tại trong danh sách không
             boolean wordExists = false;
             for (Word w : words) {
                 if (w.getWordTarget().equalsIgnoreCase(word)) {
                     wordExists = true;
-                    Word res = new Word(w);
-
-                    Word res2 = new Word(newWord, newExplain);
-                    words.remove(res);
                     break;
                 }
             }
@@ -270,6 +240,7 @@ public class DictionaryManagement {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
+                root.insert(newWord,newExplain);
                 System.out.println("Đã sửa từ " + word + " thành công.");
                 // Làm mới danh sách từ
                 loadWordsFromDatabase();
@@ -292,7 +263,7 @@ public class DictionaryManagement {
                     Word x = new Word(w);
                     words.remove(x);
 
-                    System.out.println("Đã xóa từ " + word + " thành công.2");
+//                    System.out.println("Đã xóa từ " + word + " thành công.2");
                 }
 
             }
@@ -314,11 +285,6 @@ public class DictionaryManagement {
         root.remove(word);
 
     }
-//    public void deleteWord(String word) {
-//        loadWordsFromDatabase();
-//
-//        }
-//    }
 
     /**
      * xuatFile.

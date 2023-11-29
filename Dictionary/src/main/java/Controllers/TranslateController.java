@@ -3,7 +3,7 @@ package Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import dictionaryJava.DictionaryManagement;
-import java.util.List;
+
 
 public class TranslateController extends DictionaryManagement{
     @FXML
@@ -12,11 +12,6 @@ public class TranslateController extends DictionaryManagement{
     @FXML
     private TextArea transalationTextArea;
 
-//    private DictionaryManagement dictionaryManagement;
-//
-//    public TranslateController() {
-//        dictionaryManagement = new DictionaryManagement();
-//    }
 
     @FXML
     private void initialize() {

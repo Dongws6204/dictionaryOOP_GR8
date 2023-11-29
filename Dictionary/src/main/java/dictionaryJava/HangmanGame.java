@@ -3,7 +3,7 @@ package dictionaryJava;
 import java.util.Random;
 import java.util.Scanner;
 
-public class HangmanGame {
+public class HangmanGame extends DictionaryManagement {
 
     private static String[] wordList = {"Apple",
             "Elephant",
@@ -35,12 +35,6 @@ public class HangmanGame {
     private static int level = 0;
     private static StringBuilder guessedLetters = new StringBuilder();
 
-    //    public void resetGame() {
-//        wordToGuess = wordList[random.nextInt(wordList.length)];
-//        wordDisplay = new StringBuilder("_".repeat(wordToGuess.length()));
-//        attemptsLeft = 6;
-//        guessedLetters = new StringBuilder();
-//    }
     public String generateWordToGuess(int level) {
         return wordList[level];
     }
