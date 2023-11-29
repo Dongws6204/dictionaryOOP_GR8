@@ -1,7 +1,0 @@
-Application\DictionaryApplication.class
-dictionaryJava\Word.class
-module-info.class
-dictionaryJava\Dictionary.class
-dictionaryJava\DictionaryCommandLine.class
-dictionaryJava\DictionaryManagement.class
-Application\MainPageController.class

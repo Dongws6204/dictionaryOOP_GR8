@@ -1,4 +1,0 @@
---patch-module
-com.example.Dictionary=_
---add-reads
-com.example.Dictionary=ALL-UNNAMED
