@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="1072.0" maxWidth="1375.0" minHeight="400.0" minWidth="600.0" prefHeight="497.0" prefWidth="770.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
@@ -103,6 +104,15 @@
             <Image url="@../assets/Logo.png" />
          </image>
       </ImageView>
+      <Pane fx:id="Welcome" layoutX="253.0" layoutY="229.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text fill="#606060" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the CCA Dictionary!" textAlignment="CENTER" wrappingWidth="379.2265625">
+               <font>
+                  <Font name="r0c0i Linotte Bold" size="29.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
       <Pane fx:id="GameControllers" layoutX="189.0" layoutY="96.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="333.0" prefWidth="540.0" style="-fx-background-radius: 15; -fx-background-color: #ffff; -fx-border-color: #f4f4f4; -fx-border-radius: 15; -fx-border-width: 3;" visible="false" />
 
       <Pane fx:id="TranslateControllers" layoutX="164.0" layoutY="79.0" prefHeight="389.0" prefWidth="578.0" visible="false">
@@ -118,7 +128,7 @@
             <fx:include source="Bookmark.fxml" />
          </children>
       </Pane>
-      <Pane fx:id="DictionaryControllers" layoutX="156.0" layoutY="8.0" prefHeight="482.0" prefWidth="567.0">
+      <Pane fx:id="DictionaryControllers" layoutX="160.0" layoutY="4.0" prefHeight="482.0" prefWidth="567.0" visible="false">
          <children>
             <fx:include fx:id="Dictionary" source="Dictionary.fxml" />
          </children>

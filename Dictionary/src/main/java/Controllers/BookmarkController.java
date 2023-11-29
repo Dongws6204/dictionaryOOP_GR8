@@ -62,16 +62,51 @@ public class BookmarkController {
 
     @FXML
     public void initialize() {
+
+        BookmarkFilledStar.setVisible(false);
+        BookmarkUnFilledStar.setVisible(false);
+        US.setVisible(false);
         suggestions = FXCollections.observableArrayList();
+        BookmarkSuggestListView.setVisible(true);
+        BookmarkSuggestListView.setItems(suggestions);
         if (!wordBookMark.isEmpty()) {
             Map.Entry<String, String> firstEntry = wordBookMark.entrySet().iterator().next();
             String firstKey = firstEntry.getKey();
             suggestions.add(firstKey);
         }
+        BookmarkSearchBar.setOnKeyPressed(event -> {
+            if (event.getCode().equals(javafx.scene.input.KeyCode.ENTER)) {
+                handleEnterKeyPress();
+            }
+        });
+
+    }
+    private void handleEnterKeyPress() {
+        String searchTerm = BookmarkSearchBar.getText().trim().toLowerCase();
+        if (suggestions.contains(searchTerm)) {
+            showMeaning(searchTerm);
+        }
+    }
+    private void showMeaning(String selectedSuggestion) {
+        String meaning = wordBookMark.get(selectedSuggestion.toLowerCase());
+        meaning = formatMeaning(meaning);
+
+        String formattedText = String.format("%s \n %s", selectedSuggestion, meaning);
+        BookMarkExplanation.setText(formattedText);
+        BookMarkExplanation.setPrefRowCount(meaning.split("\n").length);
+        BookMarkExplanation.setWrapText(true);
+        BookmarkFilledStar.setVisible(true);
+        US.setVisible(true);
+
+        // Assuming you want to speak the word when Enter is pressed
+        US.setOnMouseClicked(event -> {
+            dm.speakWord(selectedSuggestion);
+        });
 
     }
 
-//    @FXML
+
+    //    @FXML
 //    private void search(String searchTerm) {
 ////        if (isFirstKeyEvent) {
 ////            loadSuggestions();
@@ -131,11 +166,14 @@ public class BookmarkController {
             BookMarkExplanation.setText(formattedText);
             BookMarkExplanation.setPrefRowCount(meaning.split("\n").length);
             BookMarkExplanation.setWrapText(true);
+            BookmarkFilledStar.setVisible(true);
+            US.setVisible(true);
         }
         US.setOnMouseClicked(event1 -> {
             dm.speakWord(selectedSuggestion);
         });
         AddFavorite(selectedSuggestion);
+
     }
 
     private String formatMeaning(String meaning) {

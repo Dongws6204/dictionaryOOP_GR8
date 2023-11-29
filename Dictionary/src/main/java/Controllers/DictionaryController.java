@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -79,8 +80,6 @@ public class DictionaryController {
     @FXML
     private TextArea RemoveUpdateMeaning;
     @FXML
-    private Button RemoveButton;
-    @FXML
     private Button updateButton;
     @FXML
     private ImageView CloseRUbutton;
@@ -135,6 +134,14 @@ public class DictionaryController {
             wordMap.put(w.getWordTarget(), w.getWordExplain());
             wordStatus.put(w.getWordTarget(), false);
         }
+        DictionarySearchBar.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleEnterKeyPress();
+            }
+        });
+        dictionaryUnFilledStar.setVisible(false);
+        DictionaryFilledStar.setVisible(false);
+        US.setVisible(false);
         AddWordPane.setVisible(false);
         AddWordPane.setDisable(true);
         RemoveAlertPane.setVisible(false);
@@ -144,6 +151,39 @@ public class DictionaryController {
         AlertPane.setVisible(false);
         AlertPane.setDisable(true);
     }
+    private void handleEnterKeyPress() {
+        String searchTerm = DictionarySearchBar.getText().trim().toLowerCase();
+
+        // Check if the entered term is in the suggestions
+        if (suggestions.contains(searchTerm)) {
+            // Display the meaning for the selected suggestion
+            showMeaning(searchTerm);
+        } else {
+            // Show an alert if the suggestion is not found
+            showAlert("Từ không được tìm thấy.", 3);
+        }
+    }
+
+    private void showMeaning(String selectedSuggestion) {
+        // Logic to display the meaning for the selected suggestion
+        String meaning = wordMap.get(selectedSuggestion.toLowerCase());
+        meaning = formatMeaning(meaning);
+        meaning = meaning.replaceFirst("(?i)(" + selectedSuggestion + ")", "");
+
+        String formattedText = String.format(" %s \n %s", selectedSuggestion, meaning);
+        DictionaryExplanation.setText(formattedText);
+        DictionaryExplanation.setPrefRowCount(meaning.split("\n").length);
+        DictionaryExplanation.setWrapText(true);
+
+        US.setOnMouseClicked(event1 -> {
+            dm.speakWord(selectedSuggestion);
+        });
+
+        addFavorite(selectedSuggestion);
+        dictionaryUnFilledStar.setVisible(true);
+        US.setVisible(true);
+    }
+
 
     @FXML
     private void search(String searchTerm) {
@@ -177,11 +217,14 @@ public class DictionaryController {
             DictionaryExplanation.setWrapText(true);
 
 
+            DictionarySearchBar.setText(selectedSuggestion);
             US.setOnMouseClicked(event1 -> {
                 dm.speakWord(selectedSuggestion);
             });
         }
         addFavorite(selectedSuggestion);
+        dictionaryUnFilledStar.setVisible(true);
+        US.setVisible(true);
     }
 
 
@@ -255,6 +298,7 @@ public class DictionaryController {
         DictionarySearchBar.clear();
         dictionaryUnFilledStar.setVisible(false);
         DictionaryFilledStar.setVisible(false);
+        US.setVisible(false);
 
     }
 
@@ -326,8 +370,8 @@ public class DictionaryController {
             suggestions.remove(oldWord);
             wordMap.put(newWord, newExplain);
             suggestions.add(newWord);
-            showAlert("Đã sửa từ " + selectedSuggestion + " thành công.",3);
             dm.editWord(oldWord,newWord,newExplain);
+            showAlert("Đã sửa từ "+selectedSuggestion+ " thành công.",3);
         }
         reloadDictionary();
         CloseRemoveUpdatePane(event);
@@ -335,14 +379,20 @@ public class DictionaryController {
     @FXML
     void ShowRemoveAlertPane(MouseEvent event)
     {
-        RemoveAlertPane.setVisible(true);
-        RemoveAlertPane.setDisable(false);
-        DictionaryPane.setDisable(true);
+        if (selectedSuggestion != null) {
+            RemoveAlertPane.setVisible(true);
+            RemoveAlertPane.setDisable(false);
+            DictionaryPane.setDisable(true);
+        }
+        else {
+            showAlert("Hãy chọn từ để xóa.",3);
+        }
     }
     @FXML
     void CloseRemoveAlertPane(MouseEvent event) {
         RemoveAlertPane.setVisible(false);
         RemoveAlertPane.setDisable(true);
+        DictionaryPane.setDisable(false);
     }
     @FXML
     void RemoveWord(MouseEvent event)

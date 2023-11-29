@@ -12,19 +12,19 @@
    <children>
       <Region layoutX="14.0" layoutY="55.0" prefHeight="274.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
       <Region layoutX="307.0" layoutY="54.0" prefHeight="274.0" prefWidth="283.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10;" />
-      <TextArea fx:id="sourceTextArea" layoutX="316.0" layoutY="58.0" prefHeight="263.0" prefWidth="267.0" promptText="type..." style="-fx-background-color: #f4f4f4;" wrapText="true">
+      <TextArea fx:id="sourceTextArea" layoutX="22.0" layoutY="58.0" prefHeight="263.0" prefWidth="267.0" promptText="type..." style="-fx-background-color: #f4f4f4;" wrapText="true">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </TextArea>
-      <TextArea fx:id="transalationTextArea" editable="false" layoutX="22.0" layoutY="58.0" prefHeight="263.0" prefWidth="267.0" style="-fx-background-color: #f4f4f4;" wrapText="true">
+      <TextArea fx:id="transalationTextArea" editable="false" layoutX="316.0" layoutY="59.0" prefHeight="263.0" prefWidth="267.0" style="-fx-background-color: #f4f4f4;" wrapText="true">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>
       </TextArea>
       <Pane layoutX="27.0" layoutY="13.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-5.0" prefHeight="37.0" prefWidth="153.0" text="DỊCH" textFill="WHITE">
+            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-4.0" prefHeight="37.0" prefWidth="153.0" text="VĂN BẢN" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>
@@ -36,7 +36,7 @@
       </Pane>
       <Pane layoutX="321.0" layoutY="14.0" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 20;">
          <children>
-            <Label fx:id="EnglishLabel" graphicTextGap="8.0" layoutX="-5.0" prefHeight="37.0" prefWidth="153.0" text="VĂN BẢN" textFill="WHITE">
+            <Label fx:id="VietnameseLabel" graphicTextGap="8.0" layoutX="-2.0" layoutY="-1.0" prefHeight="37.0" prefWidth="153.0" text="DỊCH" textFill="WHITE">
                <font>
                   <Font name="r0c0i Linotte Bold" size="13.0" />
                </font>

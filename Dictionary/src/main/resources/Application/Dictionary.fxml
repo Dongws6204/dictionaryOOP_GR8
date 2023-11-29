@@ -105,6 +105,11 @@
                         <Image url="@../assets/icons8-fix-48.png" />
                      </image>
                   </ImageView>
+                  <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="21.0" layoutX="304.0" layoutY="6.0" onMouseClicked="#ShowRemoveAlertPane" pickOnBounds="true" preserveRatio="true" styleClass="image-view1">
+                     <image>
+                        <Image url="@../assets/icons8-delete-trash-48.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
@@ -172,7 +177,7 @@
       </Pane>
       <AnchorPane fx:id="RemoveUpdatePane" disable="true" layoutX="64.0" layoutY="81.0" prefHeight="381.0" prefWidth="493.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
          <children>
-            <Button id="button2" fx:id="updateButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="328.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#UpdateWord" prefHeight="34.0" prefWidth="55.0" styleClass="button2" stylesheets="@style.css" text="SỬA" textFill="#656565">
+            <Button id="button2" fx:id="updateButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="394.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#UpdateWord" prefHeight="34.0" prefWidth="55.0" styleClass="button2" stylesheets="@style.css" text="SỬA" textFill="#656565">
                <font>
                   <Font name="r0c0i Linotte Bold" size="15.0" />
                </font>
@@ -213,14 +218,6 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <Button id="button2" fx:id="RemoveButton" alignment="BASELINE_LEFT" graphicTextGap="6.0" layoutX="399.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#ShowRemoveAlertPane" prefHeight="34.0" prefWidth="55.0" styleClass="button2" stylesheets="@style.css" text="XÓA" textFill="#5e5e5e">
-               <font>
-                  <Font name="r0c0i Linotte Bold" size="15.0" />
-               </font>
-               <padding>
-                  <Insets left="14.0" />
-               </padding>
-            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="RemoveAlertPane" disable="true" layoutX="74.0" layoutY="88.0" prefHeight="239.0" prefWidth="473.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 20; -fx-border-width: 5;" visible="false">
