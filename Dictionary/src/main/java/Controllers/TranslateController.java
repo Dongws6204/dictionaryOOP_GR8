@@ -5,18 +5,18 @@ import javafx.scene.control.TextArea;
 import dictionaryJava.DictionaryManagement;
 import java.util.List;
 
-public class TranslateController {
+public class TranslateController extends DictionaryManagement{
     @FXML
     private TextArea sourceTextArea;
 
     @FXML
     private TextArea transalationTextArea;
 
-    private DictionaryManagement dictionaryManagement;
-
-    public TranslateController() {
-        dictionaryManagement = new DictionaryManagement();
-    }
+//    private DictionaryManagement dictionaryManagement;
+//
+//    public TranslateController() {
+//        dictionaryManagement = new DictionaryManagement();
+//    }
 
     @FXML
     private void initialize() {
@@ -25,10 +25,10 @@ public class TranslateController {
             // Kiểm tra người dùng đã nhập từ tiếng Anh hay tiếng Việt
             if (isEnglishText(newValue)) {
                 // Nếu là tiếng Anh, dịch sang tiếng Việt và hiển thị kết quả trong transalationTextArea
-                String translation = dictionaryManagement.translateFromEnglishToVietnamese(newValue);
+                String translation = translateFromEnglishToVietnamese(newValue);
                 transalationTextArea.setText(translation);
             } else {
-                String translation = dictionaryManagement.translateFromVietnameseToEnglish(newValue);
+                String translation = translateFromVietnameseToEnglish(newValue);
                 transalationTextArea.setText(translation);
             }
         });

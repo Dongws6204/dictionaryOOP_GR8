@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DictionaryController {
+public class DictionaryController extends DictionaryManagement {
     // -------------DictionaryPane--------------------
     @FXML
     private AnchorPane DictionaryPane;
@@ -50,7 +50,7 @@ public class DictionaryController {
     private ImageView dictionaryUnFilledStar;
     private ObservableList<String> suggestions = FXCollections.observableArrayList();
     private String selectedSuggestion;
-    private DictionaryManagement dm = new DictionaryManagement();
+//    private DictionaryManagement dm = new DictionaryManagement();
 
     private Map<String, String> wordMap = new HashMap<>();
     private Map<String, Boolean> wordStatus = new HashMap<>();
@@ -128,7 +128,7 @@ public class DictionaryController {
         DicSuggestListView.setVisible(false);
         // Khởi tạo danh sách gợi ý (suggestions) từ tệp dictionaries.txt
         suggestions = FXCollections.observableArrayList();
-        List<Word> words = dm.getWords(); // Sử dụng generics để xác định kiểu dữ liệu trong danh sách
+        List<Word> words = getWords(); // Sử dụng generics để xác định kiểu dữ liệu trong danh sách
         for (Word w : words) {
             suggestions.add(w.getWordTarget());
             wordMap.put(w.getWordTarget(), w.getWordExplain());
@@ -158,6 +158,7 @@ public class DictionaryController {
         if (suggestions.contains(searchTerm)) {
             // Display the meaning for the selected suggestion
             showMeaning(searchTerm);
+            selectedSuggestion = searchTerm;
         } else {
             // Show an alert if the suggestion is not found
             showAlert("Từ không được tìm thấy.", 3);
@@ -176,7 +177,7 @@ public class DictionaryController {
         DictionaryExplanation.setWrapText(true);
 
         US.setOnMouseClicked(event1 -> {
-            dm.speakWord(selectedSuggestion);
+            speakWord(selectedSuggestion);
         });
 
         addFavorite(selectedSuggestion);
@@ -219,7 +220,7 @@ public class DictionaryController {
 
             DictionarySearchBar.setText(selectedSuggestion);
             US.setOnMouseClicked(event1 -> {
-                dm.speakWord(selectedSuggestion);
+                speakWord(selectedSuggestion);
             });
         }
         addFavorite(selectedSuggestion);
@@ -313,7 +314,8 @@ public class DictionaryController {
             wordMap.put(word, meaning);
             showAlert("Đã thêm từ "+word+" thành công.",3);
             suggestions.add(word);
-            dm.addWord(word,meaning);
+            addWord(word,meaning);
+
 
             reloadDictionary();
             AddWordTextArea.clear();
@@ -370,8 +372,10 @@ public class DictionaryController {
             suggestions.remove(oldWord);
             wordMap.put(newWord, newExplain);
             suggestions.add(newWord);
-            dm.editWord(oldWord,newWord,newExplain);
-            showAlert("Đã sửa từ "+selectedSuggestion+ " thành công.",3);
+            showAlert("Đã sửa từ " + selectedSuggestion + " thành công.",3);
+
+            editWord(oldWord,newWord,newExplain);
+
         }
         reloadDictionary();
         CloseRemoveUpdatePane(event);
@@ -399,7 +403,9 @@ public class DictionaryController {
     {
         reloadDictionary();
         suggestions.remove(selectedSuggestion);
-        dm.deleteWord(selectedSuggestion);
+
+        deleteWordDb(selectedSuggestion);
+
         showAlert("Đã xóa từ thành công",3);
         CloseRemoveUpdatePane(event);
         CloseRemoveAlertPane(event);

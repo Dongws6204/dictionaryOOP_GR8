@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Map;
 
-public class BookmarkController {
+public class BookmarkController extends DictionaryManagement{
 
     @FXML
     private TextArea BookMarkExplanation;
@@ -48,7 +48,7 @@ public class BookmarkController {
     }
 
     private DataSharingManager dataSharingManager;
-    public DictionaryManagement dm = new DictionaryManagement();
+//    public DictionaryManagement dm = new DictionaryManagement();
 
     public BookmarkController() {
         this.dataSharingManager = DataSharingManager.getInstance();
@@ -170,7 +170,7 @@ public class BookmarkController {
             US.setVisible(true);
         }
         US.setOnMouseClicked(event1 -> {
-            dm.speakWord(selectedSuggestion);
+            speakWord(selectedSuggestion);
         });
         AddFavorite(selectedSuggestion);
 

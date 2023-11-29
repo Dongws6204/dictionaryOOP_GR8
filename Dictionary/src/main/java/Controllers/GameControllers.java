@@ -1,16 +1,16 @@
 package Controllers;
 
+import dictionaryJava.DictionaryManagement;
 import dictionaryJava.HangmanGame;
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import dictionaryJava.Word;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -20,17 +20,31 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.scene.image.ImageView;
 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GameControllers extends  HangmanGame{
+public class GameControllers extends HangmanGame {
     private int curLevel = 1;
     private int atLeft = 6;
     private boolean check = false;
-    private  boolean moveRight = true;
-    private  Pane gamePane;
+    private boolean moveRight = true;
+    private int fitSize = 100;
+    private int animationX = 400;
+    private int animationY = -85;
+    private Pane gamePane;
+    private DictionaryManagement dm = new DictionaryManagement();
+    private List<Word> words = dm.getWords();
+    private int i = 10;
+    private ImageView animationOne = new ImageView();
+    private ImageView animationTwo = new ImageView();
+    private ImageView animationThree = new ImageView();
 
     public boolean isCheck() {
         if (atLeft <= 0) {
@@ -38,11 +52,14 @@ public class GameControllers extends  HangmanGame{
         }
         return check;
     }
-    public GameControllers (Pane gamePane) {
+
+    public GameControllers(Pane gamePane) {
+//        dm = new DictionaryManagement();
         this.gamePane = gamePane;
+//        this.words = dm.getWords();
     }
 
-    private  String[] english = {"Apple",
+    private String[] english = {"Apple",
             "Angle",
             "Amend",
             "Alarm",
@@ -71,8 +88,8 @@ public class GameControllers extends  HangmanGame{
             "Tower",
             "Tonic"
     };
-    private  String[] vietNamEse = {"Táo", "Voi", "Hổ", "Thỏ","Tivi", "Ổ","Bàn"};
-    private  String[] resWord = {
+    private String[] vietNamEse = {"Táo", "Voi", "Hổ", "Thỏ", "Tivi", "Ổ", "Bàn"};
+    private String[] resWord = {
             "Apple",
             "Elephant",
             "Tiger",
@@ -91,11 +108,14 @@ public class GameControllers extends  HangmanGame{
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
+
         head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+
         head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
+
         body.setStroke(Color.rgb(87,87,87));
         body.setStrokeWidth(4);
 
@@ -123,14 +143,14 @@ public class GameControllers extends  HangmanGame{
         // Thêm các hình đã vẽ vào Group
         if (atLeft == 6) {
 
-        } else if ( atLeft == 5) {
+        } else if (atLeft == 5) {
             group.getChildren().addAll(head);
         } else if (atLeft == 4) {
             group.getChildren().addAll(body);
         } else if (atLeft == 3) {
-            group.getChildren().addAll(leftHand,rightHand);
+            group.getChildren().addAll(leftHand, rightHand);
         } else if (atLeft == 2) {
-            group.getChildren().addAll(leftLeg,rightLeg);
+            group.getChildren().addAll(leftLeg, rightLeg);
         } else if (atLeft == 1) {
             group.getChildren().addAll(rope);
         }
@@ -145,32 +165,35 @@ public class GameControllers extends  HangmanGame{
         // Vẽ hình tròn (O) bằng Circle
         Circle head = new Circle(70, 35, 20);
         head.setFill(Color.WHITE);  // Đặt màu nền là trắng
-        head.setStroke(Color.rgb(87,87,87)); // Đặt màu viền là đen
+
+        head.setStroke(Color.rgb(87, 87, 87)); // Đặt màu viền là đen
+
         head.setStrokeWidth(4);     // Đặt độ dày viền là 2 pixel
 
         // Vẽ nhân vật đứng (|)
         Line body = new Line(70, 55, 70, 135);
-        body.setStroke(Color.rgb(87,87,87));
+        body.setStroke(Color.rgb(87, 87, 87));
         body.setStrokeWidth(4);
 
-        Line leftHand = new Line(70,70, 44, 112);
-        leftHand.setStroke(Color.rgb(87,87,87));
+        Line leftHand = new Line(70, 70, 44, 112);
+        leftHand.setStroke(Color.rgb(87, 87, 87));
         leftHand.setStrokeWidth(4);
 
-        Line leftLeg = new Line(70,135,44,177);
-        leftLeg.setStroke(Color.rgb(87,87,87));
+        Line leftLeg = new Line(70, 135, 44, 177);
+        leftLeg.setStroke(Color.rgb(87, 87, 87));
         leftLeg.setStrokeWidth(4);
 
-        Line rightHand = new Line(70,70,96,112);
-        rightHand.setStroke(Color.rgb(87,87,87));
+        Line rightHand = new Line(70, 70, 96, 112);
+        rightHand.setStroke(Color.rgb(87, 87, 87));
         rightHand.setStrokeWidth(4);
 
-        Line rightLeg = new Line(70,135,96,177);
-        rightLeg.setStroke(Color.rgb(87,87,87));
+        Line rightLeg = new Line(70, 135, 96, 177);
+        rightLeg.setStroke(Color.rgb(87, 87, 87));
         rightLeg.setStrokeWidth(4);
 
         Color blue = Color.rgb(108, 65, 65);
-        Line rope = new Line(8,8,70,67);
+        Line rope = new Line(8, 8, 70, 67);
+
         rope.setStroke(blue);
         rope.setStrokeWidth(4);
 
@@ -181,29 +204,31 @@ public class GameControllers extends  HangmanGame{
         leftTurn.setLayoutX(260);
         leftTurn.setLayoutY(15);
         leftTurn.setFont(font);
-        leftTurn.setStyle("-fx-background-color:#efefef;"+
-        "-fx-background-radius: 10");
+
+        leftTurn.setStyle("-fx-background-color:#efefef;" +
+                "-fx-background-radius: 10");
+
         // Thêm các hình đã vẽ vào Group
         if (atLeft == 6) {
             group.getChildren().add(leftTurn);
-        } else if ( atLeft == 5) {
+        } else if (atLeft == 5) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(head,leftTurn);
+            group.getChildren().addAll(head, leftTurn);
         } else if (atLeft == 4) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(head,body,leftTurn);
+            group.getChildren().addAll(head, body, leftTurn);
         } else if (atLeft == 3) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(head,body,leftHand,rightHand,leftTurn);
+            group.getChildren().addAll(head, body, leftHand, rightHand, leftTurn);
         } else if (atLeft == 2) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg,leftTurn);
+            group.getChildren().addAll(head, body, leftHand, rightHand, leftLeg, rightLeg, leftTurn);
         } else if (atLeft == 1) {
             group.getChildren().remove(leftTurn);
-            group.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg,rope,leftTurn);
+            group.getChildren().addAll(head, body, leftHand, rightHand, leftLeg, rightLeg, rope, leftTurn);
         } else if (atLeft == 0) {
-            gr1.getChildren().addAll(head,body,leftHand,rightHand,leftLeg,rightLeg);
-            group.getChildren().addAll(gr1,rope);
+            gr1.getChildren().addAll(head, body, leftHand, rightHand, leftLeg, rightLeg);
+            group.getChildren().addAll(gr1, rope);
 
 
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
@@ -241,12 +266,13 @@ public class GameControllers extends  HangmanGame{
 
         return group;
     }
+
     public Group setTextGame() {
         Group gr = new Group();
         buttons.clear();
 //        hmGame.generateWordToGuess(2);
 
-        StringBuilder  list =  generateWordDisplay(resWord[curLevel - 1], 1);
+        StringBuilder list = generateWordDisplay(resWord[curLevel - 1], 1);
         // Tạo một đối tượng Font với kích thước và kiểu chữ mới
         Font font = Font.font("r0c0i Linotte", FontWeight.SEMI_BOLD, 18);
         Text res = new Text(list.toString());
@@ -254,7 +280,6 @@ public class GameControllers extends  HangmanGame{
         res.setLayoutY(270);
         res.setFont(font);
         res.setFill(Color.rgb(42, 42, 42));
-
 
 
 //        leftTurn.setFont(font);
@@ -271,7 +296,9 @@ public class GameControllers extends  HangmanGame{
 //        left.setLayoutY(15);
 //        left.setFont(font);
 
-        Rectangle houseText = new Rectangle(130,30);
+
+        Rectangle houseText = new Rectangle(130, 30);
+
         houseText.setLayoutX(30);
         houseText.setLayoutY(250);
         houseText.setFill(Color.rgb(238, 238, 238));
@@ -279,10 +306,11 @@ public class GameControllers extends  HangmanGame{
         houseText.setArcHeight(20);
 
         String ButtonStyle = "-fx-background-color: #dadada;" +
-                              "-fx-background-radius: 20;" ;
+                "-fx-background-radius: 20;";
         String hoverButtonStyle = "-fx-background-color: #7e7e7e;" +
-                                   "-fx-text-fill: #ffffff;" +
-                                   "-fx-background-radius: 20;";
+                "-fx-text-fill: #ffffff;" +
+                "-fx-background-radius: 20;";
+
         Button resOne = new Button();
         resOne.setLayoutX(260);
         resOne.setLayoutY(100);
@@ -323,15 +351,15 @@ public class GameControllers extends  HangmanGame{
 
         setTextButton(buttons, curLevel);
         for (Button y : buttons) {
-            y.setOnAction(new ButtonClickHandler(resWord[curLevel-1]));
+            y.setOnAction(new ButtonClickHandler(resWord[curLevel - 1]));
         }
 
-        gr.getChildren().addAll(houseText,res,size,resOne,resTwo,resThree,resFour);
+        gr.getChildren().addAll(houseText, res, size, resOne, resTwo, resThree, resFour);
         return gr;
     }
 
     public void setTextButton(List<Button> buttons, int level) {
-        for (int i = 0; i < 4 ; i++) {
+        for (int i = 0; i < 4; i++) {
             int index = 4 * (level - 1) + i;
             if (index < english.length) {
                 buttons.get(i).setText(english[index]);
@@ -350,8 +378,142 @@ public class GameControllers extends  HangmanGame{
         gamePane.getChildren().add(setTextGame());
     }
 
+    public void play2() {
+        String path1 = "file:/C:/OOP/GR8_dictionary/dictionaryOOP_GR8/Dictionary/src/main/resources/assets/1.png";
+        String path2 = "file:/C:/OOP/GR8_dictionary/dictionaryOOP_GR8/Dictionary/src/main/resources/assets/2.png";
+        String path3 = "file:/C:/OOP/GR8_dictionary/dictionaryOOP_GR8/Dictionary/src/main/resources/assets/3.png";
 
-    // Lớp xử lý sự kiện
+//        animationOne = upLoad(animationOne,path1,fitSize, fitSize,animationX, animationY);
+        Text x = new Text();
+        x.setLayoutX(185);
+        x.setLayoutY(-20);
+
+        Image image = new Image(path1);
+        animationOne.setImage(image);
+        animationOne.setFitWidth(fitSize);
+        animationOne.setFitHeight(fitSize);
+        animationOne.setLayoutX(animationX);
+        animationOne.setLayoutY(animationY);
+
+        Image image2 = new Image(path2);
+        animationTwo.setImage(image2);
+        animationTwo.setFitWidth(fitSize);
+        animationTwo.setFitHeight(fitSize);
+        animationTwo.setLayoutX(animationX);
+        animationTwo.setLayoutY(animationY);
+//        animationTwo = upLoad(animationTwo,path2,fitSize, fitSize,animationX, animationY);
+
+        Image image3 = new Image(path3);
+        animationThree.setImage(image3);
+        animationThree.setFitWidth(fitSize);
+        animationThree.setFitHeight(fitSize);
+        animationThree.setLayoutX(animationX);
+        animationThree.setLayoutY(animationY);
+//        animationThree = upLoad(animationThree,path3,fitSize, fitSize,animationX, animationY);
+
+        gamePane.getChildren().addAll(animationOne, animationTwo, animationThree, x);
+
+        // Tạo KeyFrame
+        KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(0), e -> {
+            playFadeAnimation(animationOne);
+            animationTwo.setOpacity(0.0);
+            animationThree.setOpacity(0.0);
+        });
+        KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(4), e -> {
+            playFadeAnimation(animationTwo);
+            animationOne.setOpacity(0.0);
+            animationThree.setOpacity(0.0);
+        });
+        KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(8), e -> {
+            playFadeAnimation(animationThree);
+            animationOne.setOpacity(0.0);
+            animationTwo.setOpacity(0.0);
+        });
+
+        // Gán giá trị cho tl
+        Timeline tl = new Timeline(keyFrame1, keyFrame2, keyFrame3);
+
+        // Tạo PauseTransition để đặt lại thời gian của tl sau khi nó kết thúc
+        PauseTransition pt = new PauseTransition(Duration.seconds(12));
+        pt.setOnFinished(e -> {
+            Word w = words.get(i);
+            String target = w.getWordTarget();
+            String explain = w.getWordExplain();
+            String res = target + " : " + getString(explain);
+            x.setText(res);
+            tl.playFromStart();
+            pt.playFromStart();
+            i = i + 20;
+
+            // Kiểm tra nếu danh sách words không chứa đủ số lượng từ cần thiết
+            if (i >= words.size()) {
+                // Nếu không đủ từ, có thể thông báo hoặc thực hiện hành động khác
+                System.err.println("Không đủ từ trong danh sách.");
+                return;
+            }
+
+//            x.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
+//                double lastCharacterX = x.getLayoutX() + newValue.getMaxX();
+//                // Đặt lại layoutX để đặt Text theo vị trí cuối cùng của nó
+//                x.setLayoutX(x.getLayoutX() - lastCharacterX);
+//            });
+
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(11.5), x);
+            tt.setFromX(185);
+            tt.setToX(-gamePane.getWidth() + 315);
+            tt.play();
+
+        });
+
+
+        // Bắt đầu Timeline và PauseTransition
+        tl.play();
+        pt.play();
+    }
+
+    //    private ImageView setUpImageAndTransition(ImageView imageView, String imagePath) {
+//        imageView = upLoad(imageView, imagePath, fitSize, fitSize, animationX, animationY);
+//        return imageView;
+//    }
+    private ImageView upLoad(ImageView imageView, String imagePath, int fitSW, int fitSH, int layoutX, int layoutY) {
+        Image image = new Image(imagePath);
+        imageView.setImage(image);
+        imageView.setFitWidth(fitSW);
+        imageView.setFitHeight(fitSH);
+        imageView.setLayoutX(layoutX);
+        imageView.setLayoutY(layoutY);
+
+        return imageView;
+    }
+
+    private void playFadeAnimation(ImageView imageView) {
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), imageView);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(2.0);
+
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), imageView);
+        fadeOut.setFromValue(2.0);
+        fadeOut.setToValue(0.0);
+
+        fadeIn.setOnFinished(event -> fadeOut.play());
+
+        fadeIn.play();
+    }
+    private  String getString(String s) {
+        String res = "";
+        int sSize = s.length();
+        for ( int i = 0; i < sSize; i++) {
+            if ( s.charAt(i) == '-') {
+                for (int j = i+1; j < sSize; j ++) {
+                   res += s.charAt(j);
+                }
+                break;
+            }
+
+        }
+        return res;
+    }
+
     // Lớp xử lý sự kiện
     private class ButtonClickHandler implements EventHandler<ActionEvent> {
         private String targetTitle;
@@ -368,9 +530,10 @@ public class GameControllers extends  HangmanGame{
             // Kiểm tra title và thay đổi màu sắc
             if (clickedButton.getText().toLowerCase().equals(targetTitle.toLowerCase())) {
                 clickedButton.setStyle("-fx-background-color: #408a40;"
-                                        + "-fx-background-radius: 20;");
+                        + "-fx-background-radius: 20;");
                 // Tạo một PauseTransition để chờ trong 2 giây
-                Text x = new Text(vietNamEse[curLevel-1]);
+                Text x = new Text(vietNamEse[curLevel - 1]);
+
                 Font font = Font.font("r0c0i Linotte", FontWeight.BOLD, 20);
                 x.setLayoutX(347);
                 x.setLayoutY(270);
@@ -383,7 +546,7 @@ public class GameControllers extends  HangmanGame{
                     // Sau khi chờ, thực hiện các thay đổi
                     curLevel++;
 //                    gamePane.getChildren().clear();
-                    if (atLeft > 0){
+                    if (atLeft > 0) {
                         play(gamePane);
                     } else {
                         gamePane.getChildren().clear();
@@ -395,7 +558,7 @@ public class GameControllers extends  HangmanGame{
                 pause.play();
             } else {
                 clickedButton.setStyle("-fx-background-color: #8d4f4f;" +
-                                        "-fx-background-radius: 20;");
+                        "-fx-background-radius: 20;");
                 atLeft--;
                 if (atLeft <= 0) {
                     check = true;

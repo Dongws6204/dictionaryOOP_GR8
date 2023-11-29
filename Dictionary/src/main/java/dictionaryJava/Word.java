@@ -13,6 +13,10 @@ public class Word {
 
         this.wordTarget = wordTarget;
     }
+    public Word( Word w) {
+        this.wordTarget = getWordTarget();
+        this.wordExplain = getWordExplain();
+    }
 
     /**
      * contructor.

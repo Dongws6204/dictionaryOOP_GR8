@@ -6,17 +6,23 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class DictionaryCommandLine {
-    private DictionaryManagement dictionaryManagement;
+public class DictionaryCommandLine extends DictionaryManagement  {
+
 
 
     /**
      * constructor_commandline_Dictionary.
      *
-     * @param dictionaryManagement
+     * @param
      */
-    public DictionaryCommandLine(DictionaryManagement dictionaryManagement) {
-        this.dictionaryManagement = dictionaryManagement;
+    public DictionaryCommandLine(List<Word> words) {
+        super(words);
+//        this.dictionaryManagement = dictionaryManagement;
+//        words = dictionaryManagement.getWords();
+
+    }
+    public DictionaryCommandLine() {
+
     }
 
     /**
@@ -27,10 +33,10 @@ public class DictionaryCommandLine {
 
     public void showAllWords() {
         System.out.println("No | English | Vietnamese");
-        List<Word> words = dictionaryManagement.getWords();
+        List<Word> wordsS = words;
 
-        for (int i = 0; i < words.size(); i++) {
-            Word word = words.get(i);
+        for (int i = 0; i < wordsS.size(); i++) {
+            Word word = wordsS.get(i);
             System.out.println(i + 1 + " | " + word.getWordTarget() + " | " + word.getWordExplain());
         }
     }
@@ -42,7 +48,7 @@ public class DictionaryCommandLine {
      * @insert
      */
     public void dictionaryBasic() {
-        dictionaryManagement.insertFromCommandline();
+       insertFromCommandline();
         showAllWords();
     }
 
@@ -51,9 +57,7 @@ public class DictionaryCommandLine {
      */
     public void dictionarySearcher(String searchStr) {
         List<Word> searchRes = new ArrayList<>();
-
-        DictionaryManagement dm = new DictionaryManagement();
-        List<Word> words = dm.getWords();
+//        List<Word> words = dictionaryManagement.getWords();
 
         for (Word word : words) {
             if (word.getWordTarget().startsWith(searchStr)) {
@@ -109,16 +113,17 @@ public class DictionaryCommandLine {
                     break;
                 case 1:
                     // Add word
-                    dictionaryManagement.insertFromCommandline();
+                   insertFromCommandline();
                     break;
                 case 2:
 
                     // Remove word
-                    Scanner scDelete = new Scanner(System.in);
                     System.out.println("Nhập từ bạn muốn xóa  : ");
 
-                    String wordDelete = scDelete.nextLine();
-                    dictionaryManagement.deleteWord(wordDelete);
+                    String wordDelete = scanner.nextLine();
+//                    deleteWord(wordDelete);
+                    deleteWordDb(wordDelete);
+
                     break;
                 case 3:
                     // Update word
@@ -131,7 +136,7 @@ public class DictionaryCommandLine {
                     System.out.println("Nhập nghĩa mới của từ thay thế :");
                     String newExplain = scanner.nextLine();
 
-                    dictionaryManagement.editWord(wordFirst, wordFirstUpdate, newExplain);
+                   editWord(wordFirst, wordFirstUpdate, newExplain);
                     break;
                 case 4:
                     // Display
@@ -140,8 +145,8 @@ public class DictionaryCommandLine {
                     break;
                 case 5:
                     // Lookup
-//                    dictionaryManagement.dictionaryLookup(scanner);
-                    dictionaryManagement.dictionaryLookupTrie(scanner);
+                     dictionaryLookup(scanner);
+//                    dictionaryManagement.dictionaryLookupTrie(scanner);
                     break;
                 case 6:
                     // Search
@@ -163,7 +168,7 @@ public class DictionaryCommandLine {
                     File file = new File(path);
 
                     if (file.exists() && file.isFile()) {
-                        dictionaryManagement.insertFromFile(path);
+                        insertFromFile(path);
                     } else {
                         System.out.println("Đường dẫn không hợp lệ hoặc không phải là tệp.");
                     }
@@ -177,7 +182,7 @@ public class DictionaryCommandLine {
                     File fileExport = new File(pathExport);
 
                     if (fileExport.exists() && fileExport.isFile()) {
-                        dictionaryManagement.dictionaryExportToFile(pathExport);
+                        dictionaryExportToFile(pathExport);
                     } else {
                         System.out.println("Bạn hãy nhập đường dẫn để xuất từ điển sang file!");
                     }
@@ -186,24 +191,35 @@ public class DictionaryCommandLine {
                     // Phát âm từ vựng
                     System.out.println("Nhập từ bạn muốn phát âm:");
                     String wordToSpeak = scanner.nextLine();
-                    dictionaryManagement.speakWord(wordToSpeak);
+                    speakWord(wordToSpeak);
                     break;
                 case 11:
                     System.out.println("Bạn muốn dịch từ Anh sang Việt hay từ Việt sang Anh? (en-vi / vi-en): ");
-                    String translationDirection = scanner.nextLine();
+                    String translation = scanner.nextLine();
 
-                    if (translationDirection.equals("en-vi")) {
+                    String result = "";
+                    if (translation.equals("en-vi")) {
                         System.out.print("Nhập từ bạn muốn dịch từ Anh sang Việt: ");
                         String wordToTranslate = scanner.nextLine();
-                        dictionaryManagement.translateFromEnglishToVietnamese(wordToTranslate);
-                    } else if (translationDirection.equals("vi-en")) {
+                        result = translateFromEnglishToVietnamese(wordToTranslate);
+                    } else if (translation.equals("vi-en")) {
                         System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
                         String wordToTranslate = scanner.nextLine();
-                        dictionaryManagement.translateFromVietnameseToEnglish(wordToTranslate);
+                        result = translateFromVietnameseToEnglish(wordToTranslate);
+                        result =translateFromEnglishToVietnamese(wordToTranslate);
+                    } else if (translation.equals("vi-en")) {
+                        System.out.print("Nhập từ bạn muốn dịch từ Việt sang Anh: ");
+                        String wordToTranslate = scanner.nextLine();
+                        result = translateFromVietnameseToEnglish(wordToTranslate);
+
                     } else {
                         System.out.println("Hướng dịch không hợp lệ.");
+                        return;
                     }
+
+                    System.out.println("Kết quả dịch: " + result);
                     break;
+
 
 
 
@@ -213,6 +229,7 @@ public class DictionaryCommandLine {
             }
         }
     }
+
 
 }
 
