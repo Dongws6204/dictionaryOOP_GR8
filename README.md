@@ -33,4 +33,7 @@ Bài tập lớn Từ điển (UET OASIS - INT2204 2 - Lập trình hướng đ�
 
 ## Preview
 ![demo](https://github.com/Linhchi162/PacCat/blob/eb3d602aa25534e38847fe7f13f212c5f7a8d6f2/assets/bandicam-2023-11-29-20-52-08-716.gif)
+## Sources
+
+Cơ sở dữ liệu : https://shimivn.blogspot.com/2016/03/share-database-tu-ien-anh-viet.html?m=1#google_vignette
 
